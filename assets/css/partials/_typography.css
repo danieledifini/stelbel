@@ -1,0 +1,50 @@
+
+
+html{
+    font-size:16px; 
+    line-height: normal;
+    overflow-x:hidden;
+    color:var(--black);
+    background-color:var(--yellow);
+}
+
+body {
+
+}
+
+.fdc{
+    //font-family:'feature-deck-condensed';
+}
+
+.ft{
+    //font-family:'feature-text';
+}
+
+.foc{
+    //font-family:'focal';
+}
+
+.fs-20{
+    font-size:1.25rem;
+}
+
+.fs-10{
+    font-size:.625rem;
+}
+
+p {
+    &:empty { 
+        display: none; 
+        visibility:visible;
+    } 
+
+    strong,b{
+        font-weight: 700;
+    }
+}
+
+.default-text{
+    * + *{
+        margin-top:var(--standardMargin);
+    }
+}

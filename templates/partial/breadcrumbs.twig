@@ -1,0 +1,24 @@
+{% set title = post.title %}
+
+{% if is_archive %}
+    {% set title = archive_title %}
+{% endif %}
+
+
+
+
+<div class="breadcrumbs r-l step--1">
+    <a class="hover-secondary" href="{{ site.link }}" rel="home" title="{{ site.title }}">{{site.title|upper}}</a> <span class="arrow">-</span>
+
+    {% if is_woo_single %}
+        <a class="hover-secondary" href="{{archive_link}}" title="{{archive_title}}">{{archive_title}}</a> <span class="arrow">-</span>
+
+         {% set item_cats = post.terms('product_cat') %}  
+
+         {% for item_cat in item_cats %}
+            <a class="hover-secondary" href="{{item_cat.link}}" title="{{item_cat.name}}">{{item_cat.name}}</a> <span class="arrow">-</span>
+        {% endfor %} 
+    {% endif %}
+
+    <span>{{title|upper}}</span> 
+</div>

@@ -1,0 +1,70 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+
+    {% do action('woocommerce_before_main_content') %}
+
+    <div class="content-wrapper">
+		{% include 'partial/breadcrumbs.twig' %}
+		
+	</div>
+
+    <div class="products-container"   x-data="collection()" >
+        <div class="content-wrapper filter-header-wrapper">
+            <div class="filter-header">
+                <button class="transition  default-btn r-c step--1 filters-btn filters-bar-btn display-standard hover-secondary" type"button" id="filters-btn"  data-toggle="collapse" data-target="#aside-filter-wrapper" aria-controls="#aside-filter-wrapper" aria-expanded="false" aria-label="Toggle filters" @click.stop="filtersClosed = !filtersClosed"> 
+                    {{options.filter_by|upper}}
+                </button>
+                <span class="r-c step--1 desktop-label">{{options.filter_by|upper}}</span>
+                <button class="transition mobile-btn  default-btn r-c step--1 filters-btn sort-bar-btn display-standard hover-secondary" type"button" id="sort-btn"  data-toggle="collapse" data-target="#sort-wrapper" aria-controls="#sort-wrapper" aria-expanded="false" aria-label="Toggle sort sidebar" @click.stop="sortClosed = !sortClosed"> 
+                    {{options.sort_by|upper}}
+                </button>
+            </div>
+
+            
+        </div>
+
+        <div class="content-wrapper products-outer-wrapper">
+            
+            
+            <aside class="controls-bar filters-bar" :class="filtersClosed ? 'filters-not-open' : 'filters-open'">
+			
+                <button class="transition mobile-btn  default-btn r-c step--1 filters-btn filters-bar-btn display-standard hover-secondary" type"button" id="filters-btn-inner"  data-toggle="collapse" data-target="#aside-filter-wrapper" aria-controls="#aside-filter-wrapper" aria-expanded="false" aria-label="Toggle filters" @click.stop="filtersClosed = !filtersClosed"> 
+                    {{options.filter_by|upper}}
+                </button>
+                <div id="aside-filter-wrapper"  class="aside-filter-wrapper  aside-wrapper" >
+                    
+              
+     
+                    
+                </div>
+			
+            </aside>
+            <div class="loop product-list">
+                {% for post in products %}
+                    {% include 'partial/product.twig' with {'item':post, 'featured':true } %}
+                {% endfor %}
+            </div>
+            <aside class="controls-bar sort-bar" :class="sortClosed ? 'sort-not-open' : 'sort-open'">
+                <button class="transition mobile-btn  default-btn r-c step--1 filters-btn sort-bar-btn display-standard hover-secondary" type"button" id="sort-btn-inner"  data-toggle="collapse" data-target="#sort-wrapper" aria-controls="#sort-wrapper" aria-expanded="false" aria-label="Toggle sort sidebar" @click.stop="sortClosed = !sortClosed"> 
+                    {{options.sort_by|upper}}
+                </button>
+                <div id="aside-sort-wrapper"  class="aside-sort-wrapper aside-wrapper" >
+                    {% do action('woocommerce_before_shop_loop') %}
+                    <ul class="fake-sort-select r-l border-top">
+                        {#<li class="border-bottom"><button class="step--1 transition  default-btn active hover-secondary" data-value="menu_order"  type="button" role="button"  x-on:click="clickSelect($el)">{{options.default|upper}}</button></li>#}
+                        <li class="border-bottom"><button class="step--1 transition  default-btn hover-secondary" data-value="date"  type="button" role="button"  x-on:click="clickSelect($el)">{{options.new_arrivals|upper}}</button></li>
+                        {#<li class="border-bottom"><button class="step--1 transition  default-btn hover-secondary" data-value="price"  type="button" role="button"  x-on:click="clickSelect($el)">{{options.price_low_to_high|upper}}</button></li>#}
+                        {#<li class="border-bottom"><button class="step--1 transition  default-btn hover-secondary" data-value="price-desc"  type="button" role="button"  x-on:click="clickSelect($el)">{{options.price_high_to_low|upper}}</button></li>#}
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>    
+
+    
+
+    {% do action('woocommerce_after_shop_loop') %}
+    {% do action('woocommerce_after_main_content') %}
+
+{% endblock  %}

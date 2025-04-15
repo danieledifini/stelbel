@@ -1,0 +1,50 @@
+:root {
+    --white: #ffffff;
+    --black: #000;
+    --pink:#F0B8C3;
+    --yellow:#F8F5DA;
+
+    --vw:0;
+    --vh:0;
+
+    --grid-gutter:1.875rem;
+    --grid-max-width:93.75rem;
+    --grid-max-width:100%;
+
+    --headerH:3.875rem;
+    --headerTop:4.125rem;
+
+    --standardMargin:.9375rem;
+    --margin:.625rem;
+    --doubleMargin:1.25rem;
+    --finalMargin:3.75rem;
+
+    --primary:var(--black);
+    --secondary:var(--white);
+
+    --leftSpace:calc((100vw - var(--grid-max-width) - (var(--grid-gutter) * 2)) / 2);
+    --leftSpace:calc(((100 * var(--vw)) - var(--grid-max-width) - (var(--grid-gutter) * 2)) / 2);
+
+    --realContainerW:calc((100vw) - (var(--grid-gutter) * 2));
+    --realContainerW:calc((100 * var(--vw)) - (var(--grid-gutter) * 2));
+}
+
+@media (min-width: 48rem) {
+    :root{
+       --grid-gutter:.9375rem;
+    }
+}
+
+@media (min-width: 62rem) {
+    :root{
+       --grid-gutter:1.25rem;
+       --headerTop:5.625rem;
+       
+    }
+}
+
+@media (min-width: 93.75rem) {
+    /*:root{
+       --realContainerW:calc(var(--grid-max-width) - (var(--grid-gutter) * 2));
+    }*/
+}

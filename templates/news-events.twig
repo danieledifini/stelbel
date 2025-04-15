@@ -1,0 +1,26 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="news-events-template  " id="post-{{post.ID}}">
+	{% include 'blocks/standard-jumbo.twig' %}
+	{% set method = 'load_articles' %}
+	<section class="inner-items-container" >
+        <div class="content-wrapper">
+			<div class="filters-bar submenu-container">
+				{% if categories %}
+                    <span class="step-1"  >{{options.filter_by_categories}}:</span>
+                    
+                    {% set all = options.all_categories %}
+                    
+                    {% include "partial/filters.twig" with {'items': categories, 'type':'news-events', 'taxonomy':'category','all': all, 'method':method } %}		
+                
+				{% endif %}
+            </div>
+            
+			<div class="items-list  with-loading loading" id="items-wrapper" hx-get="/api/{{method}}/0/1/" hx-trigger="load">
+			</div><!-- news-events-list -->
+		
+	    </div>
+	</section><!-- inner-news-events-container -->
+</div>
+{% endblock %}

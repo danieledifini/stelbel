@@ -1,0 +1,17 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<article class="standard-template" id="post-{{post.ID}}">
+
+	<div class="content-wrapper">
+		<div class="main-text-container">
+		<h1 class="step-4 txt-violet">{{post.title}}</h1>
+		
+		{% if post.content %}
+			<div class="step-1 default-text">{{post.content}}</div>
+		{% endif %}
+	</div>
+	</div>
+	
+</article>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    {% do action('woocommerce_before_single_product') %}
+
+    <div class="outer-wrapper-product"  x-data="singleProduct()">
+
+        <article itemscope itemtype="https://schema.org/Product" class="single-product-details {{ post.class }}">
+
+            <div class="content-wrapper">
+                {% include 'partial/breadcrumbs.twig' %}
+                
+                <div class="main-product">
+                    <div class="entry-images">
+                        {% do action('woocommerce_before_single_product_summary') %}
+                    </div>
+
+                    <aside class="product-aside">
+                        <div class="summary entry-summary">
+                            {% do action('woocommerce_single_product_summary') %}
+
+                            
+                            <meta itemprop="url" content="{{ post.link }}" />
+                        </div>
+                        
+                        
+                    </aside>
+                </div>
+
+            </div>
+
+            
+
+        </article>
+
+        <div class="related-products">
+            <div class="content-wrapper">
+                {% do action('woocommerce_after_single_product_summary') %}
+                {# include ["partial/tease-product.twig"] with { products: related_products } #}
+            </div>
+        </div>
+        
+
+        
+    
+    </div>
+    {% do action('woocommerce_after_single_product') %}
+
+
+{% endblock  %}

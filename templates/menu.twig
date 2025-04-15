@@ -1,0 +1,21 @@
+{% if menu %}
+	<ul >
+	{% for item in items %}
+		{% set active_class = '' %}
+
+		{% if archive_link and item.link in archive_link %}
+			
+			{% set active_class = 'current-menu-item' %} 
+		{% elseif is_woo_archive and 'shop-page' in item.classes %}
+			{% set active_class = 'current-menu-item' %} 
+		{% elseif is_woo_single and 'shop-page' in item.classes %}
+			{% set active_class = 'current-menu-item' %} 
+		{% endif %}
+
+		<li class="{{ item.classes | join(' ') }} {{active_class}} " >
+			<a  target="{{ item.target }}" href="{{ item.link }}">{{ item.title}}</a>
+		</li>
+		{% set active_class = '' %}
+	{% endfor %}
+	</ul>
+{% endif %}

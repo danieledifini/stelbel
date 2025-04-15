@@ -1,0 +1,22 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<article class="project-template" id="post-{{post.ID}}">
+	<div class="content-wrapper">
+		{% include 'partial/breadcrumbs.twig' %}
+
+		<div class="main-contact-container border-top">
+			<div class="text-container">
+				{% if post.content %}
+					<div class="step-0 default-text r-l">{{post.content}}</div>
+				{% endif %}
+			</div>
+			
+		</div>
+	
+		
+			
+	</div>
+</article>
+
+{% endblock %}

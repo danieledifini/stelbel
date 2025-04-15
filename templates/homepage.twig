@@ -1,0 +1,22 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="homepage-template" id="post-{{post.ID}}"   x-data="homepage()">
+	<div class="content-wrapper">
+		{% if post.meta('blocks') %}
+			<div class="sections-container">
+				{% for section in post.meta('blocks') %}
+					{% set class = section.acf_fc_layout|replace({'+': "_"}) %}
+
+					<section class="complex-section {{class}}" 
+					>
+						{% include "blocks/" ~ section.acf_fc_layout ~ ".twig" %}
+					</section>
+				{% endfor %}
+			</div><!-- sections-container -->
+			{% endif %}
+	</div>
+</div>
+
+    	
+{% endblock %}

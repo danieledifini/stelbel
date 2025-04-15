@@ -1,0 +1,59 @@
+
+ <div class="content-wrapper "> 
+        <div class="menus-footer fs-12">
+            <nav id="nav-footer" class="nav-footer" role="navigation">
+				<div class="main-nav">
+                    {% include "menu.twig" with {'items': menu.get_items} %}
+                </div>					
+                <div class="secondary-nav-social">
+                    {% include "menu.twig" with {'items': secondary_menu.get_items} %}
+
+                    {% if options.socials %}
+                        <div class="socials dis-flex">
+                            {% for item in options.socials %}
+                                <a  href="{{ item.link['url'] }}" title="{{ item.link['title'] }}" target="_blank">
+                                    {% set image = get_image(item.icon) %}
+                                    <img src="{{image.src}}"  alt="{{image.alt}}" width="{{image.width}}" height="{{image.height}}">
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                </div>   
+                
+                {% if models and model_archive %}
+                    <div class="models-nav">
+                        <ul>
+                            <li>
+                                <a href="{{model_archive.link}}" title="{{model_archive.title}}">
+                                    {{model_archive.title}}
+                                </a>
+                            </li>
+
+                            {% for item in models %}
+                                <li>
+                                    <a href="{{item.link}}" title="{{item.title}}">
+                                        {{item.title}}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                
+                {% endif %}
+                 
+            </nav>
+        </div>
+
+        <div class="lower-footer">
+            <span class="fs-10 foc">{{site.description}}</span>
+            <div class="default-text fs-10 foc">
+                <p>{{options.footer_text}}</p>
+            </div>
+        </div>
+
+        <a class="navbar-brand-footer" href="{{ site.link }}" rel="home" title="{{ site.title }}" itemprop="url">
+            {% set image = get_image(options.footer_logo) %}
+            <img src="{{image.src}}"  alt="{{image.alt}}" width="{{image.width}}" height="{{image.height}}">
+        </a>
+</div>

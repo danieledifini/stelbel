@@ -1,0 +1,31 @@
+{% if section.image %}
+    <div class="image-container img-cover pos-rel" >
+        {% set image = get_image(section.image) %}
+
+        <picture class="display ">
+            <source
+            data-srcset="{{image.src('large')}}"
+            media="(max-width: 767px)" />
+            <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload " width="{{image.width}}" height="{{image.height}}">
+        </picture>
+</div>
+{% endif %}
+<div class="text-container">
+    {% if section.title %}
+        <h2 class="foc fs-32">
+            {{section.title }}
+        </h2>
+    {% endif %}
+    {% if section.text %}
+        <div class="fdc fs-18 default-text">
+            <p>{{section.text }}</p>
+        </div>
+    {% endif %}
+    {% if section.cta %}
+        <div class="ctas-container  ">
+            <a  class="standard-btn foc fs-18"  href="{{section.cta['url']}}" target="{{section.cta['target']}}" >
+                <span> {{section.cta['title']}}</span>
+            </a>
+        </div>
+    {% endif %}
+</div>

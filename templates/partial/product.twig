@@ -1,0 +1,123 @@
+{% set class = 'single-item' %}
+{% set articleClass = 'border-inside' %}
+{% set h3Class = 'step-1 step-4-desktop' %}
+{% set h4Class = 'r-l' %}
+
+{% if featured %}
+    {% set class = '' %}
+    {% set h3Class = 'step--1' %}
+    {% set articleClass = '' %}
+    {% set h4Class = 'r-c' %}
+{% endif %}
+
+{% if inColumns %}
+    <a href="{{item.link}}" title="{{item.title}}" class="{{class}} {{item.type}}-type ">
+    <article  class="{{articleClass}}">
+        <div class="image-container">
+                <picture class="img-cover">
+                {% set image = get_image(item.thumbnail) %}
+                    <source
+                    data-srcset="{{image.src('large')}}"
+                    media="(max-width: 767px)" />
+                    
+                   {% if total != 3 %}
+                    <img data-src="{{image.src}}" src="{{image.src('medium')}}" alt="{{image.alt}}"   class="lazyload" width="{{image.src('large').width}}" height="{{image.src('large').height}}" />
+                {% else %}
+                    <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}"   class="lazyload" width="{{image.src('large').width}}" height="{{image.src('large').height}}" />
+                {% endif %}
+                </picture>
+                    
+            </div>
+
+            <div class="text-container">
+                <h3 class="r-c {{h3Class}}">{{item.title}}</h3>
+                <h4 class="{{h4Class}} step--1 ">
+                    {% set designers = item.meta('designer') %}
+                    {% if designers %}
+                        {% for designer in designers %}
+                            
+
+                            {% if featured %}
+                                {{designer.post_title}}
+                            {% else %}
+                                 {{designer.post_title|upper}}   
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </h4>
+                
+                {% if not featured %}
+                    <span class="fake-link r-l step--2">
+                        {{options.discover|upper}}
+                    </span>
+                {% endif %}
+                
+            </div>
+    </article>
+</a>
+{% else %}
+     <article  class="{{articleClass}} {{class}} {{item.type}}-type">
+        <a href="{{item.link}}"  title="{{item.title}}" aria-hidden="true" tabindex="-1">
+            <div class="image-container">
+                    <picture class="img-cover">
+                    {% set image = get_image(item.thumbnail) %}
+                        <source
+                        data-srcset="{{image.src('large')}}"
+                        media="(max-width: 767px)" />
+                        
+                    {% if total != 3 %}
+                        <img data-src="{{image.src}}" src="{{image.src('medium')}}" alt="{{image.alt}}"   class="lazyload" width="{{image.src('large').width}}" height="{{image.src('large').height}}" />
+                    {% else %}
+                        <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}"   class="lazyload" width="{{image.src('large').width}}" height="{{image.src('large').height}}" />
+                    {% endif %}
+                    </picture>
+                        
+                </div>
+            </a>
+            <div class="text-container">
+                
+                <a class="product-link" href="{{item.link}}" >
+                    <h3 class="r-c {{h3Class}}">{{item.title}}</h3>
+                </a>    
+                <h4 class="{{h4Class}} step--1 ">
+                    {% set designers = item.meta('designer') %}
+                    {% if designers %}
+                        {% for designer in designers %}
+                            
+
+                            {% if featured %}
+                                {{designer.post_title}}
+                            {% else %}
+                                 {{designer.post_title|upper}}   
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </h4>
+                
+                {% if not featured %}
+                    <span class="fake-link r-l step--2">
+                        {{options.discover|upper}}
+                    </span>
+                {% endif %}
+
+                {% set class = '' %}
+                {% if wishlistPage %}
+                    {% set class = 'isIn' %}
+                {% endif %}
+                
+                <button class="add-to-wishlist-btn transition default-btn {{class}}" type"button"  aria-label="Add or remove product to wishlist" @click="addToWishlist({{item.id}},$el)" 
+                
+                {% if not wishlistPage %}
+                     x-init="checkInWishlist({{item.id}},$el)"
+                {% endif %}
+                 
+                 >
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181"/></svg>
+                </button>
+            </div>
+    </article>
+
+{% endif %}
+
+
+   

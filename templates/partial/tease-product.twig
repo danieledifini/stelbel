@@ -1,0 +1,43 @@
+<a href="{{post.link}}" title="{{post.title}}" class="single-item {{post.type}}-type">  
+    <article {{ fn('post_class', ['$classes', 'entry'] ) }}>
+
+        {#  fn('timber_set_product', post) #}
+
+        {% if showthumb %}
+            <div class="media-figure {% if not post.thumbnail %}placeholder{% endif %}">
+               
+                    {% if post.thumbnail %}
+                        <img src="{{ post.thumbnail.src|resize(post_thumb_size[0], post_thumb_size[1]) }}" />
+                    {% else %}
+                        <span class="thumb-placeholder"><i class="icon-camera"></i></span>
+                    {% endif %}
+               
+            </div>
+        {% endif %}
+        {% do action('woocommerce_before_shop_loop_item_title') %}
+         <div class="text-container">
+            
+            <h3 class="r-c">    
+            {% if post.title %}
+               {{ post.title }}
+            {% else %}
+                {{ fn('the_title') }}
+            {% endif %}
+            </h3>
+            <h4 class="r-l">
+                {% set designers = post.meta('designer') %}
+                {% if designers %}
+                    {% for designer in designers %}
+                        {{designer.post_title}}
+                    {% endfor %}
+                {% endif %}
+            </h4>
+            
+        </div>
+
+        {# do action( 'woocommerce_after_shop_loop_item_title' ) %}
+        {% do action( 'woocommerce_after_shop_loop_item' ) #}
+
+        
+</article>
+</a>

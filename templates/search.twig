@@ -1,0 +1,30 @@
+{# see `archive.twig` for an alternative strategy of extending templates #}
+{% extends "base.twig" %}
+
+{% block content %}
+  {# see `base.twig:27` for where this block's content will be inserted #}
+  <search class="search-results">
+    <div class="content-wrapper">
+      <h2 class="r-l step--12">{{options.found}} <strong>{{total_results}}</strong> {{options.results}} for "{{title|upper}}"</h2>
+    </div>
+      <div class="results-list border-top">
+        {% if posts|length > 0 %}
+          {% for post in posts %}
+            {% include 'search/tease.twig' with {'post':post} %}    
+          {% endfor %}
+        {% else %}
+          <div class="content-wrapper">
+              <div class="default text step--12 r-l no-results-text">
+                {{options.no_results_found}}
+              </div>
+          </div>
+        {% endif %}
+        
+        
+      </div>
+
+      <div class="content-wrapper">
+        {% include 'partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+      </div>
+  </search>
+{% endblock %}
