@@ -67,7 +67,6 @@ export let scrollTo = (element, to, duration) => {
       }
       else{
           setTimeout(() => {
-            fromSubmenu = false;
           }, 200);
       }
   };

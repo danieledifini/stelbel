@@ -82,6 +82,11 @@
     }
 }
 
+.basic-brdr-rds{
+    border-radius:.9375rem;
+    overflow:hidden;
+}
+
 /* COLORS */
 
 .bg-black{

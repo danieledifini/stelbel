@@ -12,16 +12,89 @@ body {
 
 }
 
+@font-face {
+	font-family: 'Feature Text Web';
+	src: url('../../fonts/FeatureText-Regular-Web.woff2') format('woff2'),
+		 url('../../fonts/FeatureText-Regular-Web.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+	font-family: 'Feature Text Web';
+	src: url('../../fonts/FeatureText-Bold-Web.woff2') format('woff2'),
+		 url('../../fonts/FeatureText-Bold-Web.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+	font-family: 'Feature Deck Condensed Web';
+	src: url('../../fonts/FeatureDeckCondensed-Regular-Web.woff2') format('woff2'),
+		 url('../../fonts/FeatureDeckCondensed-Regular-Web.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+	font-family: 'Feature Deck Condensed Web';
+	src: url('../../fonts/FeatureDeckCondensed-Medium-Web.woff2') format('woff2'),
+		 url('../../fonts/FeatureDeckCondensed-Medium-Web.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+	font-family: 'Feature Deck Condensed Web';
+	src: url('../../fonts/FeatureDeckCondensed-Bold-Web.woff2') format('woff2'),
+		 url('../../fonts/FeatureDeckCondensed-Bold-Web.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+	font-family: 'Feature Deck Condensed Web';
+	src: url('../../fonts/FeatureDeckCondensed-Extrabold-Web.woff2') format('woff2'),
+		 url('../../fonts/FeatureDeckCondensed-Extrabold-Web.woff') format('woff');
+	font-weight: 800;
+	font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+	font-family: 'Focal Web';
+	src: url('../../fonts/Focal-Regular-Web.woff2') format('woff2'),
+		 url('../../fonts/Focal-Regular-Web.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+	font-family: 'Focal Web';
+	src: url('../../fonts/Focal-Bold-Web.woff2') format('woff2'),
+		 url('../../fonts/Focal-Bold-Web.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+    font-display: swap;
+}
+
 .fdc{
-    //font-family:'feature-deck-condensed';
+    font-family: 'Feature Deck Condensed Web';
 }
 
 .ft{
-    //font-family:'feature-text';
+   font-family: 'Feature Text Web';
 }
 
 .foc{
-    //font-family:'focal';
+    font-family: 'Focal Web';
 }
 
 .fs-80{

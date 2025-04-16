@@ -88,8 +88,9 @@ class StarterSite extends Timber\Site {
 		
 		add_action( 'init', array( $this, 'prefix_add_endpoints' ));
 		add_action( 'template_redirect', array( $this,'prefix_do_latest' ));
+		add_action( 'template_redirect', array( $this,'prefix_do_latest_builds' ));
 
-		add_action( 'template_redirect', array( $this,'prefix_do_load_products_by_category' ));
+		add_action( 'template_redirect', array( $this,'prefix_do_models' ));
 
 		/* AJAX CALLS */
 
@@ -118,10 +119,14 @@ class StarterSite extends Timber\Site {
 		add_rewrite_tag( '%api_custom_type%', '([0-9A-Za-z-]+)' );
 		add_rewrite_rule( 'api/load_latests/([0-9A-Za-z-]+)/?', 'index.php?api_custom_type=$matches[1]', 'top' );
 		
-		add_rewrite_tag( '%api_product_category_id%', '([0-9_]+)' );
-		add_rewrite_rule( 'api/load_products_by_category/([0-9_]+)/?', 'index.php?api_product_category_id=$matches[1]', 'top' );		
+		add_rewrite_tag( '%api_build_type%', '([0-9A-Za-z-]+)' );
+		add_rewrite_tag( '%api_models_id%', '([0-9_]+)' );
+		add_rewrite_rule( 'api/load_latests_builds/([0-9A-Za-z-]+)/([0-9_]+)/?', 'index.php?api_build_type=$matches[1]&api_models_id=$matches[2]', 'top' );
 
-		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+		add_rewrite_tag( '%api_models_category_id%', '([0-9_]+)' );
+		add_rewrite_rule( 'api/load_models/([0-9_]+)/?', 'index.php?api_models_category_id=$matches[1]', 'top' );
+
+		//remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 	}
 
 	function prefix_do_latest() {
@@ -132,12 +137,18 @@ class StarterSite extends Timber\Site {
 		if ((! empty( $api_custom_type ) || ($api_custom_type == '0'))) {
 			$msg = '';
 
+			$per_page = 3;
+			$orderby = "date";
+			$order   = 'DESC';
+			$args   = [];
+
 			$args = array(
 				'post_type' => $api_custom_type,
-				'posts_per_page' => 3, 
-				'orderby' => 'date',
-				'order' => 'DESC',
+				'posts_per_page' => $per_page, 
+				'orderby' => $orderby,
+				'order' => $order,
 			);
+			
 
 			$custom_query = new WP_Query($args);
 
@@ -163,55 +174,156 @@ class StarterSite extends Timber\Site {
 		}
 	}
 
-
-	function prefix_do_load_products_by_category (){
+	function prefix_do_latest_builds() {
 		global $wp_query;
 
-		$api_product_category_id = $wp_query->get( 'api_product_category_id' );
+		$api_custom_type = sanitize_text_field($wp_query->get( 'api_build_type' ));
+		$api_cat_id = $wp_query->get( 'api_models_id' );
 
-		if ( (! empty( $api_product_category_id ) || ($api_product_category_id == '0'))) {
+		if ((! empty( $api_custom_type ) || ($api_custom_type == '0')) && ( (! empty( $api_cat_id ) || ($api_cat_id == '0'))  )) {
+	
 			$msg = '';
+			$cats   = [];
+			$cats   = explode("_", $api_cat_id);
 
-			$args = array(
-				'post_type'		 => 'product',
-				'numberposts' => -1,
-				'post_status' => 'publish',
-				'orderby'		 => 'date',
-				'order'			 => 'DESC',
-				'tax_query' => array(
-					array(
-						'taxonomy' => 'product_cat',
-						'field' => 'id',
-						'terms' => array($api_product_category_id), 
-						'operator' => 'IN',
-					)
-				),
-			);
+			$per_page = 3;
+			$orderby = "date";
+			$order   = 'DESC';
+			$args   = [];
+
+			if((count($cats) > 0) && ($cats[0] !='0')){
+				
+				$per_page = 99;
+
+				$args = array(
+					'post_type'		 => $api_custom_type,
+					'orderby'		 => $orderby,
+					'order'			 => $order,
+					'posts_per_page' => $per_page,
+					'meta_query'      => array(
+						 array(
+								 'key' => 'model',
+								'value' => '"' . $api_cat_id . '"',
+								'compare' => 'LIKE'
+						 ),
+				    ),
+				);
+				
+			}
+			else{
+				$args = array(
+					'post_type' => $api_custom_type,
+					'posts_per_page' => $per_page, 
+					'orderby' => $orderby,
+					'order' => $order,
+				);	
+			}
+
+			
 
 			$custom_query = new WP_Query($args);
 
 			if ( $custom_query->have_posts() ){
-		
 				while ( $custom_query->have_posts() ) :
 					$custom_query->the_post();
 					$cur_id = get_the_ID();
-					$exclude_id[] = $cur_id;
-					$custom_post = Timber::get_post($cur_id);
-					 
-					$msg .= Timber::compile( 'partial/product.twig', array( 'item' => $custom_post, 'featured' => true ) );
+					$article = Timber::get_post($cur_id);
+					
+					$learn_more = get_field("learn_more","options");
+					$msg .= Timber::compile( 'partial/'.$api_custom_type.'.twig', array( 'item' => $article, 'button'=> $learn_more ) );
 					
 				endwhile;
-
 			}
-			else{
+
+			if($msg == ''){
 				$msg = 'hide-latest';
 			}
 
 			echo $msg;
+
 			exit;
 		}
 	}
 
+	function prefix_do_models(){
+		global $wp_query;
+
+		$api_cat_id = $wp_query->get( 'api_models_category_id' );
+
+		if ( (! empty( $api_cat_id ) || ($api_cat_id == '0'))  ) {
+			$msg = '';
+
+			$cur_page = 1;
+			$per_page = 99;
+
+			$orderby = "date";
+			$order   = 'DESC';
+			$type 	 = 'model';
+			$args   = [];
+
+			$cats   = [];
+			$cats   = explode("_", $api_cat_id);
+
+			if((count($cats) > 0) && ($cats[0] !='0')){
+				
+				$args = array(
+					'post_type'		 => $type,
+					'orderby'		 => $orderby,
+					'order'			 => $order,
+					'posts_per_page' => $per_page,
+					'paged'          => $cur_page,
+					'tax_query'      => array(
+						 array(
+								 'taxonomy'  => 'filter-type',
+								 'field'     => 'term_id',
+								 'terms'     => $cats
+						 ),
+				    ),
+				);
+				
+			}
+			else{
+
+				$args = array(
+					'post_type'		 => $type,
+					'orderby'		 => $orderby,
+					'order'			 => $order,
+					'posts_per_page' => $per_page,
+					'paged'          => $cur_page,
+				);
+			}
+
+			$custom_query = new WP_Query($args);
+			$total = $custom_query->found_posts;
+			$total_pages = $custom_query->max_num_pages;
+
+			if ( $custom_query->have_posts() ){
+	
+				$msg .= '';
+	
+				while ( $custom_query->have_posts() ) :
+					$custom_query->the_post();
+					$cur_id = get_the_ID();
+					$article = Timber::get_post($cur_id);
+					$learn_more = get_field("learn_more","options");
+
+					$msg .= Timber::compile( 'partial/'.$type.'.twig', array( 'item' => $article, 'button'=> $learn_more  ) );
+					
+				endwhile;
+			}
+			else{
+				$msg .= '<div class="fs-22 fdc default-text no-results-text">';
+				$msg .= get_field("no_results_text","options");
+				$msg .= '</div>';
+			}
+
+
+			echo $msg;
+
+			exit;
+		}
+
+	}
 
 
 	/** This is where you add some context

@@ -1,20 +1,29 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="homepage-template" id="post-{{post.ID}}"   x-data="homepage()">
+<div class="models-template"   x-data="models()">
 	<div class="content-wrapper">
-		{% if post.meta('blocks') %}
-			<div class="sections-container">
-				{% for section in post.meta('blocks') %}
-					{% set class = section.acf_fc_layout|replace({'+': "_"}) %}
-
-					<section class="complex-section {{class}}" 
-					>
-						{% include "blocks/" ~ section.acf_fc_layout ~ ".twig" %}
-					</section>
-				{% endfor %}
-			</div><!-- sections-container -->
+		<div class="section-header">
+			<h1 class="fdc fs-28">
+				{{post.title}}
+			</h1>
+			<div class="fdc fs-18 default-text">
+				{{post.content}}
+			</div>
+		</div>
+		<div class="filters-header ">
+			{% if types %}
+				{% set method = 'load_models' %}
+				{% set all = options.all %}
+				{% include "partial/filters.twig" with {'items': types, 'type':'model', 'taxonomy':'types','all': all, 'method': method } %}		
+			
 			{% endif %}
+		</div>
+
+		<div class="items-container" >
+			<div class="models-list with-loading loading"    id="items-wrapper" hx-get="/api/{{method}}" hx-trigger="load">
+			</div>
+		</div>	
 	</div>
 </div>
 

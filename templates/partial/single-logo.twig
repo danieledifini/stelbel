@@ -1,0 +1,17 @@
+<div class="single-logo">
+    {% if item.image %}
+        <div class="image-container " >
+            {% set image = get_image(item.image) %}
+
+                <picture class="display ">
+                    <source
+                    data-srcset="{{image.src('large')}}"
+                    media="(max-width: 767px)" />
+                    <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload " width="{{image.width}}" height="{{image.height}}">
+                </picture>
+        </div>
+    {% endif %}
+    <span class="foc fs-16">
+        {{item.text}}
+    </span>
+</div>

@@ -4,7 +4,7 @@ import 'htmx.org';
 import './../assets/css/singleModel.css'
 
 // get scripts
-import {getWidth,getGutter} from './../assets/js/scripts.js'
+import  './../assets/js/scripts.js'
 
 
 document.body.addEventListener('htmx:afterSwap', function(evt) {

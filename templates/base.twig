@@ -47,10 +47,9 @@
 								{% set image = get_image(options.header_logo) %}
 								<img src="{{image.src}}"  alt="{{image.alt}}" width="{{image.width}}" height="{{image.height}}">
 							</a>
-							<nav id="nav-main" class="nav-main" role="navigation">
-									
-									{% include "menu.twig" with {'items': menu.get_items} %}
-								</nav>
+							<nav id="nav-main" class="nav-main fdc" role="navigation">
+								{% include "menu.twig" with {'items': menu.get_items} %}
+							</nav>
 						{% endblock %}
 					</div>	
 				</header>

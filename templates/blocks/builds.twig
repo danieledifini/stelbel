@@ -1,15 +1,25 @@
 <div class="block-header">
     <h2 class="fdc fs-32">
-        {{section.title}}
+        {% if is_single_model %}
+            {{options.related_builds}}
+        {% else %}
+            {{section.title}}
+        {% endif %}
+        
     </h2>
-    {% if section.cta %}
+    {% if options.builds_cta %}
         <div class="ctas-container  ">
-            <a  class="standard-btn foc fs-18"  href="{{section.cta['url']}}" target="{{section.cta['target']}}" >
-                <span> {{section.cta['title']}}</span>
+            <a  class="standard-btn foc fs-18" title="{{options.builds_cta['title']}}"  href="{{options.builds_cta['url']}}" target="{{options.builds_cta['target']}}" >
+                {{options.builds_cta['title']}}
             </a>
         </div>
     {% endif %}
 </div>
 
-<div class="builds-list  with-loading loading dis-flex "  id="builds-wrapper" hx-get="/api/load_latests/build" hx-trigger="load">
+{% set model_id = 0 %}
+{% if is_single_model %}
+    {% set model_id = post.id %}
+{% endif %}
+
+<div class="builds-list  with-loading loading dis-flex "  id="builds-wrapper" hx-get="/api/load_latests_builds/build/{{model_id}}" hx-trigger="load">
 </div>
