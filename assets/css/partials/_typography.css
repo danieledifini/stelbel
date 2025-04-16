@@ -24,8 +24,28 @@ body {
     //font-family:'focal';
 }
 
+.fs-80{
+    font-size:5rem;
+}
+
+.fs-32{
+    font-size:2rem;
+}
+
+.fs-22{
+    font-size:1.375rem;
+}
+
 .fs-20{
     font-size:1.25rem;
+}
+
+.fs-18{
+    font-size:1.125rem;
+}
+
+.fs-12{
+    font-size:.75rem;
 }
 
 .fs-10{

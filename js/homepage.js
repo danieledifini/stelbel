@@ -4,7 +4,7 @@ import 'htmx.org';
 import './../assets/css/homepage.css'
 
 // get scripts
-import {getWidth,getGutter} from './../assets/js/scripts.js'
+import  './../assets/js/scripts.js'
 
 
 document.body.addEventListener('htmx:afterSwap', function(evt) {
@@ -16,20 +16,12 @@ document.body.addEventListener('htmx:afterSwap', function(evt) {
   
 });
 
-document.addEventListener('alpine:init', () => {
-  Alpine.data('homepage', () => ({
-      
-  }))    
-})
-
 let callback = () => {
   
   window.Alpine = Alpine;
   Alpine.start(); 
   
 }
-
-
 
 
 if (

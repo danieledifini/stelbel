@@ -116,7 +116,7 @@ class StarterSite extends Timber\Site {
 
 	function prefix_add_endpoints() {
 		add_rewrite_tag( '%api_custom_type%', '([0-9A-Za-z-]+)' );
-		add_rewrite_rule( 'api/load_latest/([0-9A-Za-z-]+)/?', 'index.php?api_custom_type=$matches[1]', 'top' );
+		add_rewrite_rule( 'api/load_latests/([0-9A-Za-z-]+)/?', 'index.php?api_custom_type=$matches[1]', 'top' );
 		
 		add_rewrite_tag( '%api_product_category_id%', '([0-9_]+)' );
 		add_rewrite_rule( 'api/load_products_by_category/([0-9_]+)/?', 'index.php?api_product_category_id=$matches[1]', 'top' );		
@@ -129,25 +129,14 @@ class StarterSite extends Timber\Site {
 
 		$api_custom_type = sanitize_text_field($wp_query->get( 'api_custom_type' ));
 
-		if ((! empty( $api_custom_type ) || ($api_custom_type == 'exhibition-and-fairs'))) {
+		if ((! empty( $api_custom_type ) || ($api_custom_type == '0'))) {
 			$msg = '';
 
-			$today = date('Ymd');
-
 			$args = array(
-				'numberposts'	 => 1,
-				'post_type'		 => $api_custom_type,
-				'meta_key'		 => 'start_date',
-				'orderby'		 => 'meta_value',
-				'order'			 => 'ASC',
-				'posts_per_page' => 1,
-				'meta_query' => array(
-					array(
-						'key' 	=> 'start_date',
-						'value'   => $today,
-						'compare' => '>='
-					)
-				),
+				'post_type' => $api_custom_type,
+				'posts_per_page' => 3, 
+				'orderby' => 'date',
+				'order' => 'DESC',
 			);
 
 			$custom_query = new WP_Query($args);
@@ -157,8 +146,9 @@ class StarterSite extends Timber\Site {
 					$custom_query->the_post();
 					$cur_id = get_the_ID();
 					$article = Timber::get_post($cur_id);
-				
-					$msg .= Timber::compile( 'partial/exhibition-and-fairs-preview.twig', array( 'item' => $article ) );
+					
+					$learn_more = get_field("learn_more","options");
+					$msg .= Timber::compile( 'partial/'.$api_custom_type.'.twig', array( 'item' => $article, 'button'=> $learn_more ) );
 					
 				endwhile;
 			}

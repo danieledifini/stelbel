@@ -1,63 +1,39 @@
 
-{% set class = 'border-inside' %}
-
-
-
-{% if item.image or item.title or item.subtitle or item.cta %}
-
-    {% if item.cta %}
-        {% set fslightbox = '' %}
-        {% if 'youtube' in item.cta['url'] %}
-            {% set fslightbox = 'data-fslightbox' %}
-        {% endif %}
-
-        <a href="{{item.cta['url']}}" {{fslightbox}} title="{{item.title}}"  target="{{item.cta['target']}}" class="single-item standard-type">
-
-    {% else %}
-        {% set class = class ~ 'single-item standard-type'  %}
-    {% endif %}   
-
-
-
-    <article  class="{{class}}">
+<a class="standard-item" href="{{item.cta['url']}}" target="{{item.cta['target']}}" title="{{item.title}}">
+    <article  >
         {% if item.image %}
-            <div class="image-container">
+            <div class="image-container img-square pos-rel">
                 <picture  class="img-cover">
                 {% set image = get_image(item.image) %}
                     <source
                     data-srcset="{{image.src('large')}}"
                     media="(max-width: 767px)" />
-                    
-                    {% if total != 3 %}
-                        <img data-src="{{image.src}}" src="{{image.src('medium')}}" alt="{{image.alt}}"   class="lazyload" width="{{image.src('large').width}}" height="{{image.src('large').height}}" />
-                    {% else %}
-                        <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}"   class="lazyload" width="{{image.src('large').width}}" height="{{image.src('large').height}}" />
-                    {% endif %}
+                    <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}"   class="lazyload" width="{{image.src('large').width}}" height="{{image.src('large').height}}" />
                 </picture> 
             </div>
         {% endif %}
         
         
-        {% if item.title or item.subtitle or item.cta %}
+        {% if item.title or item.text or item.cta %}
             <div class="text-container">
                 
                 {% if item.title %}
-                    <h3 class="r-c step-1 step-4-desktop">{{item.title}}</h3>
+                    <h3 class="foc fs-32">{{item.title}}</h3>
                 {% endif %}
-                {% if item.subtitle %}
-                    <h4 class="r-l step--1 ">{{item.subtitle|upper}}</h4>
+                {% if item.text %}
+                    <div class="ft fs-18 ">
+                        <p>{{item.text}}</p>
+                    </div>
                 {% endif %}
                 
-                {% if item.cta['title'] %}
-                    <span class="fake-link r-l step--2">
-                        {{item.cta['title']|upper}}
-                    </span>
+                {% if item.cta %}
+                    <div class="ctas-container  ">
+                        <button  class="standard-btn foc fs-18 fake-btn transition"  type="button"   >
+                            {{item.cta['title']}}
+                        </button>
+                    </div>
                 {% endif %}                
             </div>
         {% endif %}       
     </article>
-{% if item.cta %}    
 </a>
-{% endif %}
-
-{% endif %}  

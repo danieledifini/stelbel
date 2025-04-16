@@ -1,0 +1,15 @@
+<div class="block-header">
+    <h2 class="fdc fs-32">
+        {{section.title}}
+    </h2>
+    {% if section.cta %}
+        <div class="ctas-container  ">
+            <a  class="standard-btn foc fs-18"  href="{{section.cta['url']}}" target="{{section.cta['target']}}" >
+                <span> {{section.cta['title']}}</span>
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<div class="builds-list  with-loading loading dis-flex "  id="builds-wrapper" hx-get="/api/load_latests/build" hx-trigger="load">
+</div>

@@ -1,0 +1,36 @@
+
+<a class="single-post-preview" href="{{item.link}}" target="_self" title="{{item.title}}">
+    <article  >
+        {% if item.thumbnail %}
+            <div class="image-container pos-rel">
+                <picture  class="img-cover">
+                {% set image = get_image(item.thumbnail) %}
+                    <source
+                    data-srcset="{{image.src('large')}}"
+                    media="(max-width: 767px)" />
+                    <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}"   class="lazyload" width="{{image.src('large').width}}" height="{{image.src('large').height}}" />
+                </picture> 
+            </div>
+        {% endif %}
+        
+        
+        <div class="text-container">
+            <h3 class="foc fs-34">{{item.title}}</h3>
+        
+            <div class="ft fs-18 ">
+                <p>{{item.excerpt({
+                    strip: true,
+                    read_more: ""
+                })}}</p>
+            </div>
+            
+            <div class="ctas-container  ">
+                <button class="standard-btn foc fs-18 fake-btn transition" type="button"   >
+                    {{button}}
+                </button>
+            </div>
+                            
+        </div>
+            
+    </article>
+</a>
