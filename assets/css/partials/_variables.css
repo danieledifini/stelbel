@@ -7,7 +7,7 @@
     --vw:0;
     --vh:0;
 
-    --grid-gutter:1.875rem;
+    --grid-gutter:.9375rem;
     --grid-max-width:93.75rem;
     --grid-max-width:100%;
 
@@ -15,12 +15,9 @@
     --headerTop:4.125rem;
 
     --standardMargin:.9375rem;
-    --margin:.625rem;
-    --doubleMargin:1.25rem;
-    --finalMargin:3.75rem;
 
     --primary:var(--black);
-    --secondary:var(--white);
+    --secondary:var(--yellow);
 
     --leftSpace:calc((100vw - var(--grid-max-width) - (var(--grid-gutter) * 2)) / 2);
     --leftSpace:calc(((100 * var(--vw)) - var(--grid-max-width) - (var(--grid-gutter) * 2)) / 2);

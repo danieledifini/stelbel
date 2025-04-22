@@ -1,18 +1,57 @@
 header.header{
-    
+    .tagline{
+        margin-right:auto;
+    }
 }
 
-
-
-
+.upper-header{
+    padding:var(--standardMargin) 0;
+}
 
 .navbar-brand{
     
 }
 
+.account-btn {
+    & + .cart-btn{
+        margin-left:var(--standardMargin);
+    }
+}
 
 .navbar-toggler{
-    
+    --btnW:1.5rem;
+
+    margin-left:var(--standardMargin);
+    width:var(--btnW);
+    height:1.25rem;
+
+    &:hover{
+        .bar{
+            &:nth-child(1),&:nth-child(3){
+                top:calc(50% - 0.5px);
+            }
+        }
+    }
+
+    .bar{
+        position:absolute;
+        left:0;
+        width:var(--btnW);
+        height:.0625rem;
+        background-color:var(--black);
+
+        &:nth-child(1){
+            top:0;
+        }
+
+        &:nth-child(2){
+            top:calc(50% - 0.5px);
+        }
+
+        &:nth-child(3){
+            top:calc(100% - 1px);
+        }
+    }
 }
 
 

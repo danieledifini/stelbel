@@ -1,7 +1,7 @@
 
  <div class="content-wrapper "> 
-        <div class="menus-footer fs-12">
-            <nav id="nav-footer" class="nav-footer" role="navigation">
+        <div class="menus-footer fs-12 foc">
+            <nav id="nav-footer" class="nav-footer " role="navigation">
 				<div class="main-nav">
                     {% include "menu.twig" with {'items': menu.get_items} %}
                 </div>					
@@ -9,9 +9,9 @@
                     {% include "menu.twig" with {'items': secondary_menu.get_items} %}
 
                     {% if options.socials %}
-                        <div class="socials dis-flex">
+                        <div class="socials dis-flex align-center" >
                             {% for item in options.socials %}
-                                <a  href="{{ item.link['url'] }}" title="{{ item.link['title'] }}" target="_blank">
+                                <a class="display"  href="{{ item.link['url'] }}" title="{{ item.link['title'] }}" target="_blank">
                                     {% set image = get_image(item.icon) %}
                                     <img src="{{image.src}}"  alt="{{image.alt}}" width="{{image.width}}" height="{{image.height}}">
                                 </a>
@@ -45,15 +45,15 @@
             </nav>
         </div>
 
-        <div class="lower-footer">
-            <span class="fs-10 foc">{{site.description}}</span>
+        <div class="lower-footer dis-flex">
+            <span class="fs-10 foc tagline m-r-standard display">{{site.description}}</span>
             <div class="default-text fs-10 foc">
                 <p>{{options.footer_text}}</p>
             </div>
         </div>
 
-        <a class="navbar-brand-footer" href="{{ site.link }}" rel="home" title="{{ site.title }}" itemprop="url">
+        <a class="navbar-brand-footer display m-t-standard" href="{{ site.link }}" rel="home" title="{{ site.title }}" itemprop="url">
             {% set image = get_image(options.footer_logo) %}
-            <img src="{{image.src}}"  alt="{{image.alt}}" width="{{image.width}}" height="{{image.height}}">
+            <img class="display" src="{{image.src}}"  alt="{{image.alt}}" width="{{image.width}}" height="{{image.height}}">
         </a>
 </div>

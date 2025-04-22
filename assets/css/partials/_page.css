@@ -42,8 +42,34 @@
     display:flex;
 }
 
+.jus-space-between{
+    justify-content:space-between;
+}
+
+.align-center{
+    align-items: center;
+}
+
 .pos-rel{
     position:relative;
+}
+
+/* MARGIN */
+
+.m-b-standard{
+    margin-bottom:var(--standardMargin);
+}
+
+.m-t-standard{
+    margin-top:var(--standardMargin);
+}
+
+.m-r-standard{
+    margin-right:var(--standardMargin);
+}
+
+.m-l-standard{
+    margin-left:var(--standardMargin);
 }
 
 /* IMAGES */
@@ -91,6 +117,10 @@
 
 .bg-black{
     background-color:var(--black);
+}
+
+.b-b-black{
+    border-bottom:.0625rem solid var(--black);
 }
 
 .white{

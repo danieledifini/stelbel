@@ -9,7 +9,7 @@
 
 
 	<body class="{{body_class}} " data-template="base.twig" :class="menuClosed ? 'menu-not-open' : 'menu-open'"  @scroll.window="
-	scrollY_ = scrollY">
+	scrollY_ = scrollY" x-data="{menuClosed : true, scrollY_: 0}">
 		
 
 				<a class="skip-link screen-reader-text" href="#content">{{ _e( 'Skip to content') }}</a>
@@ -17,21 +17,17 @@
 				<header class="header "  :class="scrollY_ > 80 ? 'hide-header' : 'show-header'">
 					<div class="content-wrapper">
 						{% block header %}
-							<div class="upper-header dis-flex ">
-								<span class="fs-20 fdc">{{site.description}}</span>
-								<button class="navbar-toggler transition" type="button" data-toggle="collapse" data-target="#nav-main" aria-controls="nav-main" aria-expanded="false" aria-label="Toggle navigation" @click.stop="menuClosed = !menuClosed">
-									<div class="bar"></div>
-									<div class="bar"></div>
-									<div class="bar"></div>
-								</button>
-								<a href="#" class="account-btn" title="account-page">
+							<div class="upper-header dis-flex b-b-black align-center m-b-standard">
+								<span class="fs-20 fdc tagline">{{site.description}}</span>
+								
+								<a href="#" class="account-btn display" title="account-page">
 									<svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M5.44531 5.86401C5.44531 4.69897 5.9142 3.58168 6.74882 2.75787C7.58343 1.93405 8.71542 1.47119 9.89575 1.47119C11.0761 1.47119 12.2081 1.93405 13.0427 2.75787C13.8773 3.58168 14.3462 4.69897 14.3462 5.86401C14.3462 8.2898 12.3534 10.9335 9.89575 10.9335C7.43813 10.9335 5.44531 8.28407 5.44531 5.86401Z" stroke="black" stroke-miterlimit="10"/>
 <path d="M18.7901 21.1302C18.1394 17.9589 14.4094 14.9424 9.89506 14.9424C5.38071 14.9424 1.64491 17.9589 1 21.1302" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
 </svg>
 								</a>
 
-								<a href="#" class="cart-btn" title="cart-page">
+								<a href="#" class="cart-btn display" title="cart-page">
 									<svg width="25" height="22" viewBox="0 0 25 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M21.9755 15.9685H8.1698L5.23633 3.67871H24.4109L21.9755 15.9685Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M11.21 21.13C11.6225 21.13 11.957 20.7999 11.957 20.3927C11.957 19.9854 11.6225 19.6553 11.21 19.6553C10.7974 19.6553 10.4629 19.9854 10.4629 20.3927C10.4629 20.7999 10.7974 21.13 11.21 21.13Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
@@ -41,11 +37,15 @@
 </svg>
 
 								</a>
-								
+								<button class="navbar-toggler transition default-btn pos-rel" type="button" data-toggle="collapse" data-target="#nav-main" aria-controls="nav-main" aria-expanded="false" aria-label="Toggle navigation" @click.stop="menuClosed = !menuClosed">
+									<div class="bar transition"></div>
+									<div class="bar transition"></div>
+									<div class="bar transition"></div>
+								</button>
 							</div>
-							<a class="navbar-brand" href="{{ site.link }}" rel="home" title="{{ site.title }}" itemprop="url">
+							<a class="navbar-brand display" href="{{ site.link }}" rel="home" title="{{ site.title }}" itemprop="url">
 								{% set image = get_image(options.header_logo) %}
-								<img src="{{image.src}}"  alt="{{image.alt}}" width="{{image.width}}" height="{{image.height}}">
+								<img src="{{image.src}}" class="display" alt="{{image.alt}}" width="{{image.width}}" height="{{image.height}}">
 							</a>
 							<nav id="nav-main" class="nav-main fdc" role="navigation">
 								{% include "menu.twig" with {'items': menu.get_items} %}

@@ -16,11 +16,11 @@ document.body.addEventListener('htmx:afterSwap', function(evt) {
   
 });
 
+
 let callback = () => {
   
   window.Alpine = Alpine;
   Alpine.start(); 
-  
 }
 
 
