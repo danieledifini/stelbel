@@ -4,20 +4,11 @@ import Alpine from 'alpinejs';
 import './../assets/css/singleProduct.css'
 
 // get scripts
-import './../assets/js/scripts.js'
-
-
-document.addEventListener('alpine:init', () => {
-  Alpine.data('singleProduct', () => ({
-
-  }))    
-})
-  
+import './../assets/js/scripts.js'  
 
 let callback = () => {
     window.Alpine = Alpine;
     Alpine.start();
-
 }
 
 if (

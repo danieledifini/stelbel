@@ -44,8 +44,6 @@ if (is_singular('product')) {
     $posts = Timber::get_posts();
     $context['products'] = $posts;
 
-    
-
     if (is_product_category()) {
         $queried_object = get_queried_object();
         $term_id = $queried_object->term_id;
@@ -53,7 +51,18 @@ if (is_singular('product')) {
         $context['archive_title'] = single_term_title('', false);
     }
     else{
-        $context['archive_title'] = get_field("collection","options");
+        $shop_page_id = wc_get_page_id('shop');
+        $context['shop_acf'] = get_fields($shop_page_id); 
+        
+           
+        $title = get_field('alternative_title', $shop_page_id);
+
+        if(!$title)
+        {
+            $title = get_the_title($shop_page_id);
+        }
+
+        $context['title'] = $title;    
     }
     
     $context['is_woo_archive'] = true;

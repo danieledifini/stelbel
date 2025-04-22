@@ -4,12 +4,11 @@
 
     {% do action('woocommerce_before_single_product') %}
 
-    <div class="outer-wrapper-product"  x-data="singleProduct()">
+    <div class="outer-wrapper-product" >
 
         <article itemscope itemtype="https://schema.org/Product" class="single-product-details {{ post.class }}">
 
             <div class="content-wrapper">
-                {% include 'partial/breadcrumbs.twig' %}
                 
                 <div class="main-product">
                     <div class="entry-images">
@@ -24,20 +23,19 @@
                             <meta itemprop="url" content="{{ post.link }}" />
                         </div>
                         
-                        
+                        <div class="default-text ft fs-18">
+                            {{post.content}}
+                        </div>
                     </aside>
                 </div>
 
             </div>
-
-            
 
         </article>
 
         <div class="related-products">
             <div class="content-wrapper">
                 {% do action('woocommerce_after_single_product_summary') %}
-                {# include ["partial/tease-product.twig"] with { products: related_products } #}
             </div>
         </div>
         
