@@ -1,9 +1,9 @@
 
-<a class="standard-item" href="{{item.cta['url']}}" target="{{item.cta['target']}}" title="{{item.title}}">
-    <article  >
+<a class="standard-item t-d-none"  href="{{item.cta['url']}}" target="{{item.cta['target']}}" title="{{item.title}}">
+    <article  class="pos-rel brdr-rds-20">
         {% if item.image %}
             <div class="image-container img-square pos-rel">
-                <picture  class="img-cover">
+                <picture  class="img-cover display">
                 {% set image = get_image(item.image) %}
                     <source
                     data-srcset="{{image.src('large')}}"
@@ -15,20 +15,20 @@
         
         
         {% if item.title or item.text or item.cta %}
-            <div class="text-container">
+            <div class="text-container p-standard">
                 
                 {% if item.title %}
-                    <h3 class="foc fs-32">{{item.title}}</h3>
+                    <h3 class="foc fs-32">{{item.title|capitalize}}</h3>
                 {% endif %}
                 {% if item.text %}
-                    <div class="ft fs-18 ">
+                    <div class="ft fs-18 hide-mobile">
                         <p>{{item.text}}</p>
                     </div>
                 {% endif %}
                 
                 {% if item.cta %}
                     <div class="ctas-container  ">
-                        <button  class="standard-btn foc fs-18 fake-btn transition default-btn"  type="button"   >
+                        <button  class="standard-btn foc fs-18 fake-btn transition default-btn brdr-rds-20 "  type="button"   >
                             {{item.cta['title']}}
                         </button>
                     </div>

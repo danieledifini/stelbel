@@ -1,0 +1,11 @@
+.blog{
+    .outer-list{
+        padding-right:.3125rem;
+        z-index:3;
+        margin-top:calc(var(--standardMargin) * -1.5);
+    }
+
+    .tns-ovh{
+        overflow:visible;
+    }
+}

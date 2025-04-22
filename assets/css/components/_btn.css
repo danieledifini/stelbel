@@ -11,10 +11,10 @@
     display:inherit;
     padding:.3125rem var(--standardMargin);
     width:100%;
-    border-radius: 1.25rem;
     border:.0625rem solid var(--black);
     text-decoration:none;
     text-align:center;
+
 
     &:hover{
         background-color:var(--black);

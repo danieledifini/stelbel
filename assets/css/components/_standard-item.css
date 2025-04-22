@@ -1,0 +1,31 @@
+.standard-item{
+
+    h3{
+       word-break: break-word; 
+    }
+
+    &:hover{
+        .standard-btn{
+            background-color:var(--yellow);
+            color:var(--black);
+        }
+    }
+
+    .text-container{
+        position: absolute;
+        top: 0;
+        height:100%;
+        left:0;
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+        z-index: 2;
+        color:var(--yellow);
+    }
+
+    .standard-btn{
+        border-color:var(--yellow);
+        color:var(--yellow);
+    }
+}

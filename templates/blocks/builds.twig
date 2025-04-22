@@ -1,4 +1,4 @@
-<div class="block-header">
+<div class="block-header dis-flex jus-space-between align-center">
     <h2 class="fdc fs-32">
         {% if is_single_model %}
             {{options.related_builds}}
@@ -9,7 +9,7 @@
     </h2>
     {% if options.builds_cta %}
         <div class="ctas-container  ">
-            <a  class="standard-btn foc fs-18" title="{{options.builds_cta['title']}}"  href="{{options.builds_cta['url']}}" target="{{options.builds_cta['target']}}" >
+            <a  class="standard-btn foc fs-18 brdr-rds-20 " title="{{options.builds_cta['title']}}"  href="{{options.builds_cta['url']}}" target="{{options.builds_cta['target']}}" >
                 {{options.builds_cta['title']}}
             </a>
         </div>
@@ -21,5 +21,7 @@
     {% set model_id = post.id %}
 {% endif %}
 
-<div class="builds-list  with-loading loading dis-flex "  id="builds-wrapper" hx-get="/api/load_latests_builds/build/{{model_id}}" hx-trigger="load">
+<div class="outer-list">
+    <div class="builds-list  with-loading loading dis-flex m-t-standard"  id="builds-wrapper" hx-get="/api/load_latests_builds/build/{{model_id}}" hx-trigger="load">
+    </div>
 </div>

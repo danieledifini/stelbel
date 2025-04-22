@@ -1,9 +1,9 @@
 
-<a class="single-build-preview" href="{{item.link}}" target="_self" title="{{item.title}}">
+<a class="single-build-preview t-d-none" href="{{item.link}}" target="_self" title="{{item.title}}">
     <article  >
         {% if item.thumbnail %}
-            <div class="image-container img-4-3 pos-rel">
-                <picture  class="img-cover">
+            <div class="image-container   brdr-rds-20" >
+                <picture  class="img-cover pos-rel display">
                 {% set image = get_image(item.thumbnail) %}
                     <source
                     data-srcset="{{image.src('large')}}"
@@ -14,15 +14,15 @@
         {% endif %}
         
         
-        <div class="text-container">
-            <h3 class="fdc fs-22">{{item.title}}</h3>
+        <div class="text-container m-t-standard">
+            <h3 class="foc fs-22"><strong>{{item.title|capitalize}}</strong></h3>
         
-            <span class="foc fs-22 ">
-                {{item.meta('subtitle')}}
+            <span class="fdc fs-22 ">
+                {{item.meta('subtitle')|capitalize}}
             </span>
             
-            <div class="ctas-container  ">
-                <button  class="standard-btn foc fs-18 fake-btn transition default-btn" type="button"   >
+            <div class="ctas-container  hide-mobile">
+                <button  class="standard-btn foc fs-18 fake-btn transition default-btn brdr-rds-20" type="button"   >
                     {{button}}
                 </button>
             </div>

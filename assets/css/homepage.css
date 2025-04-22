@@ -1,6 +1,19 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css';
 
 @import 'partials/_page.css';
 
-
+@import 'blocks/_main_item.css';
+@import 'blocks/_image_text.css';
+@import 'blocks/_posts.css';
+@import 'blocks/_builds.css';
+@import 'blocks/_blog.css';
 
 @import 'components/_btn.css';
+@import 'components/_standard-item.css';
+@import 'components/_single-build-preview.css';
+@import 'components/_single-post-preview.css';
+
+.sections-container{
+    row-gap:var(--standardMargin);
+        
+}

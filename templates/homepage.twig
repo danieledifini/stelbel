@@ -4,7 +4,7 @@
 <div class="homepage-template" id="post-{{post.ID}}" >
 	<div class="content-wrapper">
 		{% if post.meta('blocks') %}
-			<div class="sections-container">
+			<div class="sections-container dis-flex flex-col p-b-double">
 				{% for section in post.meta('blocks') %}
 					{% set class = section.acf_fc_layout|replace({'+': "_"}) %}
 

@@ -14,10 +14,11 @@
 
 				<a class="skip-link screen-reader-text" href="#content">{{ _e( 'Skip to content') }}</a>
 				
-				<header class="header "  :class="scrollY_ > 80 ? 'hide-header' : 'show-header'">
+				<header class="header m-b-standard"  :class="scrollY_ > 80 ? 'hide-header' : 'show-header'">
 					<div class="content-wrapper">
 						{% block header %}
-							<div class="upper-header dis-flex b-b-black align-center m-b-standard">
+							<div class="pre-nav-header">
+															<div class="upper-header dis-flex b-b-black align-center m-b-standard">
 								<span class="fs-20 fdc tagline">{{site.description}}</span>
 								
 								<a href="#" class="account-btn display" title="account-page">
@@ -47,8 +48,25 @@
 								{% set image = get_image(options.header_logo) %}
 								<img src="{{image.src}}" class="display" alt="{{image.alt}}" width="{{image.width}}" height="{{image.height}}">
 							</a>
-							<nav id="nav-main" class="nav-main fdc" role="navigation">
-								{% include "menu.twig" with {'items': menu.get_items} %}
+							</div>
+							<nav id="nav-main" class="nav-main fdc transition"  role="navigation">
+								<div class="inner-menu dis-flex flex-col jus-space-between">
+									{% include "menu.twig" with {'items': menu.get_items} %}
+								<div class="lower-menu dis-flex hide-desktop jus-space-between m-t-standard">
+									<div class="default-text fs-10 foc">
+										<p>{{options.footer_text}}</p>
+									</div>
+									{% if options.socials %}
+									<div class="socials dis-flex align-center" >
+										{% for item in options.socials %}
+											<a class="display"  href="{{ item.link['url'] }}" title="{{ item.link['title'] }}" target="_blank">
+												{{item.icon}}
+											</a>
+										{% endfor %}
+									</div>
+								{% endif %}
+								</div>
+								</div>
 							</nav>
 						{% endblock %}
 					</div>	

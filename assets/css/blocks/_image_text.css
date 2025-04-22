@@ -1,0 +1,12 @@
+.image_text{
+    picture{
+        height:auto;
+        padding-bottom:137%;
+    }
+
+    .text-container{
+        position: absolute;
+        top: 0;
+        z-index: 2;
+    }
+}

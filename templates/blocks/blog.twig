@@ -1,9 +1,11 @@
 <div class="block-header">
-    <h2 class="fdc fs-80">
+    <h2 class="fdc fs-80 f-w-800">
         {{section.title}}
     </h2>
     
 </div>
 
-<div class="artcile-list  with-loading loading dis-flex "  id="latest-wrapper" hx-get="/api/load_latests/post" hx-trigger="load">
-</div>
+<div class="outer-list pos-rel">
+    <div class="article-list  with-loading loading dis-flex "  id="latest-wrapper" hx-get="/api/load_latests/post" hx-trigger="load">
+    </div>
+</div>    

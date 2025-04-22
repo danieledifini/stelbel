@@ -99,14 +99,22 @@ body {
 
 .fs-80{
     font-size:5rem;
+	line-height:0.938;
+}
+
+.fs-34{
+    font-size:2.125rem;
+	line-height:1;
 }
 
 .fs-32{
     font-size:2rem;
+	line-height:1;
 }
 
 .fs-22{
     font-size:1.375rem;
+	line-height:1.182;
 }
 
 .fs-20{
@@ -115,6 +123,7 @@ body {
 
 .fs-18{
     font-size:1.125rem;
+	line-height:1.167;
 }
 
 .fs-12{
@@ -123,6 +132,15 @@ body {
 
 .fs-10{
     font-size:.625rem;
+	line-height:1.6;
+}
+
+.f-w-900{
+	font-weight:900;
+}
+
+.f-w-800{
+	font-weight:800;
 }
 
 p {
@@ -140,4 +158,8 @@ p {
     * + *{
         margin-top:var(--standardMargin);
     }
+}
+
+.t-d-none{
+	text-decoration:none;
 }

@@ -33,6 +33,9 @@ let setVw = () => {
   document.documentElement.style.setProperty('--vw', `${vw}px`);
   let vh = window.innerHeight / 100;
   document.documentElement.style.setProperty('--vh', `${vh}px`);  
+
+  let headerH = document.querySelector('.pre-nav-header').clientHeight;
+  document.documentElement.style.setProperty('--headerH', `${headerH}px`);  
 }
 
 export let setCalling = (newValue = false) => {

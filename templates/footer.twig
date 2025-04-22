@@ -12,8 +12,7 @@
                         <div class="socials dis-flex align-center" >
                             {% for item in options.socials %}
                                 <a class="display"  href="{{ item.link['url'] }}" title="{{ item.link['title'] }}" target="_blank">
-                                    {% set image = get_image(item.icon) %}
-                                    <img src="{{image.src}}"  alt="{{image.alt}}" width="{{image.width}}" height="{{image.height}}">
+                                    {{item.icon}}
                                 </a>
                             {% endfor %}
                         </div>

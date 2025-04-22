@@ -1,9 +1,9 @@
 
-<a class="standard-item" href="{{item.link}}" target="_self" title="{{item.title}}">
-    <article  >
+<a class="standard-item t-d-none" href="{{item.link}}" target="_self" title="{{item.title}}">
+    <article  class="pos-rel ">
         {% if item.thumbnail %}
-            <div class="image-container img-square pos-rel">
-                <picture  class="img-cover">
+            <div class="image-container img-square pos-rel brdr-rds-20">
+                <picture  class="img-cover display">
                 {% set image = get_image(item.thumbnail) %}
                     <source
                     data-srcset="{{image.src('large')}}"
@@ -14,10 +14,10 @@
         {% endif %}
         
         
-        <div class="text-container">
-            <h3 class="foc fs-32">{{item.title}}</h3>
+        <div class="text-container  p-standard brdr-rds-20">
+            <h3 class="foc fs-32">{{item.title|capitalize}}</h3>
         
-            <div class="ft fs-18 ">
+            <div class="ft fs-18 hide-mobile">
                 <p>{{item.excerpt({
                             strip: true,
                             read_more: ""
@@ -25,7 +25,7 @@
             </div>
             
             <div class="ctas-container  ">
-                <button  class="standard-btn foc fs-18 default-btn transition" type="button"   >
+                <button  class="standard-btn foc fs-18 default-btn transition brdr-rds-20 " type="button"   >
                     {{options.learn_more}}
                 </button>
             </div>

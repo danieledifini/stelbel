@@ -1,0 +1,14 @@
+.builds{
+    &:not(&:last-child){
+        padding-bottom:var(--standardMargin);
+        border-bottom:.0625rem solid var(--black);
+    }
+
+    .outer-list{
+        padding-right:.3125rem;
+    }
+
+    .tns-ovh{
+        overflow:visible;
+    }
+}

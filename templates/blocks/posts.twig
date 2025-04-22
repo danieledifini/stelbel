@@ -1,8 +1,15 @@
-{% for  item in section.items %}
-    {% if item.post %}
-        {% set item = get_post(item.post[0]) %}
-        {% include "partial/standard-post.twig" with {'item': item} %}
-    {% else %}
-        {% include "partial/standard-item.twig" with {'item': item} %}
-    {% endif %}
-{% endfor %}
+<div class="outer-wrapper p-b-standard b-b-black ">
+
+    <div class="outer-list">
+        <div class="posts-list">
+        {% for  item in section.items %}
+            {% if item.post %}
+                {% set item = get_post(item.post[0]) %}
+                {% include "partial/standard-post.twig" with {'item': item} %}
+            {% else %}
+                {% include "partial/standard-item.twig" with {'item': item} %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+</div>    
