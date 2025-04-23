@@ -21,7 +21,7 @@
     {% set model_id = post.id %}
 {% endif %}
 
-<div class="outer-list">
-    <div class="builds-list  with-loading loading dis-flex m-t-standard"  id="builds-wrapper" hx-get="/api/load_latests_builds/build/{{model_id}}" hx-trigger="load">
+<div class="outer-list m-t-standard">
+    <div class="builds-list  with-loading loading dis-flex "  id="builds-wrapper" hx-get="/api/load_latests_builds/build/{{model_id}}" hx-trigger="load">
     </div>
 </div>

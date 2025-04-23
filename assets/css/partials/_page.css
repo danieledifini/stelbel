@@ -79,7 +79,7 @@
 }
 
 .m-b-double{
-    margin-bottom:calc(var(--standardMargin) * 2);
+    margin-bottom:var(--double);
 }
 
 .m-t-standard{
@@ -87,7 +87,7 @@
 }
 
 .m-t-double{
-    margin-top:calc(var(--standardMargin) * 2);
+    margin-top:var(--double);
 }
 
 .m-r-standard{
@@ -105,7 +105,7 @@
 }
 
 .p-b-double{
-    padding-bottom:calc(var(--standardMargin) * 2);
+    padding-bottom:var(--double);
 }
 
 .p-standard{

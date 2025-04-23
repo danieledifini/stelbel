@@ -1,13 +1,13 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="models-template"   x-data="models()">
+<div class="models-template p-b-double"   x-data="models()">
 	<div class="content-wrapper">
-		<div class="section-header">
+		<div class="section-header p-b-standard b-b-black m-b-standard">
 			<h1 class="fdc fs-28">
 				{{post.title}}
 			</h1>
-			<div class="fdc fs-18 default-text">
+			<div class="fdc fs-18 default-text m-t-standard">
 				{{post.content}}
 			</div>
 		</div>
@@ -20,7 +20,7 @@
 			{% endif %}
 		</div>
 
-		<div class="items-container" >
+		<div class="items-container m-t-standard" >
 			<div class="models-list with-loading loading"    id="items-wrapper" hx-get="/api/{{method}}" hx-trigger="load">
 			</div>
 		</div>	

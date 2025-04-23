@@ -1,6 +1,12 @@
 
 @import 'partials/_page.css';
 
-
-
 @import 'components/_btn.css';
+@import 'components/_single-model-preview.css';
+@import 'components/_filter-group.css';
+
+.models-list{
+    display:flex;
+    flex-direction:column;
+    row-gap:var(--double);
+}

@@ -1,0 +1,45 @@
+
+
+
+{% set select = 'select' ~ taxonomy|capitalize  %}
+{% set class =  taxonomy ~ '-group'  %}
+
+<div class="filter-group transition pos-rel" id="{{taxonomy}}-group"  data-type="{{type}}" :class="{{select}}Closed ? 'submenu-not-open' : 'submenu-open'">
+    <div class="filter-title  pos-rel">
+
+        <button class="fdc  fs-20 select-toggler open-close-submenu  transition default-btn" type="button" data-toggle="collapse" data-target="#{{class}}" aria-controls="{{class}}" aria-expanded="false" aria-label="Toggle select filter"  x-on:click.stop="openCloseSelect('{{select}}Closed')" >
+            {{options.filter_by_types}}
+        </button>
+    </div>
+
+    <div id="{{class}}" name="{{class}}" class="custom-select-wrapper  " > 
+    
+        <ul class="custom-options filter-list transition bg-lightGrey dis-flex flex-col" role="menu">
+        <li class="">
+            {% set class = 'active' %}
+            {% set current = 'aria-current="page"'  %}
+            <button {{current}} class=" fdc  fs-20 filter-btn {{class}}  transition  default-btn" data-term="0" hx-get="/api/{{method}}" hx-target="#items-wrapper"  x-on:click.stop="openCloseSelect('{{select}}Closed')" >{{all}}</button>
+        </li>
+        
+        {% for item in items %}
+            
+            <li class="">
+            {% set name = item.name %}
+            {% set name = name|replace({" - ": ", "}) %}
+
+            {% set class = '' %}
+            {% set current = ''  %}
+
+            {% if query_id == name %}
+                {% set class = 'active' %}
+                {% set current = 'aria-current="page"'  %}
+            {% endif %}
+
+                <button {{current}}  class=" fdc  fs-20 {{class}} filter-btn  transition default-btn " role="menuitem"  data-term="{{item.id}}" hx-get="/api/{{method}}" hx-target="#items-wrapper"  x-on:click.stop="openCloseSelect('{{select}}Closed')" >{{name}}</button>
+            </li>
+        {% endfor %}
+        </ul><!-- custom-options -->
+    </div>
+</div>
+ 
+<!-- custom-select-wrapper -->

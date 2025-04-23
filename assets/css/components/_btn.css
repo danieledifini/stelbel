@@ -5,8 +5,6 @@
     cursor:pointer;
 }
 
-
-
 .standard-btn{
     display:inherit;
     padding:.3125rem var(--standardMargin);
@@ -19,6 +17,17 @@
     &:hover{
         background-color:var(--black);
         color:var(--secondary);
+    }
+}
+
+.filter-btn{
+    width:100%;
+    text-align:left;
+    padding:.125rem var(--standardMargin);
+
+    &.active,&:hover{
+        background-color:var(--black);
+        color:var(--yellow);
     }
 }
 

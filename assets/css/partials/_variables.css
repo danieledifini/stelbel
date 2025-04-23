@@ -14,6 +14,7 @@
     --headerH:6.9375rem;
 
     --standardMargin:.9375rem;
+    --double:calc(var(--standardMargin) * 2);
 
     --primary:var(--black);
     --secondary:var(--yellow);
