@@ -5,18 +5,10 @@ import './../assets/css/woocommerce.css'
 // get scripts
 import './../assets/js/scripts.js'
 
-let wishlist;
-
-document.addEventListener('alpine:init', () => {
- 
-})
 
 let callback = () => {
-    checkCookie();
-
     window.Alpine = Alpine;
     Alpine.start();
-
 }
 
 if (

@@ -1,10 +1,10 @@
-{% set class = 'single-item' %}
 
-<a href="{{item.link}}"  title="{{item.title}}" >
-    <article  class="  {{item.type}}-type">
+
+<a class="single-product-preview  t-d-none" href="{{item.link}}"  title="{{item.title}}" >
+    <article  >
    
-        <div class="image-container">
-            <picture >
+        <div class="image-container  brdr-rds-20">
+            <picture   class="img-cover pos-rel display">
             {% set image = get_image(item.thumbnail) %}
                 <source
                 data-srcset="{{image.src('large')}}"
@@ -14,8 +14,8 @@
             </picture>
                 
         </div>
-        <div class="text-container">
-            <h3 class="fdc fs-25">{{item.title}}</h3>
+        <div class="text-container m-t-standard">
+            <h3 class="fdc fs-25"><strong>{{item.title}}</strong></h3>
             {% set price = fn('wc_get_product', item.id) %}
             <div class="foc fs-18">{{price.get_price_html}}</div>
         </div>

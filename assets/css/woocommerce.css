@@ -1,4 +1,19 @@
 @import 'partials/_page.css';
 
-@import 'components/_breadcrumbs.css';
+@import 'blocks/_main_item.css';
+
 @import 'components/_btn.css';
+@import 'components/_single-product-preview.css';
+
+.sections-container{
+    & + .product-list{
+        margin-top:var(--standardMargin);
+    }
+}
+
+.product-list{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap:var(--grid-gutter);
+    row-gap:var(--standardMargin);
+}
