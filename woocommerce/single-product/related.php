@@ -30,7 +30,10 @@ if ( $related_products ) : ?>
 			?>
 			<h2 class="fdc fs-28"><?php echo get_field("related_products","options") ?></h2>
 		<?php endif; ?>
-		<?php woocommerce_product_loop_start(); ?>
+		<?php // woocommerce_product_loop_start(); 
+		 
+		 echo '<div class="products-list m-t-standard">';
+		 ?>
 
 			<?php foreach ( $related_products as $related_product ) : ?>
 
@@ -42,12 +45,16 @@ if ( $related_products ) : ?>
 					$cur_id = $post_object->ID;
 					$article = Timber::get_post($cur_id);
 					//wc_get_template_part( 'content', 'product' );
+					
 					echo Timber::compile( 'partial/product.twig', array( 'item' => $article) );
+					
 					?>
 
 			<?php endforeach; ?>
 
-		<?php woocommerce_product_loop_end(); ?>
+		<?php // woocommerce_product_loop_end();
+		echo '</div>'; 
+		  ?>
 
 	</section>
 	<?php

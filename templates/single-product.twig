@@ -4,26 +4,31 @@
 
     {% do action('woocommerce_before_single_product') %}
 
-    <div class="outer-wrapper-product" >
+    <div class="outer-wrapper-product p-b-double" >
 
-        <article itemscope itemtype="https://schema.org/Product" class="single-product-details {{ post.class }}">
+        <article itemscope itemtype="https://schema.org/Product" class="single-product-details {{ post.class }} ">
 
             <div class="content-wrapper">
                 
-                <div class="main-product">
+                <div class="main-product b-b-black p-b-standard m-b-standard">
+                    <div class="block-header">
+                        <h1 class="product_title entry-title foc fs-28" >{{post.title}}</h1>
+                        {{fn('print_price')}}
+                    </div>
+
                     <div class="entry-images">
                         {% do action('woocommerce_before_single_product_summary') %}
                     </div>
 
                     <aside class="product-aside">
-                        <div class="summary entry-summary">
+                        <div class="summary entry-summary b-b-black p-b-standard">
                             {% do action('woocommerce_single_product_summary') %}
 
                             
                             <meta itemprop="url" content="{{ post.link }}" />
                         </div>
                         
-                        <div class="default-text ft fs-18">
+                        <div class="default-text ft fs-18 m-t-standard">
                             {{post.content}}
                         </div>
                     </aside>

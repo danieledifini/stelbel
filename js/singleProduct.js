@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs';
+import { tns } from "tiny-slider"
 
 // get styles
 import './../assets/css/singleProduct.css'
@@ -9,6 +10,22 @@ import './../assets/js/scripts.js'
 let callback = () => {
     window.Alpine = Alpine;
     Alpine.start();
+
+    if (document.querySelector(".woocommerce-product-gallery__wrapper") ) {
+        const container = document.querySelector(".woocommerce-product-gallery__wrapper");
+    
+        var slider = tns({
+          container: container,
+          items: 1,
+          gutter:15,
+          slideBy: 'page',
+          autoplay: true,
+          controls:false,
+          mouseDrag: true,
+          autoplayButtonOutput: false,
+          nav: false
+        });
+      }
 }
 
 if (

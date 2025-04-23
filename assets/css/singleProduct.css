@@ -1,4 +1,55 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css';
+
 @import 'partials/_page.css';
 
-@import 'components/_breadcrumbs.css';
 @import 'components/_btn.css';
+@import 'components/_single-product-preview.css';
+
+
+.block-header{
+    margin-bottom:var(--standardMargin);
+}
+
+.entry-images{
+    padding-right:.3125rem;
+    margin-bottom:var(--standardMargin);
+}
+
+.tns-ovh{
+    overflow:visible;
+}
+
+.custom-product-image{
+    img{
+        display:inherit;
+        border-radius:.9375rem;
+        overflow:hidden;
+    }
+}
+
+.single_variation_wrap{
+    margin-top:var(--standardMargin);
+}
+
+.variations{
+    label{
+        font-weight:700;
+        margin-right:var(--standardMargin);
+    }
+}
+
+.quantity{
+    label{
+        font-weight:700;
+        margin-right:var(--standardMargin);
+    }
+}
+
+.related.products{
+    .products-list{
+        display:grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap:var(--grid-gutter);
+        row-gap:var(--standardMargin);
+    }
+}
