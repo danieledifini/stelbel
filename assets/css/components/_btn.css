@@ -9,15 +9,30 @@
     display:inherit;
     padding:.3125rem var(--standardMargin);
     width:100%;
-    border:.0625rem solid var(--black);
     text-decoration:none;
     text-align:center;
 
+    &:not(&.secondary){
+       border:.0625rem solid var(--black); 
 
-    &:hover{
-        background-color:var(--black);
-        color:var(--secondary);
+       &:hover{
+            background-color:var(--black);
+            color:var(--secondary);
+        }
     }
+
+    &.secondary{
+       color:var(--yellow);
+       border:.0625rem solid var(--yellow); 
+
+       &:hover{
+            background-color:var(--yellow);
+            color:var(--black);
+        }
+    }
+
+
+    
 }
 
 .filter-btn{

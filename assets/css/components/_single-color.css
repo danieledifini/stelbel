@@ -1,0 +1,9 @@
+.single-color{
+    column-gap:var(--grid-gutter);
+
+    .color-square{
+        width:5.4375rem;
+        min-width:5.4375rem;
+        height:5.4375rem;
+    }
+}

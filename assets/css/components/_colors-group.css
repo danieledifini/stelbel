@@ -1,0 +1,19 @@
+.colors-group{
+    .colors-container{
+        row-gap:var(--double);
+    }
+
+    summary{
+        cursor:pointer;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+        content: "";
+    }
+
+    summary::marker {
+        display: none;
+        content: "";
+    }
+}

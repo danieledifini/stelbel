@@ -1,0 +1,24 @@
+<section class="geometry" id="geometry">
+
+    <h3 class="fdc fs-28">
+        {{options.geometry}}
+    </h3>
+    {% if post.meta('geometry_image') %}
+        <div class="image-container  basic-brdr-rds" >
+            {% set image = get_image(post.meta('geometry_image')) %}
+
+            <picture class="display ">
+                <source
+                data-srcset="{{image.src('large')}}"
+                media="(max-width: 767px)" />
+                <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload display" width="{{image.width}}" height="{{image.height}}">
+            </picture>
+        </div>
+    {% endif %}
+    <div class="text-container">
+        
+        <div class="default-text ft fs-18">
+            {{post.meta('geometry_text')}}
+        </div>
+    </div>
+</section>

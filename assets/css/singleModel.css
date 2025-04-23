@@ -3,13 +3,31 @@
 @import 'partials/_page.css';
 
 @import 'blocks/_builds.css';
+@import 'blocks/_geometry.css';
 
 @import 'components/_btn.css';
 @import 'components/_specs-values.css';
 @import 'components/_single-build-preview.css';
+@import 'components/_img-slider.css';
+@import 'components/_single-color.css';
+@import 'components/_colors-group.css';
+@import 'components/_single-logo.css';
 
 .article-body{
     margin-top:var(--standardMargin);
     padding-top:var(--standardMargin);
     border-top:.0625rem solid var(--black);
+
+    .main-text{
+        &:not(&:first-child){
+            margin-top:var(--standardMargin);
+        }
+    }
+}
+
+.logos-container{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap:var(--grid-gutter);
+    row-gap:var(--standardMargin);
 }

@@ -1,0 +1,5 @@
+.geometry{
+    .image-container,.text-container{
+        margin-top:var(--standardMargin);
+    }
+}

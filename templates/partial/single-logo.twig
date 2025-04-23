@@ -1,4 +1,4 @@
-<div class="single-logo">
+<div class="single-logo dis-flex align-center">
     {% if item.image %}
         <div class="image-container " >
             {% set image = get_image(item.image) %}
@@ -7,7 +7,7 @@
                     <source
                     data-srcset="{{image.src('large')}}"
                     media="(max-width: 767px)" />
-                    <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload " width="{{image.width}}" height="{{image.height}}">
+                    <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload display" width="{{image.width}}" height="{{image.height}}">
                 </picture>
         </div>
     {% endif %}

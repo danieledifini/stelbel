@@ -23,9 +23,4 @@
         z-index: 2;
         color:var(--yellow);
     }
-
-    .standard-btn{
-        border-color:var(--yellow);
-        color:var(--yellow);
-    }
 }

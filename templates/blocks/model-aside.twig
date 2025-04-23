@@ -1,0 +1,76 @@
+<aside class="model-specs bg-black yellow brdr-rds-20 p-l-r-standard">
+    <div class="specs-group  b-b-yellow p-b-standard m-b-standard">
+        <h3 class="group-title fdc fs-20">
+            {{options.characteristics}}
+        </h3>
+
+        {% if post.meta("specs") %}
+            <div class="specs-values">
+                {% for item in post.meta("specs") %}
+                    {% include "partial/single-feature.twig" with {'title':item.title, 'value':item.value}  %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="specs-group   b-b-yellow p-b-standard m-b-standard">
+        <div class="group-header dis-flex jus-space-between">
+                <h3 class="group-title fdc fs-20">
+                    {{options.geometry}}
+                </h3>
+                <div class="ctas-container  ">
+                    <button  class="standard-btn secondary foc fs-18 default-btn transition brdr-rds-20"  type="button" data-goto="#geometry"  >
+                        {{options.learn_more}}
+                    </button>
+                </div>
+            </div>
+    </div>	
+    {% if post.meta("colors") %}
+        {% set totalColors = post.meta("colors")|length %}
+        <div class="specs-group colors-group  b-b-yellow p-b-standard m-b-standard">
+            <h3 class="group-title fdc fs-20 m-b-standard">
+                {{options.colors}}
+            </h3>
+            {% set counter = 0 %}
+            {% for item in post.meta("colors") %}
+                {% set class = '' %}
+
+                {% if counter !=  totalColors - 1 %}
+                    {% set class = 'b-b-yellow p-b-standard m-b-standard' %}
+                {% endif %}
+
+                <details class="sub-group {{class}}" >
+                    {% if item.group_title %}
+                        <summary >
+                            <span class="foc fs-18">
+                            {{item.group_title}}
+                            </span>
+                        </summary>
+                    {% endif %}
+
+                    {% if item.colors %}
+                        <div class="colors-container dis-flex flex-col m-t-standard">
+                            {% for color in item.colors %}
+                                {% include "partial/single-color.twig" with {'item':color}  %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </details>
+                {% set counter = counter + 1 %}
+            {% endfor %}
+        </div>	
+    {% endif %}
+
+    {% if post.meta('logos') %}
+        <div class="specs-group  ">
+            <h3 class="group-title fdc fs-20">
+                {{options.logos}}
+            </h3>
+
+            <div class="logos-container m-t-standard">
+                {% for item in post.meta("logos") %}
+                    {% include "partial/single-logo.twig" with {'item':item}  %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</aside>

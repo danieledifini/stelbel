@@ -2,7 +2,7 @@
 
 {% block content %}
 	<div class="content-wrapper">
-		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
+		<article class="post-type-{{ post.post_type }} p-b-standard b-b-black m-b-standard" id="post-{{ post.ID }}">
 			<section class="main-info p-b-standard b-b-black m-b-standard">
 				{% if post.thumbnail %}
 					<div class="image-container  basic-brdr-rds display" >
@@ -51,72 +51,8 @@
 				</div>
 			</section> 
 			
-			<section class="article-content">
-				<aside class="model-specs bg-black yellow brdr-rds-20 p-l-r-standard">
-					<div class="specs-group  b-b-yellow p-b-standard m-b-standard">
-						<h3 class="group-title fdc fs-20">
-							{{options.characteristics}}
-						</h3>
-
-						{% if post.meta("specs") %}
-							<div class="specs-values">
-								{% for item in post.meta("specs") %}
-									{% include "partial/single-feature.twig" with {'title':item.title, 'value':item.value}  %}
-								{% endfor %}
-							</div>
-						{% endif %}
-					</div>
-					<div class="specs-group   b-b-yellow p-b-standard m-b-standard">
-						<div class="group-header">
-								<h3 class="group-title fdc fs-20">
-									{{options.geometry}}
-								</h3>
-								<div class="ctas-container  ">
-									<button  class="standard-btn foc fs-18 fake-btn transition brdr-rds-20"  type="button" data-goto="#geometry"  >
-										{{options.learn_more}}
-									</button>
-								</div>
-							</div>
-					</div>	
-					{% if post.meta("colors") %}
-						<div class="specs-group  b-b-yellow p-b-standard m-b-standard">
-							<h3 class="group-title fdc fs-20">
-								{{options.colors}}
-							</h3>
-							{% for item in post.meta("colors") %}
-								<details class="sub-group">
-									{% if item.group_title %}
-										<summary >
-											<span class="foc fs-18">
-											{{item.group_title}}
-											</span>
-										</summary>
-									{% endif %}
-
-									{% if item.colors %}
-										<div class="colors-container">
-											{% for color in item.colors %}
-												{% include "partial/single-color.twig" with {'item':color}  %}
-											{% endfor %}
-										</div>
-									{% endif %}
-								</details>
-							{% endfor %}
-						</div>	
-					{% endif %}
-
-					{% if post.meta('logos') %}
-						<div class="specs-group  ">
-							<h3 class="group-title fdc fs-20">
-								{{options.logos}}
-							</h3>
-
-							{% for item in post.meta("logos") %}
-								{% include "partial/single-logo.twig" with {'item':item}  %}
-							{% endfor %}
-						</div>
-					{% endif %}
-				</aside>
+			<section class="article-content p-b-standard b-b-black m-b-standard">
+				{% include "blocks/model-aside.twig"  %}
 				
 				<div class="article-body ">
 					{% set total = 0 %}
@@ -135,12 +71,12 @@
 								<source
 								data-srcset="{{image.src('large')}}"
 								media="(max-width: 767px)" />
-								<img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload " width="{{image.width}}" height="{{image.height}}">
+								<img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload display " width="{{image.width}}" height="{{image.height}}">
 							</picture>
 						</div>
 					{% endif %}
 					{% if total > 2 %}
-						<div class="img-slider">
+						<div class="img-slider m-t-standard">
 							{% for i in 1..total - 2 %}
 								<div class="simple-img image-container  basic-brdr-rds" >
 									{% set image = get_image(images[i]) %}
@@ -149,54 +85,35 @@
 										<source
 										data-srcset="{{image.src('large')}}"
 										media="(max-width: 767px)" />
-										<img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload " width="{{image.width}}" height="{{image.height}}">
+										<img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload display " width="{{image.width}}" height="{{image.height}}">
 									</picture>
 								</div>
 							{% endfor %}
 						</div>
 					{% endif %}
 
-					<div class="default-text ft fs-18">
+					<div class="default-text ft fs-18 main-text">
 						{{post.content}}
 					</div>
 
-					{% if total > 1 %}
-						<div class="final-img image-container  basic-brdr-rds" >
+					
+				</div>
+
+				{% if total > 1 %}
+						<div class="final-img image-container  basic-brdr-rds m-t-standard" >
 							{% set image = get_image(images[total - 1]) %}
 
 							<picture class="display ">
 								<source
 								data-srcset="{{image.src('large')}}"
 								media="(max-width: 767px)" />
-								<img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload " width="{{image.width}}" height="{{image.height}}">
+								<img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload display " width="{{image.width}}" height="{{image.height}}">
 							</picture>
 						</div>
 					{% endif %}
-				</div>
 			</section>
 
-			<section class="geometry" id="geometry">
-				{% if post.meta('geometry_image') %}
-					<div class="image-container  basic-brdr-rds" >
-						{% set image = get_image(post.meta('geometry_image')) %}
-
-						<picture class="display ">
-							<source
-							data-srcset="{{image.src('large')}}"
-							media="(max-width: 767px)" />
-							<img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload " width="{{image.width}}" height="{{image.height}}">
-						</picture>
-					</div>
-				{% endif %}
-				<div class="text-container">
-					<h3 class="fdc fs-28">
-						{{options.geometry}}
-					</h3>
-					<div class="default-text ft fs-18">
-						{{post.meta('geometry_text')}}
-					</div>
-				</div>
-			</section>
+			{% include "blocks/geometry.twig"  %}
 		</article>
 
 		<section class="order">
@@ -204,7 +121,7 @@
 				<h3 class="fdc fs-28">
 					{{options.order}}
 				</h3>
-				<div class="default-text ft fs-12">
+				<div class="default-text ft fs-12 m-t-standard">
 					{{options.order_text}}
 				</div>
 			</div>
