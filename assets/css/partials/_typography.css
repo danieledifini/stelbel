@@ -143,6 +143,10 @@ body {
 	font-weight:800;
 }
 
+.f-w-400{
+	font-weight:400;
+}
+
 p {
     &:empty { 
         display: none; 

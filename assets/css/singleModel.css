@@ -1,6 +1,15 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css';
 
 @import 'partials/_page.css';
 
-
+@import 'blocks/_builds.css';
 
 @import 'components/_btn.css';
+@import 'components/_specs-values.css';
+@import 'components/_single-build-preview.css';
+
+.article-body{
+    margin-top:var(--standardMargin);
+    padding-top:var(--standardMargin);
+    border-top:.0625rem solid var(--black);
+}

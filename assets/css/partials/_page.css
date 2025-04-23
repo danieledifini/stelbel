@@ -104,9 +104,15 @@
     padding-bottom:var(--standardMargin);
 }
 
+.p-l-r-standard{
+    padding-left:var(--standardMargin);
+    padding-right:var(--standardMargin);
+}
+
 .p-b-double{
     padding-bottom:var(--double);
 }
+
 
 .p-standard{
    padding:var(--standardMargin); 
@@ -174,6 +180,10 @@
 
 .b-b-black{
     border-bottom:.0625rem solid var(--black);
+}
+
+.b-b-yellow{
+    border-bottom:.0625rem solid var(--yellow);
 }
 
 .white{

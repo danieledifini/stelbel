@@ -3,33 +3,33 @@
 {% block content %}
 	<div class="content-wrapper">
 		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-			<section class="main-info">
+			<section class="main-info p-b-standard b-b-black m-b-standard">
 				{% if post.thumbnail %}
-					<div class="image-container  basic-brdr-rds" >
+					<div class="image-container  basic-brdr-rds display" >
 						{% set image = get_image(post.thumbnail) %}
 
 						<picture class="display ">
 							<source
 							data-srcset="{{image.src('large')}}"
 							media="(max-width: 767px)" />
-							<img data-src="{{image.src}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload " width="{{image.width}}" height="{{image.height}}">
+							<img data-src="{{image.src}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload display" width="{{image.width}}" height="{{image.height}}">
 						</picture>
 				</div>
 				{% endif %}
 
-				<div class="block-header">
+				<div class="block-header m-t-standard">
 					<div class="block-title">
 						<h1 class="foc fs-34">
 							{{post.title}}
 						</h1>
 
-						<h2 class="fs-34 foc">
+						<h2 class="fs-22 fdc f-w-400">
 							{{post.meta('subtitle')}}
 						</h2>
 					</div>
 
 					{% if post.meta('terrain') and  post.meta('material') %}
-						<div class="block-main-features">
+						<div class="block-main-features dis-flex jus-space-between m-t-standard">
 							{% set title = options.terrain %}
 							{% set value = post.meta('terrain') %}
 							{% include "partial/single-feature.twig" with {'title':title, 'value':value}  %}
@@ -41,8 +41,8 @@
 					{% endif %}
 					
 				</div>
-				<div class="main-text-container">
-					<div class="defaul-text fdc-fs-18">
+				<div class="main-text-container m-t-double">
+					<div class="defaul-text fdc fs-18">
 						<p>{{post.excerpt({
                             strip: true,
                             read_more: ""
@@ -52,8 +52,8 @@
 			</section> 
 			
 			<section class="article-content">
-				<aside class="model-specs bg-black yellow">
-					<div class="specs-group">
+				<aside class="model-specs bg-black yellow brdr-rds-20 p-l-r-standard">
+					<div class="specs-group  b-b-yellow p-b-standard m-b-standard">
 						<h3 class="group-title fdc fs-20">
 							{{options.characteristics}}
 						</h3>
@@ -65,20 +65,21 @@
 								{% endfor %}
 							</div>
 						{% endif %}
-
-						<div class="goup-header">
-							<h3 class="group-title fdc fs-20">
-								{{options.geometry}}
-							</h3>
-							<div class="ctas-container  ">
-								<button  class="standard-btn foc fs-18 fake-btn transition brdr-rds-20"  type="button" data-goto="#geometry"  >
-									{{options.learn_more}}
-								</button>
-							</div>
-						</div>
 					</div>
+					<div class="specs-group   b-b-yellow p-b-standard m-b-standard">
+						<div class="group-header">
+								<h3 class="group-title fdc fs-20">
+									{{options.geometry}}
+								</h3>
+								<div class="ctas-container  ">
+									<button  class="standard-btn foc fs-18 fake-btn transition brdr-rds-20"  type="button" data-goto="#geometry"  >
+										{{options.learn_more}}
+									</button>
+								</div>
+							</div>
+					</div>	
 					{% if post.meta("colors") %}
-						<div class="specs-group">
+						<div class="specs-group  b-b-yellow p-b-standard m-b-standard">
 							<h3 class="group-title fdc fs-20">
 								{{options.colors}}
 							</h3>
@@ -105,7 +106,7 @@
 					{% endif %}
 
 					{% if post.meta('logos') %}
-						<div class="specs-group">
+						<div class="specs-group  ">
 							<h3 class="group-title fdc fs-20">
 								{{options.logos}}
 							</h3>
@@ -155,7 +156,7 @@
 						</div>
 					{% endif %}
 
-					<div class="default-text ft-fs20">
+					<div class="default-text ft fs-18">
 						{{post.content}}
 					</div>
 

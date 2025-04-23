@@ -1,0 +1,4 @@
+.specs-values{
+    column-count: 2;
+    column-gap: var(--standardMargin);
+}

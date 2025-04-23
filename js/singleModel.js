@@ -1,5 +1,6 @@
 import Alpine from 'alpinejs';
 import 'htmx.org';
+import { tns } from "tiny-slider"
 // get styles
 import './../assets/css/singleModel.css'
 
@@ -13,8 +14,34 @@ document.body.addEventListener('htmx:afterSwap', function(evt) {
   
   target.classList.remove("loading");
   target.classList.add("loaded");
+
+  addSlider(target);
   
 });
+
+let addSlider = (target) => {
+  var slider = tns({
+    container: target,
+    items: 1,
+    gutter:15,
+    slideBy: 'page',
+    autoplay: true,
+    controls:false,
+    mouseDrag: true,
+    autoplayButtonOutput: false,
+    nav: false,
+    responsive: {
+    480: {
+      items: 2,
+    },
+    768: {
+      items: 3,
+    },
+    992: {
+      disable: true 
+    }
+  }});
+}
 
 document.addEventListener('alpine:init', () => {
   Alpine.data('homepage', () => ({
