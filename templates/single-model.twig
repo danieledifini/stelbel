@@ -1,7 +1,7 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<div class="content-wrapper">
+	<div class="content-wrapper  p-b-double">
 		<article class="post-type-{{ post.post_type }} p-b-standard b-b-black m-b-standard" id="post-{{ post.ID }}">
 			<section class="main-info p-b-standard b-b-black m-b-standard">
 				{% if post.thumbnail %}
@@ -125,7 +125,7 @@
 					{{options.order_text}}
 				</div>
 			</div>
-			<div class="form-container standard-form">
+			<div class="form-container standard-form m-t-standard">
 				{{fn('do_shortcode','[contact-form-7 id="4fd1762" title="Ordina"]')}}
 			</div>
 		</section>

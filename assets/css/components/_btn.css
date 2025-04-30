@@ -15,7 +15,7 @@
     &:not(&.secondary){
        border:.0625rem solid var(--black); 
 
-       &:hover{
+        &:hover{
             background-color:var(--black);
             color:var(--secondary);
         }

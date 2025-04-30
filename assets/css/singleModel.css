@@ -4,6 +4,7 @@
 
 @import 'blocks/_builds.css';
 @import 'blocks/_geometry.css';
+@import 'blocks/_model-specs.css';
 
 @import 'components/_btn.css';
 @import 'components/_specs-values.css';
@@ -12,6 +13,7 @@
 @import 'components/_single-color.css';
 @import 'components/_colors-group.css';
 @import 'components/_single-logo.css';
+@import 'components/_standard-form.css';
 
 .article-body{
     margin-top:var(--standardMargin);
