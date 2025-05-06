@@ -1,0 +1,13 @@
+.order{
+    .block-header{
+       @media (min-width: 48rem) {
+            display:grid;
+            grid-template-columns: 1fr 2fr;
+            column-gap:var(--grid-gutter);
+
+            .default-text{
+                margin-top:0;
+            }
+        }
+    }
+}

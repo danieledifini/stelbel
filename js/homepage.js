@@ -52,27 +52,26 @@ let callback = () => {
   if (document.querySelector("section.posts ") ) {
     const container = document.querySelector("section.posts .posts-list");
 
-    var slider = tns({
-      container: container,
-      items: 1,
-      gutter:15,
-      slideBy: 'page',
-      autoplay: true,
-      controls:false,
-      mouseDrag: true,
-      autoplayButtonOutput: false,
-      nav: false,
-      responsive: {
-      480: {
-        items: 2,
-      },
-      768: {
-        items: 3,
-      },
-      992: {
-        disable: true 
-      }
-    }});
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      var slider = tns({
+        container: container,
+        items: 1,
+        gutter:15,
+        slideBy: 'page',
+        autoplay: true,
+        controls:false,
+        mouseDrag: true,
+        autoplayButtonOutput: false,
+        nav: false,
+        responsive: {
+        480: {
+          items: 2,
+        },
+        768: {
+          disable: true 
+        }
+      }});
+    }
   }
 }
 

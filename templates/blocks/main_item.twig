@@ -17,17 +17,19 @@
                 {{section.title }}
             </h2>
         {% endif %}
-        {% if section.text %}
-            <div class="fdc fs-18 default-text">
-                <p>{{section.text }}</p>
-            </div>
-        {% endif %}
-        {% if section.cta %}
-            <div class="ctas-container  m-t-double">
-                <a  class="standard-btn foc fs-18 brdr-rds-20"  href="{{section.cta['url']}}" target="{{section.cta['target']}}" >
-                     {{section.cta['title']}}
-                </a>
-            </div>
-        {% endif %}
+        <div class="inner-text-container">
+            {% if section.text %}
+                <div class="fdc fs-18 default-text">
+                    <p>{{section.text }}</p>
+                </div>
+            {% endif %}
+            {% if section.cta %}
+                <div class="ctas-container  m-t-double">
+                    <a  class="standard-btn foc fs-18 brdr-rds-20"  href="{{section.cta['url']}}" target="{{section.cta['target']}}" >
+                        {{section.cta['title']}}
+                    </a>
+                </div>
+            {% endif %}
+        </div>
     </div>
 </div>

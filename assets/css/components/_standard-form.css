@@ -25,13 +25,23 @@
                 .wpcf7-form-control-wrap{
                     flex-shrink: 1;
                     overflow: hidden;
-                    max-width:50%;
-                    margin-left:var(--standardMargin);
+                    margin-left:var(--grid-gutter);
+
+                    @media (max-width: 47.9375rem) {
+                        max-width:50%;
+                    }
+
+                    @media (min-width: 48rem) {
+                        width:calc(66.6% - (var(--grid-gutter) / 2));
+                        min-width:calc(66.6% - (var(--grid-gutter) / 2));
+                    }
                 }
             }
 
             input,textarea{
                 max-width: 100%;
+                width: 100%;
+                resize:none;
                 padding:.3125rem var(--standardMargin);
                 font-family: 'Focal Web';
                 font-weight:500;
@@ -49,6 +59,12 @@
         &.privacy-group{
             padding:var(--standardMargin) 0;
             border-bottom:.0625rem solid var(--black);
+
+            @media (min-width: 48rem) {
+                width:calc(66.6% - (var(--grid-gutter) / 2));
+                min-width:calc(66.6% - (var(--grid-gutter) / 2));
+                margin-left:auto;
+            }
 
             --btnw:1.5625rem;
 
@@ -110,6 +126,16 @@
         &:hover{
             background-color:var(--black);
             color:var(--secondary);
+        }
+
+        @media (max-width: 47.9375rem) {
+            width:100%;
+        }
+
+        @media (min-width: 48rem) {
+            width:calc(66.6% - (var(--grid-gutter) / 2));
+            min-width:calc(66.6% - (var(--grid-gutter) / 2));
+            margin-left:auto;
         }
     }
 }

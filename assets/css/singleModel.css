@@ -5,6 +5,7 @@
 @import 'blocks/_builds.css';
 @import 'blocks/_geometry.css';
 @import 'blocks/_model-specs.css';
+@import 'blocks/_order.css';
 
 @import 'components/_btn.css';
 @import 'components/_specs-values.css';
@@ -16,14 +17,16 @@
 @import 'components/_standard-form.css';
 
 .article-body{
-    margin-top:var(--standardMargin);
-    padding-top:var(--standardMargin);
-    border-top:.0625rem solid var(--black);
-
     .main-text{
         &:not(&:first-child){
             margin-top:var(--standardMargin);
         }
+    }
+
+    @media (max-width: 47.9375rem) {
+        margin-top:var(--standardMargin);
+        padding-top:var(--standardMargin);
+        border-top:.0625rem solid var(--black);
     }
 }
 
@@ -32,4 +35,36 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap:var(--grid-gutter);
     row-gap:var(--standardMargin);
+
+    @media (min-width: 48rem) and (max-width: 62rem) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));   
+
+    }
+}
+
+.main-info{
+
+    @media (min-width: 48rem) {
+        .inner-info-text-container{
+            display:grid;
+            grid-template-columns: 1fr 2fr;
+            column-gap:var(--grid-gutter);
+        }
+
+        .main-text-container{
+            margin-top:0;
+        }
+    }
+}
+
+.article-content{
+    @media (min-width: 48rem) {
+        display:grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap:var(--grid-gutter);
+        
+        .final-img{
+            grid-column:1/4;
+        }
+    }
 }

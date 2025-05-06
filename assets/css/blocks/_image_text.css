@@ -1,12 +1,25 @@
 .image_text{
     picture{
         height:auto;
-        padding-bottom:137%;
+
+        @media (max-width: 47.9375rem) {
+            padding-bottom:137%;
+        }
+
+        @media (min-width: 48rem) {
+            padding-bottom:61.3%;
+        }
     }
 
     .text-container{
         position: absolute;
         top: 0;
         z-index: 2;
+
+        @media (min-width: 48rem) {
+            .default-text{
+                max-width: 50%;
+            }
+        }
     }
 }

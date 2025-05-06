@@ -9,4 +9,22 @@
     display:flex;
     flex-direction:column;
     row-gap:var(--double);
+
+    @media (min-width: 48rem) {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: var(--grid-gutter);
+    }
+}
+
+@media (min-width: 48rem) {
+    .section-header{
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: var(--grid-gutter);
+
+        .default-text{
+            margin-top:0;
+        }
+    }
 }

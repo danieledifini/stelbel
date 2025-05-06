@@ -167,3 +167,7 @@ p {
 .t-d-none{
 	text-decoration:none;
 }
+
+.text-center{
+	text-align:center;
+}

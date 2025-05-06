@@ -21,9 +21,16 @@
 
 .select-toggler{
     padding:.3125rem var(--standardMargin);
-    width:100%;
     height:2.5rem;
     text-align:left;
+
+    @media (max-width: 47.9375rem) {
+        width:100%;
+    }
+
+    @media (min-width: 48rem) {
+        width:15.625rem;
+    }
 }
 
 .custom-options{
@@ -39,4 +46,12 @@
     border:.0625rem solid var(--black);
     background-color:var(--yellow);
     z-index:98;
+
+    @media (max-width: 47.9375rem) {
+        width:calc(100% + .125rem);
+    }
+
+    @media (min-width: 48rem) {
+         width:calc(15.625rem + .125rem);
+    }
 }
