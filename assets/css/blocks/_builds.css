@@ -11,4 +11,12 @@
     .tns-ovh{
         overflow:visible;
     }
+
+    @media (min-width: 62rem) {
+        .builds-list{
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            column-gap: var(--grid-gutter);
+        }
+    }
 }

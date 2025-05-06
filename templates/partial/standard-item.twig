@@ -1,8 +1,8 @@
 
 <a class="standard-item t-d-none"  href="{{item.cta['url']}}" target="{{item.cta['target']}}" title="{{item.title}}">
-    <article  class="pos-rel brdr-rds-20">
+    <article  class="pos-rel ">
         {% if item.image %}
-            <div class="image-container img-square pos-rel">
+            <div class="image-container img-square pos-rel brdr-rds-20">
                 <picture  class="img-cover display">
                 {% set image = get_image(item.image) %}
                     <source
@@ -21,14 +21,14 @@
                     <h3 class="foc fs-32">{{item.title|capitalize}}</h3>
                 {% endif %}
                 {% if item.text %}
-                    <div class="ft fs-18 hide-mobile">
-                        <p>{{item.text}}</p>
+                    <div class="ft fs-18 hide-mobile default-text">
+                        {{item.text}}
                     </div>
                 {% endif %}
                 
                 {% if item.cta %}
                     <div class="ctas-container  ">
-                        <button  class="standard-btn secondary foc fs-18  transition default-btn brdr-rds-20 "  type="button"   >
+                        <button  class="standard-btn secondary foc fs-18  transition default-btn brdr-rds-20 min-width"  type="button"   >
                             {{item.cta['title']}}
                         </button>
                     </div>

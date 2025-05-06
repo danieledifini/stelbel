@@ -6,11 +6,23 @@
 }
 
 .standard-btn{
-    display:inherit;
+    display:initial;
     padding:.3125rem var(--standardMargin);
     width:100%;
     text-decoration:none;
     text-align:center;
+
+    @media (min-width: 62rem) {
+        width:auto;
+
+        &.min-width{
+            min-width:15.625rem;
+        }
+
+        &.single_add_to_cart_button{
+            width:100%;
+        }
+    }
 
     &:not(&.secondary){
        border:.0625rem solid var(--black); 
@@ -25,14 +37,11 @@
        color:var(--yellow);
        border:.0625rem solid var(--yellow); 
 
-       &:hover{
+        &:hover{
             background-color:var(--yellow);
             color:var(--black);
         }
     }
-
-
-    
 }
 
 .filter-btn{

@@ -12,7 +12,7 @@
                 
                 <div class="main-product b-b-black p-b-standard m-b-standard">
                     <div class="block-header">
-                        <h1 class="product_title entry-title foc fs-28" >{{post.title}}</h1>
+                        <h1 class="product_title entry-title foc fs-28 fs-70-desktop" >{{post.title}}</h1>
                         {{fn('print_price')}}
                     </div>
 
@@ -28,7 +28,7 @@
                             <meta itemprop="url" content="{{ post.link }}" />
                         </div>
                         
-                        <div class="default-text ft fs-18 m-t-standard">
+                        <div class="default-text foc fs-18 m-t-standard">
                             {{post.content}}
                         </div>
                     </aside>
@@ -38,7 +38,7 @@
 
         </article>
 
-        <div class="related-products">
+        <div class="related-products-wrapper">
             <div class="content-wrapper">
                 {% do action('woocommerce_after_single_product_summary') %}
             </div>

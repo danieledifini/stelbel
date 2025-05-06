@@ -15,7 +15,9 @@ document.body.addEventListener('htmx:afterSwap', function(evt) {
   target.classList.remove("loading");
   target.classList.add("loaded");
 
-  addSlider(target);
+  if (window.matchMedia("(max-width: 992px)").matches) {
+    addSlider(target);
+  }
   
 });
 

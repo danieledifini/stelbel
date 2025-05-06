@@ -13,19 +13,19 @@
     {% endif %}
     <div class="text-container">
         {% if section.title %}
-            <h2 class="foc fs-32 m-b-standard">
+            <h2 class="foc fs-32 fs-70-desktop m-b-standard f-w-900">
                 {{section.title }}
             </h2>
         {% endif %}
         <div class="inner-text-container">
             {% if section.text %}
-                <div class="fdc fs-18 default-text">
+                <div class="fdc fs-18 fs-34-desktop default-text">
                     <p>{{section.text }}</p>
                 </div>
             {% endif %}
             {% if section.cta %}
                 <div class="ctas-container  m-t-double">
-                    <a  class="standard-btn foc fs-18 brdr-rds-20"  href="{{section.cta['url']}}" target="{{section.cta['target']}}" >
+                    <a  class="standard-btn foc fs-18 brdr-rds-20 min-width"  href="{{section.cta['url']}}" target="{{section.cta['target']}}" >
                         {{section.cta['title']}}
                     </a>
                 </div>

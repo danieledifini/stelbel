@@ -20,7 +20,21 @@
                 justify-content:space-between;
                 font-family: 'Feature Deck Condensed Web';
                 font-weight:700;
-                font-size:1.25rem;
+
+                --min-font: 20;
+                --min-fontpx: 1.25rem;
+
+                @media (max-width: 47.9375rem) {
+                    font-size:var(--min-fontpx);
+                }
+
+                @media (min-width: 48rem) {
+                    --max-font: 40;
+                    --max-fontpx: 2.5rem;
+
+                    font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+                
+                }
 
                 .wpcf7-form-control-wrap{
                     flex-shrink: 1;
@@ -102,7 +116,15 @@
                 padding-left:calc(var(--btnw) + var(--standardMargin));
                 display: inline-block;
                 font-family: 'Feature Text Web';
-                font-size:.75rem;
+                
+
+                @media (max-width: 47.9375rem) {
+                    font-size:.75rem;
+                }
+
+                @media (min-width: 48rem) {
+                    font-size:1.125rem;
+                }
             }
         }
     }

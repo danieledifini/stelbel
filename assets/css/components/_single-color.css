@@ -6,4 +6,8 @@
         min-width:5.4375rem;
         height:5.4375rem;
     }
+
+    .color-info{
+        flex-grow: 1;
+    }
 }

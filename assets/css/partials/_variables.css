@@ -7,9 +7,12 @@
     --vw:0;
     --vh:0;
 
+
+    --max-width: 1728;
+
     --grid-gutter:.9375rem;
-    --grid-max-width:93.75rem;
-    --grid-max-width:100%;
+    --grid-max-width:108rem;
+    /*--grid-max-width:100%;*/
 
     --headerH:6.9375rem;
 
@@ -24,6 +27,9 @@
 
     --realContainerW:calc((100vw) - (var(--grid-gutter) * 2));
     --realContainerW:calc((100 * var(--vw)) - (var(--grid-gutter) * 2));
+
+    --min-width: 992;
+    
 }
 
 @media (min-width: 48rem) {
@@ -37,11 +43,20 @@
        --grid-gutter:1.25rem;
        --headerTop:5.625rem;
        
+       --min-fontpx:.9375rem;
+       --min-font:15;
+       --max-font: 30;
+		--max-fontpx: 30px;
+
+		--standardMargin: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+        --double:var(--standardMargin);
     }
 }
 
-@media (min-width: 93.75rem) {
-    /*:root{
-       --realContainerW:calc(var(--grid-max-width) - (var(--grid-gutter) * 2));
-    }*/
+@media (min-width: 108rem) {
+    :root{
+        --doubleGutter:calc(var(--grid-gutter) * 2);
+        --allSpace:calc((100 * var(--vw)) - var(--grid-max-width));
+        --leftSpace:calc(var(--allSpace) - var(--doubleGutter));
+    }
 }

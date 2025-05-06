@@ -20,11 +20,12 @@
 				<div class="inner-info-text-container m-t-standard">
 					<div class="block-header ">
 					<div class="block-title">
-						<h1 class="foc fs-34">
+						<h1 class="foc fs-34 fs-70-desktop f-w-900">
+							
 							{{post.title}}
 						</h1>
 
-						<h2 class="fs-22 fdc f-w-400">
+						<h2 class="fs-22 fs-34-desktop fdc f-w-400">
 							{{post.meta('subtitle')}}
 						</h2>
 					</div>
@@ -43,7 +44,7 @@
 					
 				</div>
 				<div class="main-text-container m-t-double">
-					<div class="defaul-text fdc fs-18">
+					<div class="defaul-text fdc fs-18 fs-34-desktop">
 						<p>{{post.excerpt({
                             strip: true,
                             read_more: ""
@@ -79,7 +80,8 @@
 					{% endif %}
 					{% if total > 2 %}
 						<div class="img-slider m-t-standard">
-							{% for i in 1..total - 2 %}
+							<div class="inner-img-slider">
+								{% for i in 1..total - 2 %}
 								<div class="simple-img image-container  basic-brdr-rds" >
 									{% set image = get_image(images[i]) %}
 
@@ -91,6 +93,7 @@
 									</picture>
 								</div>
 							{% endfor %}
+							</div>
 						</div>
 					{% endif %}
 

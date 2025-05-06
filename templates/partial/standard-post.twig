@@ -17,7 +17,7 @@
         <div class="text-container  p-standard brdr-rds-20">
             <h3 class="foc fs-32">{{item.title|capitalize}}</h3>
         
-            <div class="ft fs-18 hide-mobile">
+            <div class="ft fs-18 hide-mobile  default-text">
                 <p>{{item.excerpt({
                             strip: true,
                             read_more: ""
@@ -25,7 +25,7 @@
             </div>
             
             <div class="ctas-container  ">
-                <button  class="standard-btn secondary foc fs-18 default-btn transition brdr-rds-20 " type="button"   >
+                <button  class="standard-btn secondary foc fs-18 default-btn transition brdr-rds-20 min-width" type="button"   >
                     {{options.learn_more}}
                 </button>
             </div>

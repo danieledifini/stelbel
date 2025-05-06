@@ -3,6 +3,16 @@
 
     .tagline{
         white-space: nowrap;
+
+        @media (min-width: 62rem) {
+            min-width:calc(16.666% - (var(--grid-gutter) / 2));
+        }
+    }
+
+    .navbar-brand-footer{
+        img{
+            min-width:100%;
+        }
     }
 
     .socials{
@@ -11,6 +21,10 @@
 
             width:var(--btnW);
             height:var(--btnW);
+
+            @media (min-width: 62rem) {
+                --btnW:1.3125rem;
+            }
 
             svg{
                 width:100%;

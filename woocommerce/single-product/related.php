@@ -28,7 +28,7 @@ if ( $related_products ) : ?>
 
 		if ( $heading ) :
 			?>
-			<h2 class="fdc fs-28"><?php echo get_field("related_products","options") ?></h2>
+			<h2 class="fdc fs-28 fs-42-desktop"><?php echo get_field("related_products","options") ?></h2>
 		<?php endif; ?>
 		<?php // woocommerce_product_loop_start(); 
 		 

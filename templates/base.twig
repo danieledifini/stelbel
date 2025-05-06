@@ -38,7 +38,7 @@
 </svg>
 
 								</a>
-								<button class="navbar-toggler transition default-btn pos-rel" type="button" data-toggle="collapse" data-target="#nav-main" aria-controls="nav-main" aria-expanded="false" aria-label="Toggle navigation" @click.stop="menuClosed = !menuClosed">
+								<button class="navbar-toggler transition default-btn pos-rel hide-desktop" type="button" data-toggle="collapse" data-target="#nav-main" aria-controls="nav-main" aria-expanded="false" aria-label="Toggle navigation" @click.stop="menuClosed = !menuClosed">
 									<div class="bar transition"></div>
 									<div class="bar transition"></div>
 									<div class="bar transition"></div>
@@ -81,7 +81,7 @@
 				</main>
 				
 				{% block footer %}
-					<footer id="footer" class="bg-black white" >
+					<footer id="footer" class="bg-black white m-t-standard" >
 						{% include 'footer.twig' %}
 					</footer>
 					{{ function('wp_footer') }}

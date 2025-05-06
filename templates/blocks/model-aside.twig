@@ -3,7 +3,7 @@
     </button>
 
     <div class="specs-group  b-b-yellow p-b-standard m-b-standard">
-        <h3 class="group-title fdc fs-20">
+        <h3 class="group-title fdc fs-20 fs-28-desktop">
             {{options.characteristics}}
         </h3>
 
@@ -17,7 +17,7 @@
     </div>
     <div class="specs-group   b-b-yellow p-b-standard m-b-standard">
         <div class="group-header dis-flex jus-space-between">
-                <h3 class="group-title fdc fs-20">
+                <h3 class="group-title fdc fs-20 fs-28-desktop">
                     {{options.geometry}}
                 </h3>
                 <div class="ctas-container  ">
@@ -30,7 +30,7 @@
     {% if post.meta("colors") %}
         {% set totalColors = post.meta("colors")|length %}
         <div class="specs-group colors-group  b-b-yellow p-b-standard m-b-standard">
-            <h3 class="group-title fdc fs-20 m-b-standard">
+            <h3 class="group-title fdc fs-20 fs-28-desktop m-b-standard">
                 {{options.colors}}
             </h3>
             {% set counter = 0 %}
@@ -65,7 +65,7 @@
 
     {% if post.meta('logos') %}
         <div class="specs-group  ">
-            <h3 class="group-title fdc fs-20">
+            <h3 class="group-title fdc fs-20 fs-28-desktop">
                 {{options.logos}}
             </h3>
 

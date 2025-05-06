@@ -98,8 +98,20 @@ body {
 }
 
 .fs-80{
-    font-size:5rem;
+	--min-fontpx: 5rem;
+
+    font-size:var(--min-fontpx);
 	line-height:0.938;
+
+	@media (min-width: 62rem) {
+		--max-font: 350;
+		--min-font:80;
+		
+		--max-fontpx: 21.875rem;
+
+		font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+
+	}
 }
 
 .fs-34{
@@ -107,32 +119,186 @@ body {
 	line-height:1;
 }
 
+
+
+
 .fs-32{
-    font-size:2rem;
+
+	--min-font: 32;
+	--min-fontpx: 2rem;
+	font-size:var(--min-fontpx);
 	line-height:1;
+
+	@media (min-width: 62rem) {
+
+		&.fs-70-desktop{
+			--max-font: 70;
+			--max-fontpx: 4.375rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+			line-height:1.071;
+		}
+
+		&.fs-42-desktop{
+			--max-font: 42;
+			--max-fontpx: 2.625rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+			line-height:1;
+		}
+	}
+}
+
+.fs-28{
+	--min-font: 28;
+	--min-fontpx: 1.75rem;
+
+	font-size:var(--min-fontpx);
+	line-height:1.393;
+
+	@media (min-width: 62rem) {
+		--max-font: 128;
+		--max-fontpx: 8rem;
+
+		font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+		line-height:1.016;
+
+		&.fs-70-desktop{
+			--max-font: 70;
+			--max-fontpx: 4.375rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+			line-height:1;
+		}
+
+		&.fs-40-desktop{
+			--max-font: 40;
+			--max-fontpx: 2.5rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+			line-height:1;
+		}
+
+		&.fs-42-desktop{
+			--max-font: 42;
+			--max-fontpx: 2.625rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+			line-height:1;
+		}
+	}
+}
+
+.fs-25{
+	--min-font: 25;
+	--min-fontpx: 1.5625rem;
+
+	font-size:var(--min-fontpx);
+	line-height:1.56;
+
+	@media (min-width: 62rem) {
+		--max-font: 40;
+		--max-fontpx: 2.5rem;
+
+		font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+		line-height:0.975;
+	}
 }
 
 .fs-22{
-    font-size:1.375rem;
+	--min-font: 22;
+	--min-fontpx: 1.375rem;
+
+    font-size:var(--min-fontpx);
 	line-height:1.182;
+
+	@media (min-width: 62rem) {
+		&.fs-34-desktop{
+			--max-font: 34;
+			--max-fontpx: 2.125rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+			line-height:1.147;
+		}
+
+		&.fs-40-desktop{
+			--max-font: 40;
+			--max-fontpx: 2.5rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+			line-height:0.975;
+		}
+	}
 }
 
 .fs-20{
-    font-size:1.25rem;
+	--min-font: 20;
+	--min-fontpx: 1.25rem;
+    font-size:var(--min-fontpx);
+
+	@media (min-width: 62rem) {
+
+		&.fs-20-desktop{
+			--max-font: 28;
+			--max-fontpx: 1.75rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx)) !important;
+		}
+	}
 }
 
 .fs-18{
-    font-size:1.125rem;
+
+	--min-font: 18;
+	--min-fontpx: 1.125rem;
+
+    font-size:var(--min-fontpx);
 	line-height:1.167;
+
+	@media (min-width: 62rem) {
+
+		&.fs-34-desktop{
+			--max-font: 34;
+			--max-fontpx: 2.125rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx)) !important;
+		}
+
+		&.fs-20-desktop{
+			--max-font: 20;
+			--max-fontpx: 1.25rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx)) !important;
+		}
+	}
 }
 
 .fs-12{
-    font-size:.75rem;
+	--min-font:12;
+	--min-fontpx:.75rem;
+    font-size:var(--min-fontpx);
+
+	@media (min-width: 62rem) {
+		--max-font: 18;
+		--max-fontpx: 1.125rem;
+
+		font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+	}
 }
 
 .fs-10{
-    font-size:.625rem;
+	--min-font:10;
+	--min-fontpx:.625rem;
+    font-size:var(--min-fontpx);
 	line-height:1.6;
+
+	@media (min-width: 62rem) {
+		--max-font: 18;
+		--max-fontpx: 1.125rem;
+
+		line-height:1.167;
+		font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+	}
 }
 
 .f-w-900{

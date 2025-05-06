@@ -3,9 +3,21 @@
         padding-right:.3125rem;
         z-index:3;
         margin-top:calc(var(--standardMargin) * -1.5);
+
+        @media (min-width: 62rem) {
+            margin-top:calc(var(--standardMargin) * -3.5);
+        }
     }
 
     .tns-ovh{
         overflow:visible;
+    }
+
+    @media (min-width: 62rem) {
+        .article-list{
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            column-gap: var(--grid-gutter);
+        }
     }
 }
