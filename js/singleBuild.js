@@ -1,7 +1,8 @@
 import Alpine from 'alpinejs';
 import 'htmx.org';
+import { tns } from "tiny-slider"
 // get styles
-import './../assets/css/singleModel.css'
+import './../assets/css/singleBuild.css'
 
 // get scripts
 import {getWidth,getGutter} from './../assets/js/scripts.js'

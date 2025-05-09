@@ -1,0 +1,18 @@
+<aside class="build-specs " >
+ 
+
+    <div class="specs-group ">
+        <h3 class="group-title fdc fs-20 fs-28-desktop">
+            {{options.characteristics}}
+        </h3>
+
+        {% if post.meta("features") %}
+            <div class="specs-values m-t-standard">
+                {% for item in post.meta("features") %}
+                    {% include "partial/single-feature.twig" with {'title':item.title, 'value':item.value}  %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+   
+</aside>

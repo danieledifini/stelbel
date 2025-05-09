@@ -1,20 +1,76 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="homepage-template" id="post-{{post.ID}}"   x-data="homepage()">
+<div class="builds-template  p-b-double" id="post-{{post.ID}}"   x-data="builds()">
 	<div class="content-wrapper">
-		{% if post.meta('blocks') %}
-			<div class="sections-container">
-				{% for section in post.meta('blocks') %}
-					{% set class = section.acf_fc_layout|replace({'+': "_"}) %}
+		<div class="section-header  m-b-standard">
+			<h1 class="fdc fs-28">
+				{{post.get_field("alternative_title")}}
+			</h1>
+			
+		</div>
 
-					<section class="complex-section {{class}}" 
-					>
-						{% include "blocks/" ~ section.acf_fc_layout ~ ".twig" %}
-					</section>
-				{% endfor %}
-			</div><!-- sections-container -->
+		{% if last_build %}
+			{% set section = last_build[0] %}
+			<section class="last-build p-b-standard b-b-black">
+				{% if section.thumbnail %}
+					<div class="image-container img-cover pos-rel m-b-double brdr-rds-20" >
+						{% set image = get_image(section.thumbnail) %}
+
+						<picture class="display ">
+							<source
+							data-srcset="{{image.src('large')}}"
+							media="(max-width: 767px)" />
+							<img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload " width="{{image.width}}" height="{{image.height}}">
+						</picture>
+				</div>
+				{% endif %}
+				<div class="text-container">
+					<div class="inner-title-container">
+						{% if section.title %}
+							<h2 class="foc fs-32 fs-70-desktop m-b-standard f-w-900">
+								{{section.title }}
+							</h2>
+						{% endif %}
+						{% if section.subtitle %}
+							<h3 class="fdc fs-32 fs-70-desktop ">
+								{{section.subtitle }}
+							</h3>
+						{% endif %}
+					</div>
+
+					<div class="inner-text-container">
+						{% if section.content %}
+							<div class="fdc fs-18 fs-34-desktop default-text">
+								<p>{{section.content }}</p>
+							</div>
+						{% endif %}
+						<div class="ctas-container  m-t-double">
+							<a  class="standard-btn foc fs-18 brdr-rds-20 min-width"  href="{{section.link}}" target="{{section.title}}" >
+								{{options.learn_more}}
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		
+		{% endif %}
+
+
+		<div class="filters-header ">
+			{% if models %}
+				{% set method = 'load_builds' %}
+				{% set all = options.all %}
+				{% set button = options.filter_by_models %}
+				{% include "partial/filters.twig" with {'items': models, 'type':'build', 'taxonomy':'model','all': all, 'method': method, 'button': button  } %}		
+			
 			{% endif %}
+		</div>
+
+		<div class="items-container m-t-standard" >
+			<div class="builds-list with-loading loading"    id="items-wrapper" hx-get="/api/{{method}}" hx-trigger="load">
+			</div>
+		</div>	
 	</div>
 </div>
 

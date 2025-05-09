@@ -1,18 +1,93 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<div class="content-wrapper">
-		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-			<img src="{{ post.thumbnail.src|resize(1200, 300) }}">
-			<section class="article-content">
-				<h1 class="article-h1">{{ post.title }}</h1>
-				
-				<div class="article-body">
-					{{post.content}}
+	<div class="content-wrapper p-b-double">
+		<article class="post-type-{{ post.post_type }} p-b-standard b-b-black m-b-standard" id="post-{{ post.ID }}">
+			<section class="main-info p-b-standard b-b-black m-b-standard">
+				{% if post.thumbnail %}
+					<div class="image-container  basic-brdr-rds display" >
+						{% set image = get_image(post.thumbnail) %}
+
+						<picture class="display ">
+							<source
+							data-srcset="{{image.src('large')}}"
+							media="(max-width: 767px)" />
+							<img data-src="{{image.src}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload display" width="{{image.width}}" height="{{image.height}}">
+						</picture>
+				</div>
+				{% endif %}
+
+				<div class="inner-info-text-container m-t-standard">
+					<div class="block-header ">
+					<div class="block-title">
+						<h1 class="foc fs-34 fs-70-desktop f-w-900">
+							
+							{{post.title}}
+						</h1>
+
+						<h2 class="fs-22 fs-40-desktop fdc f-w-400">
+							{{post.meta('subtitle')}}
+						</h2>
+					</div>
+
+					
+					
+				</div>
+				<div class="main-text-container m-t-double">
+					<div class="defaul-text fdc fs-18 fs-34-desktop">
+						<p>{{post.content}}</p>
+					</div>
+				</div>
 				</div>
 			</section>
 
-			
+			<div class="article-content p-b-standard b-b-black m-b-standard">
+				{% include "blocks/build-aside.twig"  %}
+
+				<div class="article-body ">
+					{% set total = 0 %}
+					{% set images = null %}
+
+					{% if post.meta('gallery') %}
+						{% set images = post.meta('gallery') %}
+						{% set total = images|length %}
+
+						<div class="img-slider m-t-standard">
+							<div class="inner-img-slider">
+								{% for i in 0..total - 1 %}
+								<div class="simple-img image-container  basic-brdr-rds" >
+									{% set image = get_image(images[i]) %}
+
+									<picture class="display ">
+										<source
+										data-srcset="{{image.src('large')}}"
+										media="(max-width: 767px)" />
+										<img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload display " width="{{image.width}}" height="{{image.height}}">
+									</picture>
+								</div>
+							{% endfor %}
+							</div>
+						</div>
+					{% endif %}
+					
+				</div>
+
+				<section class="order">
+					<div class="block-header">
+						<h3 class="fdc fs-28">
+							{{options.how_to_order}}
+						</h3>
+						<div class="default-text ft fs-12 m-t-standard">
+							{{options.how_to_order_text}}
+						</div>
+					</div>
+					<div class="cta-container m-t-standard">
+						<button class="standard-btn foc fs-18 brdr-rds-20 min-width" type="button" >
+							{{options.order_cta}}
+						</button>
+					</div>
+				</section>
+			</div>
 		</article>
 	</div><!-- /content-wrapper -->
 {% endblock %}

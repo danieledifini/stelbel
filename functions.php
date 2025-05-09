@@ -91,6 +91,7 @@ class StarterSite extends Timber\Site {
 		add_action( 'template_redirect', array( $this,'prefix_do_latest_builds' ));
 
 		add_action( 'template_redirect', array( $this,'prefix_do_models' ));
+		add_action( 'template_redirect', array( $this,'prefix_do_builds' ));
 
 		/* AJAX CALLS */
 
@@ -125,6 +126,9 @@ class StarterSite extends Timber\Site {
 
 		add_rewrite_tag( '%api_models_category_id%', '([0-9_]+)' );
 		add_rewrite_rule( 'api/load_models/([0-9_]+)/?', 'index.php?api_models_category_id=$matches[1]', 'top' );
+
+		add_rewrite_tag( '%api_builds_models_id%', '([0-9_]+)' );
+		add_rewrite_rule( 'api/load_builds/([0-9_]+)/?', 'index.php?api_builds_models_id=$matches[1]', 'top' );
 
 		//remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 	}
@@ -277,6 +281,84 @@ class StarterSite extends Timber\Site {
 								 'taxonomy'  => 'filter-type',
 								 'field'     => 'term_id',
 								 'terms'     => $cats
+						 ),
+				    ),
+				);
+				
+			}
+			else{
+
+				$args = array(
+					'post_type'		 => $type,
+					'orderby'		 => $orderby,
+					'order'			 => $order,
+					'posts_per_page' => $per_page,
+					'paged'          => $cur_page,
+				);
+			}
+
+			$custom_query = new WP_Query($args);
+			$total = $custom_query->found_posts;
+			$total_pages = $custom_query->max_num_pages;
+
+			if ( $custom_query->have_posts() ){
+	
+				$msg .= '';
+	
+				while ( $custom_query->have_posts() ) :
+					$custom_query->the_post();
+					$cur_id = get_the_ID();
+					$article = Timber::get_post($cur_id);
+					$learn_more = get_field("learn_more","options");
+
+					$msg .= Timber::compile( 'partial/'.$type.'.twig', array( 'item' => $article, 'button'=> $learn_more  ) );
+					
+				endwhile;
+			}
+			else{
+				$msg .= '<div class="fs-22 fdc default-text no-results-text">';
+				$msg .= get_field("no_results_text","options");
+				$msg .= '</div>';
+			}
+
+
+			echo $msg;
+
+			exit;
+		}
+
+	}
+
+	function prefix_do_builds(){
+		global $wp_query;
+
+		$api_models_id = $wp_query->get( 'api_builds_models_id' );
+
+		if ( (! empty( $api_models_id ) || ($api_models_id == '0'))  ) {
+			$msg = '';
+
+			$cur_page = 1;
+			$per_page = 99;
+
+			$orderby = "date";
+			$order   = 'DESC';
+			$type 	 = 'build';
+			$args   = [];
+
+
+			if(($api_models_id !='0')){
+				
+				$args = array(
+					'post_type'		 => $type,
+					'orderby'		 => $orderby,
+					'order'			 => $order,
+					'posts_per_page' => $per_page,
+					'paged'          => $cur_page,
+					'meta_query'      => array(
+						 array(
+								 'key' => 'model',
+								'value' => '"' . $api_models_id . '"',
+								'compare' => 'LIKE'
 						 ),
 				    ),
 				);

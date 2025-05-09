@@ -1,0 +1,1 @@
+import{m as e}from"./assets/scripts-6veQEe1m.js";let t=()=>{window.Alpine=e,e.start()};document.readyState==="complete"||document.readyState!=="loading"&&!document.documentElement.doScroll?t():document.addEventListener("DOMContentLoaded",t);
