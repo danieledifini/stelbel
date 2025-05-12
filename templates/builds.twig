@@ -12,9 +12,9 @@
 
 		{% if last_build %}
 			{% set section = last_build[0] %}
-			<section class="last-build p-b-standard b-b-black">
+			<section class="last-build p-b-standard b-b-black m-b-standard">
 				{% if section.thumbnail %}
-					<div class="image-container img-cover pos-rel m-b-double brdr-rds-20" >
+					<div class="image-container img-cover pos-rel m-b-standard brdr-rds-20" >
 						{% set image = get_image(section.thumbnail) %}
 
 						<picture class="display ">
@@ -28,24 +28,27 @@
 				<div class="text-container">
 					<div class="inner-title-container">
 						{% if section.title %}
-							<h2 class="foc fs-32 fs-70-desktop m-b-standard f-w-900">
+							<h2 class="foc fs-32 fs-70-desktop  f-w-900">
 								{{section.title }}
 							</h2>
 						{% endif %}
 						{% if section.subtitle %}
-							<h3 class="fdc fs-32 fs-70-desktop ">
+							<h3 class="fdc fs-32 fs-70-desktop f-w-400">
 								{{section.subtitle }}
 							</h3>
 						{% endif %}
 					</div>
 
-					<div class="inner-text-container">
-						{% if section.content %}
+					<div class="inner-text-container m-t-double">
+						{% if section.excerpt %}
 							<div class="fdc fs-18 fs-34-desktop default-text">
-								<p>{{section.content }}</p>
+								<p>{{section.excerpt({
+                                strip: true,
+                                read_more: ""
+                            })}}</p>
 							</div>
 						{% endif %}
-						<div class="ctas-container  m-t-double">
+						<div class="ctas-container  m-t-double dis-flex">
 							<a  class="standard-btn foc fs-18 brdr-rds-20 min-width"  href="{{section.link}}" target="{{section.title}}" >
 								{{options.learn_more}}
 							</a>

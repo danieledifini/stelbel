@@ -1,5 +1,4 @@
 import Alpine from 'alpinejs';
-import 'htmx.org';
 import { tns } from "tiny-slider"
 // get styles
 import './../assets/css/singleBuild.css'
@@ -7,30 +6,27 @@ import './../assets/css/singleBuild.css'
 // get scripts
 import {getWidth,getGutter} from './../assets/js/scripts.js'
 
-
-document.body.addEventListener('htmx:afterSwap', function(evt) {
-  
-  let target = evt.detail.target;
-  
-  target.classList.remove("loading");
-  target.classList.add("loaded");
-  
-});
-
-document.addEventListener('alpine:init', () => {
-  Alpine.data('homepage', () => ({
-      
-  }))    
-})
-
 let callback = () => {
   
   window.Alpine = Alpine;
   Alpine.start(); 
   
+  if (document.querySelector(".article-body  .img-slider") ) {
+    const container = document.querySelector(".article-body  .img-slider .inner-img-slider");
+
+    var slider = tns({
+      container: container,
+      items: 1,
+      gutter:15,
+      slideBy: 'page',
+      autoplay: true,
+      controls:false,
+      mouseDrag: true,
+      autoplayButtonOutput: false,
+      nav: false,
+    });
+  }
 }
-
-
 
 
 if (

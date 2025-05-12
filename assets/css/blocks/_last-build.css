@@ -1,0 +1,29 @@
+.last-build{
+    picture{
+        height:auto;
+
+        @media (max-width: 47.9375rem) {
+            padding-bottom: 68.7%;
+        }
+
+        @media (min-width: 48rem) {
+            padding-bottom:62.3%;
+        }
+    }
+
+    @media (min-width: 48rem) {
+        .ctas-container{
+            display:inherit;
+        }
+
+        .text-container{
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: var(--grid-gutter);
+        }
+
+        .inner-text-container{
+            margin-top:0;
+        }
+    }
+}

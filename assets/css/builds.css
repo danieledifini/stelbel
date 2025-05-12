@@ -1,6 +1,33 @@
 
 @import 'partials/_page.css';
 
+@import 'blocks/_last-build.css';
+
 @import 'components/_btn.css';
 @import 'components/_single-build-preview.css';
 @import 'components/_filter-group.css';
+
+
+.builds-list{
+    display: grid;
+    column-gap: var(--grid-gutter);
+    row-gap: var(--standardMargin);
+
+    @media (max-width: 47.9375rem) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    @media (min-width: 48rem) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (min-width: 62rem) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.section-header{
+    @media (min-width: 62rem) {
+        margin-bottom:calc(var(--double) * 2);
+    }
+}

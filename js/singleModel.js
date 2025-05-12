@@ -43,11 +43,7 @@ let addSlider = (target) => {
   }});
 }
 
-document.addEventListener('alpine:init', () => {
-  Alpine.data('homepage', () => ({
-      
-  }))    
-})
+
 
 let callback = () => {
   
@@ -57,19 +53,17 @@ let callback = () => {
   if (document.querySelector(".article-body  .img-slider") ) {
     const container = document.querySelector(".article-body  .img-slider .inner-img-slider");
 
-    if (window.matchMedia("(min-width: 992px)").matches) {
-      var slider = tns({
-        container: container,
-        items: 1,
-        gutter:15,
-        slideBy: 'page',
-        autoplay: true,
-        controls:false,
-        mouseDrag: true,
-        autoplayButtonOutput: false,
-        nav: false,
-      });
-    }
+    var slider = tns({
+      container: container,
+      items: 1,
+      gutter:15,
+      slideBy: 'page',
+      autoplay: true,
+      controls:false,
+      mouseDrag: true,
+      autoplayButtonOutput: false,
+      nav: false,
+    });
   }
   
 }

@@ -115,11 +115,22 @@ body {
 }
 
 .fs-34{
-    font-size:2.125rem;
+	--min-font: 34;
+	--min-fontpx: 2.125rem;
+    font-size:var(--min-fontpx);
 	line-height:1;
+
+	@media (min-width: 62rem) {
+
+		&.fs-70-desktop{
+			--max-font: 70;
+			--max-fontpx: 4.375rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+			line-height:1;
+		}
+	}
 }
-
-
 
 
 .fs-32{
@@ -243,6 +254,14 @@ body {
 			--max-fontpx: 1.75rem;
 
 			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx)) !important;
+		}
+
+		&.fs-40-desktop{
+			--max-font: 40;
+			--max-fontpx: 2.5rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+			line-height:0.975;
 		}
 	}
 }

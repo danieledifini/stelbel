@@ -1,6 +1,51 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css';
 
 @import 'partials/_page.css';
 
-
-
 @import 'components/_btn.css';
+@import 'components/_specs-values.css';
+
+.block-title {
+    flex-direction:column-reverse;
+}
+
+.order{
+    padding-top:var(--standardMargin);
+    border-top:.0625rem solid var(--black);
+}
+
+.main-info{
+
+    @media (min-width: 48rem) {
+        .inner-info-text-container{
+            display:grid;
+            grid-template-columns: 1fr 2fr;
+            column-gap:var(--grid-gutter);
+        }
+
+        .main-text-container{
+            margin-top:0;
+        }
+    }    
+}
+
+
+.article-content{
+    @media (min-width: 48rem) {
+        display:grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap:var(--grid-gutter);
+
+        .article-body{
+            grid-row:1/3;
+        }
+
+        .build-specs{
+            grid-row:1/2;
+        }
+
+        .order{
+            grid-row:2/3;
+        }
+    }
+}
