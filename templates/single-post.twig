@@ -1,18 +1,71 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<div class="content-wrapper">
+	<div class="content-wrapper  p-b-double">
 		<article class="single-post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-			<img src="{{ post.thumbnail.src|resize(1200, 300) }}">
-			<section class="article-content">
-				<h1 class="article-h1">{{ post.title }}</h1>
+			<section class="main-info p-b-standard b-b-black m-b-standard">
 				
-				<div class="article-body">
-					{{post.content}}
+
+				<div class="inner-info-text-container m-t-standard">
+					<div class="block-header ">
+						<div class="block-title p-b-standard b-b-black m-b-standard">
+							<h1 class="fdc fs-60 fs-200-desktop f-w-900">
+								{{post.title}}
+							</h1>
+						</div>
+					
+					</div>
+					<div class="main-info-container ">
+						<div class="defaul-text fdc fs-18 fs-34-desktop">
+							<p>{{post.excerpt({
+								strip: true,
+								read_more: ""
+							})}}</p>
+						</div>
+						{% if post.meta('author') or  post.meta('photographer') %}
+							<div class="info-container ft">
+								{% if post.meta('author') %}
+									<div class="single-info">
+
+										<span class="fs-12 ">{{options.author}}</span>
+										<span class="fs-16">{{post.meta('author')}}</span>
+									</div>
+									
+								{% endif %}
+
+								{% if post.meta('photographer') %}
+									<div class="single-info">
+										<span class="fs-12">{{options.photographer}}</span>
+										<span class="fs-16">{{post.meta('photographer')}}</span>
+									</div>
+								{% endif %}
+							</div>
+						{% endif %}
+					</div>
 				</div>
+
+				{% if post.thumbnail %}
+					<div class="image-container  basic-brdr-rds display" >
+						{% set image = get_image(post.thumbnail) %}
+
+						<picture class="display ">
+							<source
+							data-srcset="{{image.src('large')}}"
+							media="(max-width: 767px)" />
+							<img data-src="{{image.src}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload display" width="{{image.width}}" height="{{image.height}}">
+						</picture>
+				</div>
+				{% endif %}
 			</section>
 
-			
+			<section class="article-body ">
+
+					<div class="default-text ft fs-18 main-text">
+						{{post.content}}
+					</div>
+
+					{% include "blocks/article-aside.twig"  %}
+				</section>
 		</article>
 	</div><!-- /content-wrapper -->
 {% endblock %}

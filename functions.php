@@ -92,6 +92,7 @@ class StarterSite extends Timber\Site {
 
 		add_action( 'template_redirect', array( $this,'prefix_do_models' ));
 		add_action( 'template_redirect', array( $this,'prefix_do_builds' ));
+		add_action( 'template_redirect', array( $this,'prefix_do_articles' ));
 
 		/* AJAX CALLS */
 
@@ -130,6 +131,10 @@ class StarterSite extends Timber\Site {
 		add_rewrite_tag( '%api_builds_models_id%', '([0-9_]+)' );
 		add_rewrite_rule( 'api/load_builds/([0-9_]+)/?', 'index.php?api_builds_models_id=$matches[1]', 'top' );
 
+		add_rewrite_tag( '%api_blog_page%', '([0-9_]+)' );
+		add_rewrite_rule( 'api/load_articles/([0-9_]+)/?', 'index.php?api_blog_page=$matches[1]', 'top' );
+		
+
 		//remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 	}
 
@@ -137,8 +142,9 @@ class StarterSite extends Timber\Site {
 		global $wp_query;
 
 		$api_custom_type = sanitize_text_field($wp_query->get( 'api_custom_type' ));
+		
 
-		if ((! empty( $api_custom_type ) || ($api_custom_type == '0'))) {
+		if ((! empty( $api_custom_type ) || ($api_custom_type == '0')) ) {
 			$msg = '';
 
 			$per_page = 3;
@@ -407,6 +413,75 @@ class StarterSite extends Timber\Site {
 
 	}
 
+	function prefix_do_articles(){
+		global $wp_query;
+
+		$api_blog_page = $wp_query->get( 'api_blog_page' );
+
+		if ( (! empty( $api_blog_page ) || ($api_blog_page == '0'))  ) {
+			$msg = '';
+
+			$cur_page = $api_blog_page;
+			$per_page = 6;
+
+			$orderby = "date";
+			$order   = 'DESC';
+			$type 	 = 'post';
+			$args   = [];
+
+			$args = array(
+				'post_type'		 => $type,
+				'orderby'		 => $orderby,
+				'order'			 => $order,
+				'posts_per_page' => $per_page,
+				'paged'          => $cur_page,
+			);
+
+			$custom_query = new WP_Query($args);
+			$total = $custom_query->found_posts;
+			$total_pages = $custom_query->max_num_pages;
+			$current = 0;
+
+			if ( $custom_query->have_posts() ){
+				
+				$msg .= '<div class="inner-wrapper  dis-flex"  data-total="'.$total.'">';
+	
+				while ( $custom_query->have_posts() ) :
+					$custom_query->the_post();
+					$cur_id = get_the_ID();
+					$article = Timber::get_post($cur_id);
+
+					$read         = get_field("read","options");
+					$author       = get_field("author","options");
+					$photographer = get_field("photographer","options");
+					$by           = get_field("by","options");
+
+					$is_main = false;
+
+					if ($current % 3 == 0) {
+						$is_main = true;
+					}
+					
+					$msg .= Timber::compile( 'partial/standard-post-in-blog.twig', array( 'item' => $article, 'read'=> $read, 'author' => $author, 'photographer' => $photographer, 'by' => $by,'is_main' => $is_main  ) );
+					$current++;
+				endwhile;
+
+				$msg .= '</div><!-- inner-container -->';
+				$method = "load_articles";
+				$msg .= getPaginationHTMX($total,$per_page,$cur_page,$total_pages,$method);	
+			}
+			else{
+				$msg .= '<div class="standard-text default-text no-results-text fdc fs-18">';
+				$msg .= get_field("no_results_text","options");
+				$msg .= '</div>';
+			}
+			
+			echo $msg;
+
+			exit;
+		}
+	}			
+
 
 	/** This is where you add some context
 	 *
@@ -612,3 +687,4 @@ new StarterSite();
 include "inc/admin.php";
 include "inc/wpml.php";
 include "inc/woocommerce.php";
+include "inc/pagination.php";

@@ -1,0 +1,77 @@
+
+<a class="standard-item t-d-none" href="{{item.link}}" target="_self" title="{{item.title}}">
+    <article  class="pos-rel ">
+        {% if item.thumbnail %}
+            <div class="image-container img-square pos-rel brdr-rds-20">
+                <picture  class="img-cover display">
+                {% set image = get_image(item.thumbnail) %}
+                    <source
+                    data-srcset="{{image.src('large')}}"
+                    media="(max-width: 767px)" />
+                    <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}"   class="lazyload" width="{{image.src('large').width}}" height="{{image.src('large').height}}" />
+                </picture> 
+            </div>
+        {% endif %}
+        
+        
+        <div class="text-container  p-standard">
+            {% set class = '' %}
+            {% if is_main %}
+                {% set class = 'fdc fs-62 fs-128-desktop' %}
+            {% else %}
+                {% set class = 'foc fs-32' %}    
+            {% endif %}    
+                
+            <h3 class="{{class}}">{{item.title|capitalize}}</h3>
+
+            {% if is_main %}
+                <div class="fdc fs-18  default-text">
+                    <p>{{item.excerpt({
+                                strip: true,
+                                read_more: ""
+                            })}}</p>
+                </div>
+            
+            {% endif %}
+        
+            <div class="info-container ft">
+                
+
+                {% if item.meta('author') %}
+                    <div class="single-info">
+                        {% set class = '' %}
+                        {% if not is_main %}
+                            {% set class = 'hide-desktop' %}
+                            <span class="fs-12">{{by}}</span>
+                        {% endif %} 
+
+                        <span class="fs-12 {{class}}">{{author}}</span>
+                        <span class="fs-16">{{item.meta('author')}}</span>
+                    </div>
+                    
+                {% endif %}
+
+                {% set class = '' %}
+                {% if not is_main %}
+                    {% set class = 'hide-desktop' %}
+                {% endif %} 
+                    {% if item.meta('photographer') %}
+                        <div class="single-info {{class}}">
+                            <span class="fs-12">{{photographer}}</span>
+                            <span class="fs-16">{{item.meta('photographer')}}</span>
+                        </div>
+                    {% endif %}
+                
+               
+            </div>
+            
+            <div class="ctas-container  ">
+                <button  class="standard-btn foc fs-18 default-btn transition brdr-rds-20 min-width" type="button"   >
+                    {{read}}
+                </button>
+            </div>
+                            
+        </div>
+            
+    </article>
+</a>

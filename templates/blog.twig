@@ -1,17 +1,21 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<article class="standard-template" id="post-{{post.ID}}">
+<div class="blog-archive-template  p-b-double" id="post-{{post.ID}}">
 
 	<div class="content-wrapper">
-		<div class="main-text-container">
-		<h1 class="step-4 txt-violet">{{post.title}}</h1>
+		<div class="title-container m-b-standard">
+			<h1 class="fdc fs-28 fs-128-desktop fw-800">{{post.title}}</h1>
 		
-		{% if post.content %}
-			<div class="step-1 default-text">{{post.content}}</div>
-		{% endif %}
-	</div>
+		
+		</div>
+
+		<div class="items-container " >
+			{% set method = 'load_articles' %}
+			<div class="articls-list with-loading loading"    id="items-wrapper" hx-get="/api/{{method}}" hx-trigger="load">
+			</div>
+		</div>
 	</div>
 	
-</article>
+</div>
 {% endblock %}
