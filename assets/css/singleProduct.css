@@ -65,20 +65,36 @@
 }
 
 .single_variation_wrap{
-    margin-top:var(--standardMargin);
+    margin-top:.3125rem;
 }
 
 .variations{
+    th{
+        &:has(label){
+            min-width:6.25rem;
+            text-align:left;
+        }
+    }
+
     label{
         font-weight:700;
-        margin-right:var(--standardMargin);
+    }
+
+    tr {
+        display: block;
+
+        & + tr{
+            margin-top:.3125rem;
+        }
     }
 }
 
 .quantity{
+    display:flex;
+
     label{
+        min-width:6.25rem;
         font-weight:700;
-        margin-right:var(--standardMargin);
     }
 }
 
