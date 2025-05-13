@@ -57,11 +57,11 @@
                             {% set class = '' %}
                             {% if not is_main %}
                                 {% set class = 'hide-desktop' %}
-                                <span class="fs-12 fs-16-desktop hide-mobile italic">{{by}}</span>
+                                <span class="fs-12 fs-14-desktop hide-mobile italic">{{by}}</span>
                             {% endif %} 
 
-                            <span class="fs-12  italic {{class}}">{{author}}</span>
-                            <span class="fs-16 "><strong>{{item.meta('author')}}</strong></span>
+                            <span class="fs-12  italic {{class}}  fs-14-desktop">{{author}}</span>
+                            <span class="fs-16  fs-20-desktop"><strong>{{item.meta('author')}}</strong></span>
                         </div>
                         
                     {% endif %}
@@ -72,8 +72,8 @@
                     {% endif %} 
                         {% if item.meta('photographer') %}
                             <div class="single-info {{class}}">
-                                <span class="fs-12  italic">{{photographer}}</span>
-                                <span class="fs-16"><strong>{{item.meta('photographer')}}</strong></span>
+                                <span class="fs-12  italic  fs-14-desktop">{{photographer}}</span>
+                                <span class="fs-16 fs-20-desktop"><strong>{{item.meta('photographer')}}</strong></span>
                             </div>
                         {% endif %}
                 </div>

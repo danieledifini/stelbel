@@ -359,6 +359,15 @@ body {
 	--min-font:16;
 	--min-fontpx:1rem;
     font-size:var(--min-fontpx);
+
+	@media (min-width: 62rem) {
+		&.fs-20-desktop{
+			--max-font: 20;
+			--max-fontpx: 1.25rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx)) !important;
+		}
+	}
 }
 
 .fs-12{
@@ -372,6 +381,13 @@ body {
 
 		font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
 	
+		&.fs-14-desktop{
+			--max-font: 14;
+			--max-fontpx: .875rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx)) !important;
+		}
+		
 		&.fs-16-desktop{
 			--max-font: 16;
 			--max-fontpx: 1rem;
