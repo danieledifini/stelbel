@@ -3,7 +3,7 @@
 {% block content %}
 	<div class="content-wrapper  p-b-double">
 		<article class="single-post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-			<section class="main-info p-b-standard b-b-black m-b-standard">
+			<section class="main-info  m-b-standard">
 				
 
 				<div class="inner-info-text-container m-t-standard">
@@ -16,19 +16,19 @@
 					
 					</div>
 					<div class="main-info-container ">
-						<div class="defaul-text fdc fs-18 fs-34-desktop">
+						<div class="default-text fdc fs-18 fs-34-desktop">
 							<p>{{post.excerpt({
 								strip: true,
 								read_more: ""
 							})}}</p>
 						</div>
 						{% if post.meta('author') or  post.meta('photographer') %}
-							<div class="info-container ft">
+							<div class="info-container ft m-t-standard">
 								{% if post.meta('author') %}
 									<div class="single-info">
 
 										<span class="fs-12 ">{{options.author}}</span>
-										<span class="fs-16">{{post.meta('author')}}</span>
+										<span class="fs-16"><strong>{{post.meta('author')}}</strong></span>
 									</div>
 									
 								{% endif %}
@@ -36,7 +36,7 @@
 								{% if post.meta('photographer') %}
 									<div class="single-info">
 										<span class="fs-12">{{options.photographer}}</span>
-										<span class="fs-16">{{post.meta('photographer')}}</span>
+										<span class="fs-16"><strong>{{post.meta('photographer')}}</strong></span>
 									</div>
 								{% endif %}
 							</div>
@@ -45,7 +45,7 @@
 				</div>
 
 				{% if post.thumbnail %}
-					<div class="image-container  basic-brdr-rds display" >
+					<div class="main-image image-container  basic-brdr-rds display m-t-standard" >
 						{% set image = get_image(post.thumbnail) %}
 
 						<picture class="display ">

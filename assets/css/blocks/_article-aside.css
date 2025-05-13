@@ -1,0 +1,22 @@
+.article-aside{
+    .inner-img-slider{
+        display:grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        row-gap:var(--standardMargin);
+    }
+
+    @media (min-width: 62rem) {
+        grid-column:1/2;
+        grid-row:1/2;
+
+        .img-slider{
+            margin-top:0;
+        }
+    }
+}
+
+.captions-container{
+    display:grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    row-gap:.625rem;
+}

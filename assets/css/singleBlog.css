@@ -1,5 +1,52 @@
 
 @import 'partials/_page.css';
 
+@import 'blocks/_article-aside.css';
+
 @import 'components/_btn.css';
+
+@media (min-width: 48rem) {
+    .info-container{
+        display:grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap:var(--grid-gutter);
+    }
+}
+
+@media (min-width: 62rem) {
+    .main-info-container{
+        display:grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap:var(--grid-gutter);
+
+        .default-text{
+            grid-column:2/3;
+            grid-row:1/2;
+        }
+    }
+
+    .info-container{
+        grid-column:1/2;
+        margin-top:0;
+    }
+
+    .main-image{
+        margin-top:calc(var(--standardMargin) * 2);
+    }
+
+    .main-info{
+        margin-bottom:calc(var(--standardMargin) * 2);
+    }
+
+    .article-body{
+        display:grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap:var(--grid-gutter);
+        
+        .default-text{
+            grid-column:2/4;
+            grid-row:1/2;
+        }
+    }
+}
 

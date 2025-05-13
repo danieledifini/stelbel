@@ -1,8 +1,17 @@
+{% set class = '' %}
 
-<a class="standard-item t-d-none" href="{{item.link}}" target="_self" title="{{item.title}}">
+{% if is_main %}
+    {% set class = ' b-b-black p-b-standard main-item' %}
+{% else %}
+    {% set class = 'simple-item' %}    
+     
+{% endif %}
+
+
+<a class="single-post-preview t-d-none m-b-standard {{class}}" href="{{item.link}}" target="_self" title="{{item.title}}">
     <article  class="pos-rel ">
         {% if item.thumbnail %}
-            <div class="image-container img-square pos-rel brdr-rds-20">
+            <div class="image-container  pos-rel brdr-rds-20">
                 <picture  class="img-cover display">
                 {% set image = get_image(item.thumbnail) %}
                     <source
@@ -14,18 +23,18 @@
         {% endif %}
         
         
-        <div class="text-container  p-standard">
+        <div class="text-container m-t-standard">
             {% set class = '' %}
             {% if is_main %}
                 {% set class = 'fdc fs-62 fs-128-desktop' %}
             {% else %}
-                {% set class = 'foc fs-32' %}    
+                {% set class = 'foc fs-32 fs-70-desktop' %}    
             {% endif %}    
                 
             <h3 class="{{class}}">{{item.title|capitalize}}</h3>
 
             {% if is_main %}
-                <div class="fdc fs-18  default-text">
+                <div class="fdc fs-18  default-text m-t-standard">
                     <p>{{item.excerpt({
                                 strip: true,
                                 read_more: ""
@@ -34,38 +43,43 @@
             
             {% endif %}
         
-            <div class="info-container ft">
-                
-
-                {% if item.meta('author') %}
-                    <div class="single-info">
-                        {% set class = '' %}
-                        {% if not is_main %}
-                            {% set class = 'hide-desktop' %}
-                            <span class="fs-12">{{by}}</span>
-                        {% endif %} 
-
-                        <span class="fs-12 {{class}}">{{author}}</span>
-                        <span class="fs-16">{{item.meta('author')}}</span>
-                    </div>
-                    
+            {% if item.meta('author') or  item.meta('photographer') %}
+                {% set class = '' %}
+                {% if is_main %}
+                    {% set class = 'm-t-standard' %}
+                {% else %}
+                    {% set class = 'm-t-double' %}    
                 {% endif %}
 
-                {% set class = '' %}
-                {% if not is_main %}
-                    {% set class = 'hide-desktop' %}
-                {% endif %} 
-                    {% if item.meta('photographer') %}
-                        <div class="single-info {{class}}">
-                            <span class="fs-12">{{photographer}}</span>
-                            <span class="fs-16">{{item.meta('photographer')}}</span>
+                <div class="info-container ft {{class}}">
+                    {% if item.meta('author') %}
+                        <div class="single-info">
+                            {% set class = '' %}
+                            {% if not is_main %}
+                                {% set class = 'hide-desktop' %}
+                                <span class="fs-12 fs-16-desktop hide-mobile italic">{{by}}</span>
+                            {% endif %} 
+
+                            <span class="fs-12  italic {{class}}">{{author}}</span>
+                            <span class="fs-16 "><strong>{{item.meta('author')}}</strong></span>
                         </div>
+                        
                     {% endif %}
-                
-               
-            </div>
-            
-            <div class="ctas-container  ">
+
+                    {% set class = '' %}
+                    {% if not is_main %}
+                        {% set class = 'hide-desktop' %}
+                    {% endif %} 
+                        {% if item.meta('photographer') %}
+                            <div class="single-info {{class}}">
+                                <span class="fs-12  italic">{{photographer}}</span>
+                                <span class="fs-16"><strong>{{item.meta('photographer')}}</strong></span>
+                            </div>
+                        {% endif %}
+                </div>
+            {% endif %}
+
+            <div class="ctas-container  m-t-standard">
                 <button  class="standard-btn foc fs-18 default-btn transition brdr-rds-20 min-width" type="button"   >
                     {{read}}
                 </button>

@@ -444,7 +444,7 @@ class StarterSite extends Timber\Site {
 
 			if ( $custom_query->have_posts() ){
 				
-				$msg .= '<div class="inner-wrapper  dis-flex"  data-total="'.$total.'">';
+				$msg .= '<div class="inner-wrapper  "  data-total="'.$total.'">';
 	
 				while ( $custom_query->have_posts() ) :
 					$custom_query->the_post();
