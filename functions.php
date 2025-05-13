@@ -93,6 +93,7 @@ class StarterSite extends Timber\Site {
 		add_action( 'template_redirect', array( $this,'prefix_do_models' ));
 		add_action( 'template_redirect', array( $this,'prefix_do_builds' ));
 		add_action( 'template_redirect', array( $this,'prefix_do_articles' ));
+		add_action( 'template_redirect', array( $this,'prefix_do_register' ));
 
 		/* AJAX CALLS */
 
@@ -133,6 +134,9 @@ class StarterSite extends Timber\Site {
 
 		add_rewrite_tag( '%api_blog_page%', '([0-9_]+)' );
 		add_rewrite_rule( 'api/load_articles/([0-9_]+)/?', 'index.php?api_blog_page=$matches[1]', 'top' );
+
+		add_rewrite_tag( '%api_register_page%', '([0-9_]+)' );
+		add_rewrite_rule( 'api/load_registers/([0-9_]+)/?', 'index.php?api_register_page=$matches[1]', 'top' );
 		
 
 		//remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
@@ -480,7 +484,68 @@ class StarterSite extends Timber\Site {
 
 			exit;
 		}
-	}			
+	}	
+	
+	function prefix_do_register(){
+		global $wp_query;
+
+		$api_register_page = $wp_query->get( 'api_register_page' );
+
+		if ( (! empty( $api_register_page ) || ($api_register_page == '0'))  ) {
+			$msg = '';
+
+			$cur_page = $api_register_page;
+			$per_page = 99;
+
+			$orderby = "date";
+			$order   = 'DESC';
+			$type 	 = 'register';
+			$args   = [];
+
+			$args = array(
+				'post_type'		 => $type,
+				'orderby'		 => $orderby,
+				'order'			 => $order,
+				'posts_per_page' => $per_page,
+				'paged'          => $cur_page,
+			);
+
+			$custom_query = new WP_Query($args);
+			$total = $custom_query->found_posts;
+			$total_pages = $custom_query->max_num_pages;
+
+			if ( $custom_query->have_posts() ){
+				
+				$msg .= '<div class="inner-wrapper dis-flex flex-col"  data-total="'.$total.'">';
+	
+				while ( $custom_query->have_posts() ) :
+					$custom_query->the_post();
+					$cur_id = get_the_ID();
+					$article = Timber::get_post($cur_id);
+
+					$owner   = get_field("owner","options");	
+					$country = get_field("country","options");	
+					$details = get_field("details","options");	
+
+					$msg .= Timber::compile( 'partial/register.twig', array( 'item' => $article, 'owner'=> $owner, 'country' => $country, 'details' => $details) );
+					 
+				endwhile;
+
+				$msg .= '</div><!-- inner-container -->';
+				$method = "load_registers";
+				$msg .= getPaginationHTMX($total,$per_page,$cur_page,$total_pages,$method);	
+			}
+			else{
+				$msg .= '<div class="standard-text default-text no-results-text fdc fs-18">';
+				$msg .= get_field("no_results_text","options");
+				$msg .= '</div>';
+			}
+			
+			echo $msg;
+
+			exit;
+		}
+	}
 
 
 	/** This is where you add some context

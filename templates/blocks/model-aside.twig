@@ -21,7 +21,8 @@
                     {{options.geometry}}
                 </h3>
                 <div class="ctas-container  ">
-                    <button  class="standard-btn secondary foc fs-18 default-btn transition brdr-rds-20"  type="button" data-goto="#geometry"  >
+                    <button  class="standard-btn secondary foc fs-18 default-btn transition brdr-rds-20"  type="button" data-goto="#geometry" x-on:click.stop="goToGeometry()" >
+                        {{options.view_geometry}}
                         {{options.learn_more}}
                     </button>
                 </div>

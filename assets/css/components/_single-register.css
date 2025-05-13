@@ -1,0 +1,39 @@
+.single-register{
+    padding-top:var(--standardMargin);
+    border-top:1px solid var(--black);
+
+    picture{
+
+        @media (max-width: 61.9375rem) {
+            padding-bottom:80%;
+        }
+
+        @media (min-width: 62rem) {
+            padding-bottom:62.3%;
+        }
+    }
+
+    .text-row{
+        column-gap:var(--grid-gutter);
+    }
+
+    .text-container {
+        margin-top:var(--standardMargin);
+    }
+
+    @media (min-width: 62rem) {
+        .register-content{
+            display:grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap:var(--grid-gutter);
+        }
+
+        .text-row{
+            span{
+                &:first-child{
+                    min-width:27.5%;
+                }
+            }
+        }
+    }
+}

@@ -1,4 +1,10 @@
 @import 'partials/_page.css';
 
-
 @import 'components/_btn.css';
+@import 'components/_single-register.css';
+
+.register-list{
+    .inner-wrapper{
+        row-gap:var(--standardMargin);
+    }
+}

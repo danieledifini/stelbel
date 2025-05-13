@@ -1,0 +1,21 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="register-template  p-b-double" id="post-{{post.ID}}"   x-data="register()">
+	<div class="content-wrapper">
+		<div class="section-header  m-b-standard">
+			<h1 class="fdc fs-28">
+				{{post.title}}
+			</h1>
+			
+		</div>
+
+		<div class="items-container" >
+			{% set method = 'load_registers' %}
+
+			<div class="register-list with-loading loading"    id="items-wrapper" hx-get="/api/{{method}}" hx-trigger="load">
+			</div>
+		</div>	
+	</div>
+</div>
+{% endblock %}

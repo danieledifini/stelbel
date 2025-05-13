@@ -46,7 +46,7 @@ export let setCalling = (newValue = false) => {
 
 export let goToTopList = (target) => {
   let $target = document.querySelector(target);
-  let top = $target.offsetTop - header.clientHeight;
+  let top = $target.offsetTop ;
   let duration = 500;
   scrollTo(document.documentElement, top, duration);  
 }

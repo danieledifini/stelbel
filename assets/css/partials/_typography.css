@@ -200,6 +200,30 @@ body {
 	}
 }
 
+.fs-30{
+	--min-font: 30;
+	--min-fontpx: 1.875rem;
+
+	font-size:var(--min-fontpx);
+	line-height:1.393;
+
+	@media (min-width: 62rem) {
+		--max-font: 128;
+		--max-fontpx: 8rem;
+
+		font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+		line-height:1.016;
+
+		&.fs-70-desktop{
+			--max-font: 70;
+			--max-fontpx: 4.375rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+			line-height:1;
+		}
+	}
+}
+
 .fs-28{
 	--min-font: 28;
 	--min-fontpx: 1.75rem;
@@ -289,7 +313,7 @@ body {
 
 	@media (min-width: 62rem) {
 
-		&.fs-20-desktop{
+		&.fs-28-desktop{
 			--max-font: 28;
 			--max-fontpx: 1.75rem;
 
@@ -351,6 +375,13 @@ body {
 		&.fs-16-desktop{
 			--max-font: 16;
 			--max-fontpx: 1rem;
+
+			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx)) !important;
+		}
+
+		&.fs-20-desktop{
+			--max-font: 20;
+			--max-fontpx: 1.25rem;
 
 			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx)) !important;
 		}
@@ -431,6 +462,23 @@ p {
 	.image-container{
 		border-radius:.9375rem;
 		overflow:hidden;
+
+		@media (min-width: 62rem) {
+			&:has(.alignright),&:has(.alignleft){
+				max-width:calc(50% - (var(--grid-gutter) / 2));
+				margin-bottom:.625rem;
+			}
+
+			&:has(.alignright){
+				margin-left:var(--grid-gutter);
+				float:right;
+			}
+
+			&:has(.alignleft){
+				margin-right:var(--grid-gutter);
+				float:left;
+			}
+		}
 	}
 
 	img{
@@ -442,7 +490,22 @@ p {
 	figure{
 		max-width:100%;
 
-		
+		@media (min-width: 62rem) {
+			&.alignright,&.alignleft{
+				max-width:calc(50% - (var(--grid-gutter) / 2));
+				margin-bottom:.625rem;
+			}
+
+			&.alignright{
+				margin-left:var(--grid-gutter);
+				float:right;
+			}
+
+			&.alignleft{
+				margin-right:var(--grid-gutter);
+				float:left;
+			}
+		}
 
 		figcaption{
 			margin:0;

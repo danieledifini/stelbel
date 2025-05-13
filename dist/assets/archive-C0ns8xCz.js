@@ -1,0 +1,1 @@
+let l=t=>{let e="";return t.length==0?e+="0":t.forEach((r,a)=>{a!=0&&(e+="_"),e+=r}),e},c=(...t)=>{let e="/";return t.forEach((r,a)=>{a!=0&&(e+="/"),e+=l(r)}),e},i=(t,e)=>{let r=null;return r=document.getElementById(e).querySelectorAll("button.active"),r&&r.forEach(function(a,n){t.push(parseInt(a.getAttribute("data-term")))}),t};export{c,i as g};

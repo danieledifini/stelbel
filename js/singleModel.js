@@ -5,7 +5,7 @@ import { tns } from "tiny-slider"
 import './../assets/css/singleModel.css'
 
 // get scripts
-import  './../assets/js/scripts.js'
+import  {goToTopList} from './../assets/js/scripts.js'
 
 
 document.body.addEventListener('htmx:afterSwap', function(evt) {
@@ -43,7 +43,11 @@ let addSlider = (target) => {
   }});
 }
 
-
+Alpine.data('singelModel', () => ({
+  goToGeometry(){
+    goToTopList("#geometry");
+  }
+}))
 
 let callback = () => {
   

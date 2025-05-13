@@ -1,0 +1,80 @@
+<article  class="single-register ">
+    
+    <div class="info-title dis-flex jus-space-between align-center p-b-standard b-b-black m-b-standard">
+        <h3 class="fs-30 foc fs-70-desktop">
+            {{item.title}}
+        </h3>
+
+        {% if item.meta('year') %}
+            <span class="fdc fs-20 fs-40-desktop">
+                {{item.meta('year')}}
+            </span>
+                
+        {% endif %}
+        
+    </div>
+
+    <div class="register-content">
+        {% if item.thumbnail %}
+
+            <div class="image-wrapper">
+                {% set image = get_image(item.thumbnail) %}
+                <a class="gallery-link" href="{{image.src}}" data-fslightbox="gallery-lightbox-{{item.id}}" data-alt="{{image.alt}}" data-title="{{image.description}}">
+                    <div class="image-container  pos-rel basic-brdr-rds">
+                        <picture  class="img-cover display">
+                        
+                            <source
+                            data-srcset="{{image.src('large')}}"
+                            media="(max-width: 767px)" />
+                            <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}"   class="lazyload" width="{{image.src('large').width}}" height="{{image.src('large').height}}" />
+                        </picture> 
+                    </div>
+                </a>
+
+                {% if item.meta('gallery') %}
+                    {% for imageItem in item.meta('gallery') %}
+                        {% set image = get_image(imageItem) %}
+                        <a class="d-none" href="{{image.src}}" data-fslightbox="gallery-lightbox-{{item.id}}" data-alt="{{image.alt}}" data-title="{{image.description}}"></a>
+                    {% endfor %}
+                
+                {% endif %}
+                
+            </div>
+            
+        {% endif %}
+
+        <div class="text-container ">
+            {% if item.meta("owner") %}
+                <div class="text-row dis-flex jus-space-between p-b-standard b-b-black m-b-standard">
+                    <span class="fdc fs-20 fs-40-desktop">
+                        <strong>{{owner}}</strong>
+                    </span>   
+                    <span class="fdc fs-20 fs-40-desktop">
+                        {{item.meta("owner")}}
+                    </span>
+                </div>
+            {% endif %}
+            {% if item.meta("country") %}
+                <div class="text-row dis-flex jus-space-between  p-b-standard b-b-black m-b-standard">
+                    <span class="fdc fs-20 fs-40-desktop">
+                        <strong>{{country}}</strong>
+                    </span>   
+                    <span class="fdc fs-20 fs-40-desktop">
+                        {{item.meta("country")}}
+                    </span>
+                </div>
+            {% endif %}
+            {% if item.content %}
+                <div class="text-row dis-flex jus-space-between ">
+                    <span class="fdc fs-20 fs-40-desktop">
+                        <strong>{{details}}</strong>
+                    </span>   
+                    <div class="ft fs-12 fs-20-desktop default-text">
+                        {{item.content}}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+ 
+</article>

@@ -33,6 +33,10 @@
     transition: all 500ms ease-out;
 }
 
+.d-none{
+    display:none;
+    visibility:hidden;
+}
 
 .display{
     display:inherit;

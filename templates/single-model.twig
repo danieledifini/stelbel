@@ -2,7 +2,7 @@
 
 {% block content %}
 	<div class="content-wrapper  p-b-double">
-		<article class="post-type-{{ post.post_type }} p-b-standard b-b-black m-b-standard" id="post-{{ post.ID }}">
+		<article class="post-type-{{ post.post_type }} p-b-standard b-b-black m-b-standard" id="post-{{ post.ID }}" x-data="singelModel()">
 			<section class="main-info p-b-standard b-b-black m-b-standard">
 				{% if post.thumbnail %}
 					<div class="image-container  basic-brdr-rds display" >
