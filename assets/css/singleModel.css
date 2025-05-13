@@ -55,6 +55,10 @@
 
 .main-info{
 
+    img{
+        min-width:100%;
+    }
+
     @media (min-width: 48rem) {
         .inner-info-text-container{
             display:grid;
@@ -78,6 +82,7 @@
     @media (min-width: 48rem) {
         display:grid;
         grid-template-columns: 1fr 2fr;
+        
         column-gap:var(--grid-gutter);
         
         .final-img{
