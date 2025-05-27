@@ -40,7 +40,11 @@ if ( $attachment_ids && $product->get_image_id() ) {
 		 $image = wp_get_attachment_image( $attachment_id, 'large' );
 
 			$html = '<div class="custom-product-image">';
+			$html .= '<div class="inner-image-wrapper  img-cover img-16-9 display">';
+
 			$html .= $image;
+
+			$html .= '</div>';
 			$html .= '</div>';
 			echo $html;
 		//echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html( $attachment_id, false, $key ), $attachment_id ); // PHPCS:Ignore WordPress.Security.EscapeOutput.OutputNotEscaped

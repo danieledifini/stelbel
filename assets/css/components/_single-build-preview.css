@@ -1,7 +1,8 @@
 .single-build-preview{
     picture{
         height:auto;
-        padding-bottom:68.7%;
+        /*padding-bottom:68.7%;*/
+        padding-bottom:56.25%;
     }
 
     .ctas-container {

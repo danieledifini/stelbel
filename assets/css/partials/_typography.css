@@ -443,6 +443,21 @@ p {
 }
 
 .default-text{
+
+	h4,h5,h6{
+		font-size:1.25rem;
+	}
+
+	h3{
+		font-size:1.5rem;
+		font-family: 'Feature Deck Condensed Web';
+	}
+
+	h2{
+		font-size:1.75rem;
+		font-family: 'Feature Deck Condensed Web';
+	}
+
     * + *{
         margin-top:var(--standardMargin);
     }

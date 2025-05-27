@@ -19,7 +19,7 @@ let callback = () => {
           items: 1,
           gutter:15,
           slideBy: 'page',
-          autoplay: true,
+          autoplay: false,
           controls:false,
           mouseDrag: true,
           autoplayButtonOutput: false,

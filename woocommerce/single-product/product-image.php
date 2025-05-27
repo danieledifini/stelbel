@@ -47,7 +47,11 @@ $wrapper_classes   = apply_filters(
 			$image = wp_get_attachment_image( $post_thumbnail_id, 'large' );
 
 			$html = '<div class="custom-product-image">';
+			$html .= '<div class="inner-image-wrapper img-cover img-16-9  display">';
+		
 			$html .= $image;
+		
+			$html .= '</div>';
 			$html .= '</div>';
 		} else {
 			$wrapper_classname = $product->is_type( ProductType::VARIABLE ) && ! empty( $product->get_available_variations( 'image' ) ) ?

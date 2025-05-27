@@ -57,10 +57,17 @@
 }
 
 .custom-product-image{
-    img{
-        display:inherit;
-        border-radius:.9375rem;
+
+    .inner-image-wrapper{
         overflow:hidden;
+        position:relative;
+        height:auto;
+        padding-bottom:56.2%;
+        width:100%;
+    }
+
+    img{
+        object-fit: contain !important;
     }
 }
 

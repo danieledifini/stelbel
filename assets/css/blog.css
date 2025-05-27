@@ -3,6 +3,7 @@
 
 @import 'components/_btn.css';
 @import 'components/_single-post-preview.css';
+@import 'components/_pagination.css';
 
 .articles-list{
     .inner-wrapper{

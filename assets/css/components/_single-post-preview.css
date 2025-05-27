@@ -2,11 +2,16 @@
     picture{
         height:auto;
         padding-bottom:137%;
+
+        /*@media (min-width: 48rem) {
+            padding-bottom:56.25%;
+        }*/
     }
 
     &.main-item{
         picture{
-            padding-bottom:68%;
+            /*padding-bottom:68%; */
+            padding-bottom:35%;
         }
 
         &:not(&:first-child){

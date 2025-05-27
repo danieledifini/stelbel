@@ -1,0 +1,16 @@
+.pagination{
+    ul{
+        column-gap: var(--grid-gutter);
+    }
+
+    button{
+        &:not(&:disabled){
+            text-decoration: underline;
+            text-decoration-color: transparent;
+
+            &:hover{
+                text-decoration-color:var(--black);
+            }
+        }
+    }
+}

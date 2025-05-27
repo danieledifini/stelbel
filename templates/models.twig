@@ -15,7 +15,7 @@
 			{% if types %}
 				{% set method = 'load_models' %}
 				{% set all = options.all %}
-				{% set button = options.filter_by_type %}
+				{% set button = options.filter_by_types %}
 				{% include "partial/filters.twig" with {'items': types, 'type':'model', 'taxonomy':'types','all': all, 'method': method, 'button': button  } %}		
 			
 			{% endif %}
