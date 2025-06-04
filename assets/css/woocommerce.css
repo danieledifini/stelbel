@@ -3,6 +3,7 @@
 @import 'blocks/_main_item.css';
 
 @import 'components/_btn.css';
+@import 'components/_pagination.css';
 @import 'components/_single-product-preview.css';
 
 .sections-container{

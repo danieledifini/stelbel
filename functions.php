@@ -426,7 +426,7 @@ class StarterSite extends Timber\Site {
 			$msg = '';
 
 			$cur_page = $api_blog_page;
-			$per_page = 6;
+			$per_page = 5;
 
 			$orderby = "date";
 			$order   = 'DESC';
@@ -462,7 +462,7 @@ class StarterSite extends Timber\Site {
 
 					$is_main = false;
 
-					if ($current % 3 == 0) {
+					if ($current % 5 == 0) {
 						$is_main = true;
 					}
 					

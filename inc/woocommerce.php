@@ -31,3 +31,31 @@ function print_price(){
     echo $html;
 
 }
+
+add_filter('paginate_links_output', 'custom_add_class_to_paginate_ul', 10, 2);
+function custom_add_class_to_paginate_ul($output, $args) {
+    // Add your custom class to the <ul>
+    $output = str_replace(
+        '<ul class=\'page-numbers\'>',
+        '<ul class="dis-flex align-center jus-center">', // add your class here
+        $output
+    );
+
+    $output = preg_replace_callback(
+        '/<a[^>]+class=["\']([^"\']*)["\']/i',
+        function($matches) {
+            $existing_classes = explode(' ', $matches[1]);
+            // Remove WooCommerce default classes and add your own
+            $custom_classes = ['page-btn default-btn  transition  standard-link']; // your class here
+            return str_replace(
+                $matches[0],
+                '<a class="' . implode(' ', $custom_classes) . '"',
+                $matches[0]
+            );
+        },
+        $output
+    );
+
+
+    return $output;
+}

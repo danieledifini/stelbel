@@ -6,7 +6,7 @@
 @import 'components/_specs-values.css';
 
 .block-title {
-    flex-direction:column-reverse;
+    flex-direction:column;
 }
 
 .order{
