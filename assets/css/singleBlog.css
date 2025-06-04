@@ -32,6 +32,10 @@
 
     .main-image{
         margin-top:calc(var(--standardMargin) * 2);
+
+        picture,img{
+            min-width:100%;
+        }
     }
 
     .main-info{

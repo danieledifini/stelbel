@@ -16,7 +16,7 @@
         width:auto;
 
         &.min-width{
-            min-width:15.625rem;
+            min-width: min(15.625rem, 100%);
         }
 
         &.single_add_to_cart_button{

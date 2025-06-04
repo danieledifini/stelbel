@@ -1,4 +1,5 @@
 .builds{
+
     &:not(&:last-child){
         padding-bottom:var(--standardMargin);
         border-bottom:.0625rem solid var(--black);

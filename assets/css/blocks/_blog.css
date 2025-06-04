@@ -1,4 +1,6 @@
 .blog{
+   
+
     .outer-list{
         padding-right:.3125rem;
         z-index:3;
@@ -16,7 +18,7 @@
     @media (min-width: 62rem) {
         .article-list{
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             column-gap: var(--grid-gutter);
         }
     }

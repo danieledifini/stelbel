@@ -151,7 +151,7 @@ class StarterSite extends Timber\Site {
 		if ((! empty( $api_custom_type ) || ($api_custom_type == '0')) ) {
 			$msg = '';
 
-			$per_page = 3;
+			$per_page = 4;
 			$orderby = "date";
 			$order   = 'DESC';
 			$args   = [];
