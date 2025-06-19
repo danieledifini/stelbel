@@ -1,6 +1,10 @@
 <div class="block-header dis-flex jus-space-between align-center">
     <h2 class="fdc fs-32 fs-42-desktop">
-       {{section.title}}
+        {% if is_single_model %}
+            {{options.related_builds}}
+        {% else %}
+            {{section.title}}
+        {% endif %}
         
     </h2>
     {% if options.builds_cta %}
