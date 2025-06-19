@@ -1,19 +1,8 @@
 .colors-group{
     .colors-container{
-        row-gap:var(--double);
-    }
-
-    summary{
-        cursor:pointer;
-    }
-
-    summary::-webkit-details-marker {
-        display: none;
-        content: "";
-    }
-
-    summary::marker {
-        display: none;
-        content: "";
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: var(--grid-gutter);
+        row-gap:var(--standardMargin);
     }
 }

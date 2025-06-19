@@ -96,14 +96,16 @@
 							<div class="inner-img-slider">
 								{% for i in 0..total - 2 %}
 								<div class="simple-img image-container  " >
-									{% set image = get_image(images[i]) %}
+									<div class="inner-img-container img-cover image-4-3">
+										{% set image = get_image(images[i]) %}
 
-									<picture class="display basic-brdr-rds">
-										<source
-										data-srcset="{{image.src('large')}}"
-										media="(max-width: 767px)" />
-										<img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload display " width="{{image.width}}" height="{{image.height}}">
-									</picture>
+										<picture class="display basic-brdr-rds">
+											<source
+											data-srcset="{{image.src('large')}}"
+											media="(max-width: 767px)" />
+											<img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload display " width="{{image.width}}" height="{{image.height}}">
+										</picture>
+									</div>
 								</div>
 							{% endfor %}
 							</div>

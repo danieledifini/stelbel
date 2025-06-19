@@ -8,6 +8,22 @@
         }*/
     }
 
+    &:not(&.main-item){
+        h3{
+           --maxH:calc(var(--min-fontpx) * 2);
+
+            min-height:var(--maxH);
+            max-height:var(--maxH);
+            overflow:hidden;
+            display:inherit;
+
+            @media (min-width: 62rem) {
+                --fs:clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+                --maxH:calc(var(--fs) * 2 * 1.071);
+            }
+        }
+    }
+
     &.main-item{
         picture{
             /*padding-bottom:68%; */

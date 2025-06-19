@@ -42,23 +42,23 @@
                     {% set class = 'b-b-yellow p-b-standard m-b-standard' %}
                 {% endif %}
 
-                <details class="sub-group {{class}}" >
+                <div class="sub-group {{class}}" >
                     {% if item.group_title %}
-                        <summary >
+                        <div class="sub-group-header" >
                             <span class="foc fs-18">
                             {{item.group_title}}
                             </span>
-                        </summary>
+                        </div>
                     {% endif %}
 
                     {% if item.colors %}
-                        <div class="colors-container dis-flex flex-col m-t-standard">
+                        <div class="colors-container  m-t-standard">
                             {% for color in item.colors %}
                                 {% include "partial/single-color.twig" with {'item':color}  %}
                             {% endfor %}
                         </div>
                     {% endif %}
-                </details>
+                </div>
                 {% set counter = counter + 1 %}
             {% endfor %}
         </div>	

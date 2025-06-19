@@ -163,6 +163,14 @@
     }
 }
 
+.image-4-3{
+    picture{
+        position:relative;
+        height:auto;
+        padding-bottom:133%;
+    }
+}
+
 .img-square{
     picture{
         position:relative;

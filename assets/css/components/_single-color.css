@@ -1,13 +1,14 @@
 .single-color{
-    column-gap:var(--grid-gutter);
+    row-gap:.4375rem;
 
     .color-square{
-        width:5.4375rem;
-        min-width:5.4375rem;
-        height:5.4375rem;
+        width:100%;
+        height:auto;
+        padding-bottom:19%;
     }
 
     .color-info{
         flex-grow: 1;
+        line-height:1.1;
     }
 }
