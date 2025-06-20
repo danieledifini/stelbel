@@ -10,7 +10,8 @@
 
     &:not(&.main-item){
         h3{
-           --maxH:calc(var(--min-fontpx) * 2);
+            --min-fontpx: 2.125rem;
+            --maxH:calc(var(--min-fontpx) * 2);
 
             min-height:var(--maxH);
             max-height:var(--maxH);
@@ -18,8 +19,27 @@
             display:inherit;
 
             @media (min-width: 62rem) {
+                --max-font: 70;
+                --max-fontpx: 4.375rem;
                 --fs:clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
                 --maxH:calc((var(--fs) * 2 * 1.071) - 2px);
+            }
+        }
+
+        .text-container p{
+            --min-fontpx: 1.125rem;
+            --maxH:calc(var(--min-fontpx) * 4 * 1.167);
+
+            min-height:var(--maxH);
+            max-height:var(--maxH);
+            overflow:hidden;
+            display:inherit;
+
+            @media (min-width: 62rem) {
+                --max-font: 34;
+                --max-fontpx: 2.125rem;
+                --fs:clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
+                --maxH:calc((var(--fs) * 4 * 1.167) - 2px);
             }
         }
     }

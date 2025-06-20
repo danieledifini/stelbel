@@ -426,7 +426,7 @@ class StarterSite extends Timber\Site {
 			$msg = '';
 
 			$cur_page = $api_blog_page;
-			$per_page = 5;
+			$per_page = 17;
 
 			$orderby = "date";
 			$order   = 'DESC';
@@ -462,7 +462,7 @@ class StarterSite extends Timber\Site {
 
 					$is_main = false;
 
-					if ($current % 5 == 0) {
+					if (($current == 0) && ($cur_page == 1)) {
 						$is_main = true;
 					}
 					
@@ -559,6 +559,7 @@ class StarterSite extends Timber\Site {
 		$context['options'] = get_fields('option');
 		$context['menu']  = Timber::get_menu('Main Menu');
 		$context['secondary_menu']  = Timber::get_menu('Secondary Menu');
+		$context['main_footer_menu']  = Timber::get_menu('Main Footer Menu');
 		$context['site']  = $this;
 
 		$current_language = get_language_shortcode();
