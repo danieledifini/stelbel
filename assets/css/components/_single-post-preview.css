@@ -39,7 +39,7 @@
                 --max-font: 34;
                 --max-fontpx: 2.125rem;
                 --fs:clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
-                --maxH:calc((var(--fs) * 4 * 1.167) - 2px);
+                --maxH:calc((var(--fs) * 4 * 1.167) - 1px);
             }
         }
     }

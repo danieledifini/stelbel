@@ -1,14 +1,5 @@
 .img-slider{
 
-    @media (max-width: 61.9375rem) {
-        .inner-img-slide{
-            display:grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            column-gap:var(--grid-gutter);
-            row-gap:var(--standardMargin);
-        }
-    }
-
     @media (min-width: 62rem) {
         grid-column:2/3;
         grid-row:2/3;
@@ -25,5 +16,15 @@
     @media (min-width: 108rem) {
         margin-right: calc(var(--leftSpace) * -1);
         padding-right: var(--leftSpace);
+    }
+}
+
+.final-img-slider{
+    img{
+        min-width:100%;
+    }
+
+    @media (min-width: 48rem) {
+        grid-column:1/4;
     }
 }

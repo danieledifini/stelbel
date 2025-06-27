@@ -70,6 +70,21 @@ let callback = () => {
     });
   }
   
+  if (document.querySelector(".final-img-slider") ) {
+    const container = document.querySelector(".final-img-slider .inner-img-slider");
+
+    var slider = tns({
+      container: container,
+      items: 1,
+      gutter:15,
+      slideBy: 'page',
+      autoplay: true,
+      controls:false,
+      mouseDrag: true,
+      autoplayButtonOutput: false,
+      nav: false,
+    });
+  }
 }
 
 

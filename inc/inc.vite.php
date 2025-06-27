@@ -188,7 +188,7 @@ add_action( 'wp_enqueue_scripts', function() {
                         $found = true;
                     }
 
-                    $version = '1.158';
+                    $version = '1.161';
 
                     if($found){
                         wp_enqueue_script( 'main', DIST_URI . '/' . $js_file.'?v='.$version, JS_DEPENDENCY, '', JS_LOAD_IN_FOOTER );

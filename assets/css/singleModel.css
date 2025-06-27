@@ -43,7 +43,7 @@
     
 }
 
-.intro-img,.final-img{
+.intro-img{
     img{
         min-width:100%;
     }
@@ -92,9 +92,5 @@
         grid-template-columns: 1fr 2fr;
         
         column-gap:var(--grid-gutter);
-        
-        .final-img{
-            grid-column:1/4;
-        }
     }
 }

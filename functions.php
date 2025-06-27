@@ -207,7 +207,7 @@ class StarterSite extends Timber\Site {
 
 			if((count($cats) > 0) && ($cats[0] !='0')){
 				
-				$per_page = 99;
+				//$per_page = 99;
 
 				$args = array(
 					'post_type'		 => $api_custom_type,
@@ -426,7 +426,11 @@ class StarterSite extends Timber\Site {
 			$msg = '';
 
 			$cur_page = $api_blog_page;
-			$per_page = 17;
+			$per_page = 16;
+
+			if($cur_page == 1){
+				$per_page = 17;
+			}
 
 			$orderby = "date";
 			$order   = 'DESC';
