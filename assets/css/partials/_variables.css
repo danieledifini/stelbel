@@ -29,7 +29,8 @@
     --realContainerW:calc((100 * var(--vw)) - (var(--grid-gutter) * 2));
 
     --min-width: 992;
-    
+
+    --fixedStandardMargin:.9375rem;
 }
 
 @media (min-width: 48rem) {
@@ -50,6 +51,8 @@
 
 		--standardMargin: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
         --double:var(--standardMargin);
+
+       
     }
 }
 

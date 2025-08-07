@@ -340,6 +340,10 @@ body {
 
 	@media (min-width: 62rem) {
 
+		&.lh-30{
+			line-height:1.667;
+		}
+
 		&.fs-34-desktop{
 			--max-font: 34;
 			--max-fontpx: 2.125rem;
@@ -352,6 +356,10 @@ body {
 			--max-fontpx: 1.25rem;
 
 			font-size: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx)) !important;
+		
+			&.lh-30{
+				line-height:1.5;
+			}
 		}
 	}
 }
@@ -377,6 +385,10 @@ body {
     font-size:var(--min-fontpx);
 
 	@media (min-width: 62rem) {
+		&.lh-30{
+			line-height:1.667;
+		}
+
 		--max-font: 18;
 		--max-fontpx: 1.125rem;
 

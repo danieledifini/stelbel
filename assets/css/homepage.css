@@ -14,5 +14,6 @@
 @import 'components/_single-post-preview.css';
 
 .sections-container{
-    row-gap:var(--standardMargin); 
+    /*row-gap:var(--standardMargin); */
+    row-gap:var(--fixedStandardMargin);
 }

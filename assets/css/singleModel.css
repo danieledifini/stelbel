@@ -76,6 +76,7 @@
 
         .main-text-container{
             margin-top:0;
+            align-self: center;
         }
 
         .block-main-features{

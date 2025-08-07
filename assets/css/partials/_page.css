@@ -84,7 +84,9 @@
 /* MARGIN */
 
 .m-b-standard{
-    margin-bottom:var(--standardMargin);
+    /*margin-bottom:var(--standardMargin);*/
+
+    margin-bottom:var(--fixedStandardMargin);
 }
 
 .m-b-double{
@@ -99,6 +101,10 @@
     margin-top:var(--double);
 }
 
+.m-t-auto{
+    margin-top:auto;
+}
+
 .m-r-standard{
     margin-right:var(--standardMargin);
 }
@@ -110,7 +116,9 @@
 /* PADDING */
 
 .p-b-standard{
-    padding-bottom:var(--standardMargin);
+    //padding-bottom:var(--standardMargin);
+
+    padding-bottom:var(--fixedStandardMargin);
 }
 
 .p-l-r-standard{

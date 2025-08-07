@@ -25,6 +25,7 @@
 
         .default-text{
             margin-top:0;
+            align-self: center;
         }
     }
 }

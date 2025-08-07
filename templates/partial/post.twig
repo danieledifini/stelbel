@@ -1,6 +1,6 @@
 
 <a class="single-post-preview t-d-none" href="{{item.link}}" target="_self" title="{{item.title}}">
-    <article  >
+    <article  class="dis-flex flex-col">
         {% if item.thumbnail %}
             <div class="image-container basic-brdr-rds">
                 <picture  class="img-cover pos-rel display">
@@ -14,10 +14,10 @@
         {% endif %}
         
         
-        <div class="text-container m-t-standard">
-            <h3 class="foc fs-34 fs-70-desktop f-w-900">{{item.title}}</h3>
+        <div class="text-container m-t-standard dis-flex flex-col">
+            <h3 class="foc fs-32 fs-42-desktop f-w-900">{{item.title}}</h3>
         
-            <div class="ft fs-18 fs-34-desktop m-t-standard">
+            <div class="ft fs-18 fs-34-desktop m-t-standard m-b-double">
                 <p>{{item.excerpt({
                     words: 20, 
                     strip: true,
@@ -25,7 +25,7 @@
                 })}}</p>
             </div>
             
-            <div class="ctas-container  m-t-double">
+            <div class="ctas-container  m-t-auto">
                 <button class="standard-btn foc fs-18 fake-btn transition default-btn brdr-rds-20 min-width" type="button"   >
                     {{button}}
                 </button>

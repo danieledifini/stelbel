@@ -1,58 +1,58 @@
-.default-btn{
-    padding:0;
-    border:0;
-    background:transparent;
-    cursor:pointer;
+.default-btn {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
 }
 
-.standard-btn{
-    display:initial;
-    padding:.3125rem var(--standardMargin);
-    width:100%;
-    text-decoration:none;
-    text-align:center;
+.standard-btn {
+    display: initial;
+    padding: 0.3125rem var(--standardMargin);
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 700;
 
     @media (min-width: 62rem) {
-        width:auto;
+        width: auto;
 
-        &.min-width{
+        &.min-width {
             min-width: min(15.625rem, 100%);
         }
 
-        &.single_add_to_cart_button{
-            width:100%;
+        &.single_add_to_cart_button {
+            width: 100%;
         }
     }
 
-    &:not(&.secondary){
-       border:.0625rem solid var(--black); 
+    &:not(&.secondary) {
+        border: 0.0625rem solid var(--black);
 
-        &:hover{
-            background-color:var(--black);
-            color:var(--secondary);
+        &:hover {
+            background-color: var(--black);
+            color: var(--secondary);
         }
     }
 
-    &.secondary{
-       color:var(--yellow);
-       border:.0625rem solid var(--yellow); 
+    &.secondary {
+        color: var(--yellow);
+        border: 0.0625rem solid var(--yellow);
 
-        &:hover{
-            background-color:var(--yellow);
-            color:var(--black);
+        &:hover {
+            background-color: var(--yellow);
+            color: var(--black);
         }
     }
 }
 
-.filter-btn{
-    width:100%;
-    text-align:left;
-    padding:.125rem var(--standardMargin);
+.filter-btn {
+    width: 100%;
+    text-align: left;
+    padding: 0.125rem var(--standardMargin);
 
-    &.active,&:hover{
-        background-color:var(--black);
-        color:var(--yellow);
+    &.active,
+    &:hover {
+        background-color: var(--black);
+        color: var(--yellow);
     }
 }
-
-
