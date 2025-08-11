@@ -13,36 +13,50 @@ if (is_singular('product')) {
     $product = wc_get_product($context['post']->ID);
     $context['product'] = $product;
 
-    $forsale = true;
-    $values = get_field("product_status");
+    
 
-    if($values){
-        
-        foreach ($values as $value) {
-            if($value == 'not for sale'){
-                $forsale = false;
-            }
-        }
-    }
-
-    $context['forsale'] = $forsale;
-
-    // Get related products
+    
     $related_limit = wc_get_loop_prop('columns');
     $related_ids = wc_get_related_products($context['post']->id, $related_limit);
     $context['related_products'] = Timber::get_posts($related_ids);
     $context['archive_title'] = get_field("collection","options");
     $context['archive_link'] = wc_get_page_permalink( 'shop' );
 
-    // Restore the context and loop back to the main query loop.
+    
     wp_reset_postdata();
 
     $context['is_woo_single'] = true;
 
     Timber::render('single-product.twig', $context);
 } else {
-    $posts = Timber::get_posts();
-    $context['products'] = $posts;
+
+    
+
+    /*
+    
+    global $wp_query;
+    
+    $args = [
+        'post_type' => 'product',
+        'post_status' => 'publish',
+        'paged' => 1,
+        'posts_per_page' => 4,
+    ];
+
+    $query = new WP_Query($args);
+
+    $context['posts'] = Timber::get_posts($query);
+    
+    
+    $paged = isset($_GET['paged']) ? max(1, (int) $_GET['paged']) : 1;
+    
+    $context['paged'] = $paged;
+    $context['max_pages'] = $query->max_num_pages;
+
+     if ( isset($_SERVER['HTTP_HX_REQUEST']) && $_SERVER['HTTP_HX_REQUEST'] === 'true' ) {
+        Timber::render('partial/product-loop.twig', $context);
+        exit;
+    }
 
     if (is_product_category()) {
         $queried_object = get_queried_object();
@@ -64,6 +78,10 @@ if (is_singular('product')) {
 
         $context['title'] = $title;    
     }
+
+   */
+
+    
     
     $context['is_woo_archive'] = true;
     $context['is_archive'] = true;

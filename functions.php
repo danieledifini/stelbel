@@ -95,6 +95,10 @@ class StarterSite extends Timber\Site {
 		add_action( 'template_redirect', array( $this,'prefix_do_articles' ));
 		add_action( 'template_redirect', array( $this,'prefix_do_register' ));
 
+
+		add_action('wp_ajax_load_more_products', array( $this, 'load_more_products' ));
+		add_action('wp_ajax_nopriv_load_more_products',  array( $this, 'load_more_products' ));
+
 		/* AJAX CALLS */
 
 		if( function_exists('acf_add_options_page') ) {
@@ -426,11 +430,7 @@ class StarterSite extends Timber\Site {
 			$msg = '';
 
 			$cur_page = $api_blog_page;
-			$per_page = 16;
-
-			if($cur_page == 1){
-				$per_page = 17;
-			}
+			$per_page = 8;
 
 			$orderby = "date";
 			$order   = 'DESC';
@@ -464,13 +464,16 @@ class StarterSite extends Timber\Site {
 					$photographer = get_field("photographer","options");
 					$by           = get_field("by","options");
 
-					$is_main = false;
+					$style = 'simple';
 
-					if (($current == 0) && ($cur_page == 1)) {
-						$is_main = true;
+					if (($current == 0) || ($current == 7)) {
+						$style = 'main';
+					}
+					else if (($current == 1) || ($current == 5)) {
+						$style = 'medium';
 					}
 					
-					$msg .= Timber::compile( 'partial/standard-post-in-blog.twig', array( 'item' => $article, 'read'=> $read, 'author' => $author, 'photographer' => $photographer, 'by' => $by,'is_main' => $is_main  ) );
+					$msg .= Timber::compile( 'partial/standard-post-in-blog.twig', array( 'item' => $article, 'read'=> $read, 'author' => $author, 'photographer' => $photographer, 'by' => $by,'style' => $style   ) );
 					$current++;
 				endwhile;
 
@@ -551,6 +554,58 @@ class StarterSite extends Timber\Site {
 		}
 	}
 
+	public function load_more_products($page = 1){
+		$msg = '';
+
+		if( isset( $_POST['page'] ) ){
+			
+
+			$cur_page = sanitize_text_field($_POST['page']);
+
+			$per_page = 4;
+
+			$orderby = "date";
+			$order   = 'DESC';
+			$type 	 = 'product';
+			$args   = [];
+
+			$args = array(
+				'post_type'		 => $type,
+				'posts_per_page' => $per_page,
+				'paged'          => $cur_page,
+				'post_status'    => 'publish',
+			);
+
+			$custom_query = new WP_Query($args);
+			$total = $custom_query->found_posts;
+			$total_pages = $custom_query->max_num_pages;
+
+
+			if ( $custom_query->have_posts() ){
+
+	
+				while ( $custom_query->have_posts() ) :
+					$custom_query->the_post();
+					$cur_id = get_the_ID();
+					$article = Timber::get_post($cur_id);
+
+					$msg .= Timber::compile( 'partial/product.twig', array( 'item' => $article, 'featured' => true  ) );
+					
+				endwhile;
+			}
+			else{
+				$msg .= '<div class="standard-text default-text no-results-text fdc fs-18">';
+				$msg .= get_field("no_results_text","options");
+				$msg .= '</div>';
+			}
+				
+			wp_reset_postdata();
+			
+			echo json_encode($msg);
+		}
+
+		exit;
+	}
 
 	/** This is where you add some context
 	 *

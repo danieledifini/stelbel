@@ -14,3 +14,9 @@
         }
     }
 }
+
+.woocommerce-shop{
+    .pagination{
+        display:none;
+    }
+}

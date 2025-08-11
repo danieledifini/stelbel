@@ -1,10 +1,15 @@
 {% set class = '' %}
+{% set is_main = '' %}
+
+{% if style == 'main' %}
+    {% set is_main = true %}
+{% endif %}
+
 
 {% if is_main %}
-    {% set class = ' b-b-black p-b-standard main-item' %}
+    {% set class = ' b-b-black p-b-standard ' ~ style ~ '-item' %}
 {% else %}
-    {% set class = 'simple-item' %}    
-     
+    {% set class = style ~ '-item' %}
 {% endif %}
 
 
@@ -33,28 +38,24 @@
             {% if is_main %}
                 {% set class = 'fdc fs-62 fs-128-desktop' %}
             {% else %}
-                {% set class = 'foc fs-32 fs-70-desktop' %}    
+                {% set class = 'foc fs-32 fs-42-desktop' %}    
             {% endif %}    
                 
             <h3 class="{{class}}">{{item.title}}</h3>
 
-            {% if is_main %}
-                <div class="fdc fs-18 fs-34-desktop default-text m-t-standard">
+            <div class="fdc fs-18 fs-34-desktop default-text m-t-standard">
                     <p>{{item.excerpt({
                                 strip: true,
                                 read_more: ""
                             })}}</p>
                 </div>
-            
-            {% endif %}
-        
-            {% if item.meta('author') or  item.meta('photographer') %}
-                {% set class = '' %}
-                {% if is_main %}
-                    {% set class = 'm-t-standard' %}
-                {% else %}
-                    {% set class = 'm-t-double' %}    
-                {% endif %}
+
+            {% if is_main %}
+                
+
+
+                {% if item.meta('author') or  item.meta('photographer') %}
+                {% set class = 'm-t-standard' %}
 
                 <div class="info-container ft {{class}}">
                     {% if item.meta('author') %}
@@ -84,6 +85,9 @@
                 </div>
             {% endif %}
 
+            {% endif %}
+        
+            
             <div class="ctas-container  m-t-standard">
                 <button  class="standard-btn foc fs-18 default-btn transition brdr-rds-20 min-width" type="button"   >
                     {{read}}

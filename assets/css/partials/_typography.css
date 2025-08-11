@@ -3,7 +3,8 @@
 html{
     font-size:16px; 
     line-height: normal;
-    overflow-x:hidden;
+    /*overflow-x:hidden;*/
+	position:relative;
     color:var(--black);
     background-color:var(--yellow);
 }

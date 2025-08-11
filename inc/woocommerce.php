@@ -25,6 +25,9 @@ function add_title_for_quantity() {
     echo '<label class="fdc fs-20" for="quantity">'.get_field("quantity","options").'</label>';
 }
 
+
+
+
 function print_price(){
     global $product;
     $html = '<div class="foc fs-18 '.  esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ). '">'. $product->get_price_html() .'</div>';
@@ -34,10 +37,10 @@ function print_price(){
 
 add_filter('paginate_links_output', 'custom_add_class_to_paginate_ul', 10, 2);
 function custom_add_class_to_paginate_ul($output, $args) {
-    // Add your custom class to the <ul>
+    
     $output = str_replace(
         '<ul class=\'page-numbers\'>',
-        '<ul class="dis-flex align-center jus-center">', // add your class here
+        '<ul class="dis-flex align-center jus-center">', 
         $output
     );
 
@@ -45,8 +48,8 @@ function custom_add_class_to_paginate_ul($output, $args) {
         '/<a[^>]+class=["\']([^"\']*)["\']/i',
         function($matches) {
             $existing_classes = explode(' ', $matches[1]);
-            // Remove WooCommerce default classes and add your own
-            $custom_classes = ['page-btn default-btn  transition  standard-link']; // your class here
+            
+            $custom_classes = ['page-btn default-btn  transition  standard-link']; 
             return str_replace(
                 $matches[0],
                 '<a class="' . implode(' ', $custom_classes) . '"',
@@ -59,3 +62,4 @@ function custom_add_class_to_paginate_ul($output, $args) {
 
     return $output;
 }
+

@@ -1,0 +1,4 @@
+{% for post in posts %}
+    {% include 'partial/product.twig' with {'item':post, 'featured':true } %}
+{% endfor %}
+

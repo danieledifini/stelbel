@@ -29,17 +29,22 @@
                 </div><!-- sections-container -->
             {% endif %}
             
-            
-            <div class="loop product-list">
-                {% for post in products %}
-                    {% include 'partial/product.twig' with {'item':post, 'featured':true } %}
-                {% endfor %}
+            <div class="loop product-list" id="shop-products" >
+                {% include 'partial/product-loop.twig' %}
             </div>
+
+            {% if posts.pagination.pages|length > 1 %}
+                {% set total_pages = posts.pagination.pages|length %}
+                <div id="load-trigger" data-max-pages="{{posts.pagination.pages|length}}">
+                    <p style="text-align: center;">Loading more products…</p>
+                </div>
+
+               
+            {% endif %}
             
         </div>
     </div>    
 
-    
 
     {% do action('woocommerce_after_shop_loop') %}
     {% do action('woocommerce_after_main_content') %}

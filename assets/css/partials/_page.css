@@ -7,10 +7,14 @@
 @import '_footer.css';
 
 .content-wrapper{
-    /*max-width: var(--grid-max-width);*/
-    max-width: 100%;
+    max-width: var(--grid-max-width);
+    /*max-width: 100%;*/
     margin-inline: auto;
     padding:0 var(--grid-gutter);
+}
+
+main#content{
+    overflow:hidden;
 }
 
 .with-loading{

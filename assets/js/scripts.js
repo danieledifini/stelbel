@@ -2,7 +2,7 @@ import 'lazysizes';
 import axios from 'axios';
 
 
-let ajaxurl = '/wp-admin/admin-ajax.php';
+export let ajaxurl = '/wp-admin/admin-ajax.php';
 let ticking = false;
 
 export let calling = false;
