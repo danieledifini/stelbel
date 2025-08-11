@@ -1,0 +1,49 @@
+{% if section.image %}
+        <div class="image-container  basic-brdr-rds" >
+            {% set image = get_image(section.image) %}
+
+            <picture class="display ">
+                <source
+                data-srcset="{{image.src('large')}}"
+                media="(max-width: 767px)" />
+                <img data-src="{{image.src}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="diplay lazyload " width="{{image.width}}" height="{{image.height}}">
+            </picture>
+    </div>
+{% endif %}
+
+{% if section.table_title or section.table_items %}
+    <aside class="aside-table brdr-rds-20 p-standard">
+        {% if section.table_title %}
+            <span class="fdc fs-20 fs-28-desktop m-b-standard display">
+                <strong>{{section.table_title}}</strong>
+            </span>
+        {% endif %}
+        {% if section.table_items %}
+            <ul class=" fdc fs-20 ">
+                {% for item in section.table_items %}
+                    <li><p>
+                        {% if item.title %}
+                        <strong>{{item.title}}</strong><br/>
+                        {% endif %}
+                         {% if item.text %}
+                        {{item.text}}
+                        {% endif %}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if section.table_cta %}
+            <div class="ctas-container m-t-double dis-flex">
+                <a class=" standard-btn foc fs-18 brdr-rds-20 " href="{{section.table_cta['url']}}" target="{{section.table_cta['target']}}">
+                    {{section.table_cta['title']}}
+                </a>
+            </div>
+        {% endif %}
+    </aside>
+{% endif %}
+
+{% if section.text %}
+    <div class="default-text foc fs-20">
+        {{section.text}}
+    </div>
+{% endif %}

@@ -1,0 +1,9 @@
+.simple_text{
+    @media (min-width: 62rem) {
+
+        .default-text{
+            width:75%;
+            margin-left:auto;
+        }
+    }
+}

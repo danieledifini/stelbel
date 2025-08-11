@@ -1,7 +1,12 @@
 
 @import 'partials/_page.css';
 
-@import 'blocks/_article-aside.css';
+/*@import 'blocks/_article-aside.css';*/
+@import 'blocks/_three_images_two_texts.css';
+@import 'blocks/_big_image_small_image_text.css';
+@import 'blocks/_video_embed.css';
+@import 'blocks/_image_small_text_table.css';
+@import 'blocks/_simple_text.css';
 
 @import 'components/_btn.css';
 
@@ -13,7 +18,30 @@
     }
 }
 
+.sections-container{
+    row-gap:var(--standardMargin);
+
+    picture,img{
+        min-width:100%;
+    }
+}
+
 @media (min-width: 62rem) {
+    .block-title{
+        picture{
+            
+        }
+
+        img{
+            position:absolute;
+            bottom:0;
+            right:0;
+            max-width:18%;
+            max-height:83%;
+            object-fit: contain;
+        }
+    }
+
     .main-info-container{
         display:grid;
         grid-template-columns: 1fr 2fr;
@@ -38,7 +66,7 @@
         }
     }
 
-    .main-info{
+    /*.main-info{
         margin-bottom:calc(var(--standardMargin) * 2);
     }
 
@@ -51,6 +79,6 @@
             grid-column:2/4;
             grid-row:1/2;
         }
-    }
+    }*/
 }
 

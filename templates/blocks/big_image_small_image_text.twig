@@ -1,0 +1,22 @@
+{% if section.gallery %}
+    <div class="img-columns ">
+            {% for image in section.gallery %}
+            <div class="simple-img image-container  basic-brdr-rds" >
+                {% set image = get_image(image) %}
+
+                <picture class="display ">
+                    <source
+                    data-srcset="{{image.src('large')}}"
+                    media="(max-width: 47.9375rem)" />
+                    <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload display " width="{{image.width}}" height="{{image.height}}">
+                </picture>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if section.text %}
+    <div class="default-text foc fs-28 fs-42-desktop">
+        <p><strong>{{section.text}}</strong></p>
+    </div>
+{% endif %}

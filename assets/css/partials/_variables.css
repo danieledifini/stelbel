@@ -50,8 +50,6 @@
 
 		--standardMargin: clamp(var(--min-fontpx), calc(var(--min-fontpx) + (var(--max-font) - var(--min-font)) * (100vw - 62rem)/(var(--max-width) - var(--min-width))), var(--max-fontpx));
         --double:var(--standardMargin);
-
-       
     }
 }
 

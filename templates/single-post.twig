@@ -8,10 +8,22 @@
 
 				<div class="inner-info-text-container m-t-standard">
 					<div class="block-header ">
-						<div class="block-title p-b-standard b-b-black m-b-standard">
+						<div class="block-title p-b-standard b-b-black m-b-standard pos-rel">
 							<h1 class="fdc fs-60 fs-200-desktop f-w-900">
 								{{post.title}}
 							</h1>
+
+							{% if post.meta("extra_image_in_title") %}
+								{% set image = get_image(post.meta("extra_image_in_title")) %}
+								<picture class="hide-mobile">
+									<source
+									data-srcset="{{image.src('large')}}"
+									media="(max-width: 767px)" />
+									<img data-src="{{image.src}}" src="{{image.src('medium')}}" alt="{{image.alt}}" class="lazyload" width="{{image.width}}" height="{{image.height}}">
+								</picture>
+								
+							{% endif %}
+							
 						</div>
 					
 					</div>
@@ -58,14 +70,27 @@
 				{% endif %}
 			</section>
 
-			<section class="article-body ">
-
+			<div class="article-body sections-container dis-flex flex-col">
+				{#
 					<div class="default-text ft fs-18 main-text">
 						{{post.content}}
 					</div>
 
-					{% include "blocks/article-aside.twig"  %}
-				</section>
+					{% include "blocks/article-aside.twig"  %} #}
+
+
+				{% if post.meta('blocks') %}
+					
+					{% for section in post.meta('blocks') %}
+						{% set class = section.acf_fc_layout|replace({'+': "_"}) %}
+
+						<section class="complex-section {{class}}" >
+							{% include "blocks/" ~ section.acf_fc_layout ~ ".twig" %}
+						</section>
+					{% endfor %}
+					
+				{% endif %}	
+				</div><!-- sections-container -->
 		</article>
 	</div><!-- /content-wrapper -->
 {% endblock %}
