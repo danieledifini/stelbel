@@ -99,6 +99,9 @@ class StarterSite extends Timber\Site {
 		add_action('wp_ajax_load_more_products', array( $this, 'load_more_products' ));
 		add_action('wp_ajax_nopriv_load_more_products',  array( $this, 'load_more_products' ));
 
+		add_action('wp_ajax_load_more_articles', array( $this, 'load_more_articles' ));
+		add_action('wp_ajax_nopriv_load_more_articles',  array( $this, 'load_more_articles' ));
+
 		/* AJAX CALLS */
 
 		if( function_exists('acf_add_options_page') ) {
@@ -478,8 +481,10 @@ class StarterSite extends Timber\Site {
 				endwhile;
 
 				$msg .= '</div><!-- inner-container -->';
-				$method = "load_articles";
-				$msg .= getPaginationHTMX($total,$per_page,$cur_page,$total_pages,$method);	
+				//$method = "load_articles";
+				//$msg .= getPaginationHTMX($total,$per_page,$cur_page,$total_pages,$method);	
+
+				$msg .= getLoadMore($cur_page, $total_pages);
 			}
 			else{
 				$msg .= '<div class="standard-text default-text no-results-text fdc fs-18">';
@@ -541,6 +546,8 @@ class StarterSite extends Timber\Site {
 				$msg .= '</div><!-- inner-container -->';
 				$method = "load_registers";
 				$msg .= getPaginationHTMX($total,$per_page,$cur_page,$total_pages,$method);	
+
+				
 			}
 			else{
 				$msg .= '<div class="standard-text default-text no-results-text fdc fs-18">';
@@ -592,6 +599,85 @@ class StarterSite extends Timber\Site {
 					$msg .= Timber::compile( 'partial/product.twig', array( 'item' => $article, 'featured' => true  ) );
 					
 				endwhile;
+			}
+			else{
+				$msg .= '<div class="standard-text default-text no-results-text fdc fs-18">';
+				$msg .= get_field("no_results_text","options");
+				$msg .= '</div>';
+			}
+				
+			wp_reset_postdata();
+			
+			echo json_encode($msg);
+		}
+
+		exit;
+	}
+
+	public function load_more_articles($page = 1){
+		$msg = '';
+
+		if( isset( $_POST['page'] ) ){
+
+			$cur_page = sanitize_text_field($_POST['page']);
+			$per_page = 8;
+
+			$orderby = "date";
+			$order   = 'DESC';
+			$type 	 = 'post';
+			$args   = [];
+
+			$args = array(
+				'post_type'		 => $type,
+				'orderby'		 => $orderby,
+				'order'			 => $order,
+				'posts_per_page' => $per_page,
+				'paged'          => $cur_page,
+			);
+
+			$custom_query = new WP_Query($args);
+			$total = $custom_query->found_posts;
+			$total_pages = $custom_query->max_num_pages;
+			$current = 0;
+
+			if ( $custom_query->have_posts() ){
+				
+				$class = '';
+
+				if ($cur_page != 1) {
+					$class = 'b-t-black p-t-standard m-t-standard';
+				}
+
+				$msg .= '<div class="inner-wrapper  '.$class.'"  data-total="'.$total.'">';
+	
+				while ( $custom_query->have_posts() ) :
+					$custom_query->the_post();
+					$cur_id = get_the_ID();
+					$article = Timber::get_post($cur_id);
+
+					$read         = get_field("read","options");
+					$author       = get_field("author","options");
+					$photographer = get_field("photographer","options");
+					$by           = get_field("by","options");
+
+					$style = 'simple';
+
+					if (($current == 0) || ($current == 7)) {
+						$style = 'main';
+					}
+					else if (($current == 1) || ($current == 5)) {
+						$style = 'medium';
+					}
+					
+					$msg .= Timber::compile( 'partial/standard-post-in-blog.twig', array( 'item' => $article, 'read'=> $read, 'author' => $author, 'photographer' => $photographer, 'by' => $by,'style' => $style   ) );
+					$current++;
+				endwhile;
+
+				$msg .= '</div><!-- inner-container -->';
+				//$method = "load_articles";
+				//$msg .= getPaginationHTMX($total,$per_page,$cur_page,$total_pages,$method);	
+
+				$msg .= getLoadMore($cur_page, $total_pages);
 			}
 			else{
 				$msg .= '<div class="standard-text default-text no-results-text fdc fs-18">';

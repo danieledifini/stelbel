@@ -41,3 +41,16 @@ function getPaginationHTMX($total = 0,$per_page = 0,$cur_page = 1, $total_pages 
 
 	return $msg;
 }
+
+function getLoadMore($cur_page = 1, $total_pages = 0) {
+	$msg = '';
+
+	if ($total_pages > 1 && $cur_page < $total_pages) {
+
+		$msg .= '<div id="load-trigger" data-max-pages="'.$total_pages.'">';
+		$msg .= '<p style="text-align: center;">Loading more articles…</p>';
+		$msg .= '</div>';
+	}
+
+	return $msg;
+}

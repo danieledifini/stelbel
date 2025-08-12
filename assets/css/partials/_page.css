@@ -125,6 +125,12 @@ main#content{
     padding-bottom:var(--fixedStandardMargin);
 }
 
+.p-t-standard{
+    //padding-bottom:var(--standardMargin);
+
+    padding-top:var(--fixedStandardMargin);
+}
+
 .p-l-r-standard{
     padding-left:var(--standardMargin);
     padding-right:var(--standardMargin);
@@ -209,6 +215,10 @@ main#content{
 
 .b-b-black{
     border-bottom:.0625rem solid var(--black);
+}
+
+.b-t-black{
+    border-top:.0625rem solid var(--black);
 }
 
 .b-b-yellow{
