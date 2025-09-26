@@ -18,7 +18,7 @@
         <li class="">
             {% set class = 'active' %}
             {% set current = 'aria-current="page"'  %}
-            <button {{current}} class=" fdc  fs-20 filter-btn {{class}}  transition  default-btn" data-term="0" hx-get="/api/{{method}}" hx-target="#items-wrapper"  x-on:click.stop="openCloseSelect('{{select}}Closed')" >{{all}}</button>
+            <button {{current}} class=" fdc  fs-20 filter-btn {{class}}  transition  default-btn" data-term="0" hx-get="/wp-json/api/v1/{{method}}" hx-target="#items-wrapper"  x-on:click.stop="openCloseSelect('{{select}}Closed')" >{{all}}</button>
         </li>
         
         {% for item in items %}
@@ -35,7 +35,7 @@
                 {% set current = 'aria-current="page"'  %}
             {% endif %}
 
-                <button {{current}}  class=" fdc  fs-20 {{class}} filter-btn  transition default-btn " role="menuitem"  data-term="{{item.id}}" hx-get="/api/{{method}}" hx-target="#items-wrapper"  x-on:click.stop="openCloseSelect('{{select}}Closed')" >{{name}}</button>
+                <button {{current}}  class=" fdc  fs-20 {{class}} filter-btn  transition default-btn " role="menuitem"  data-term="{{item.id}}" hx-get="/wp-json/api/v1/{{method}}" hx-target="#items-wrapper"  x-on:click.stop="openCloseSelect('{{select}}Closed')" >{{name}}</button>
             </li>
         {% endfor %}
         </ul><!-- custom-options -->

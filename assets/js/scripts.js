@@ -18,12 +18,56 @@ let callback = () => {
     header = document.querySelector('header.header');
   } 
 
+  const logo = document.querySelector(".navbar-brand");
+const upperHeader = document.querySelector(".upper-header");
+const contentWrapper = document.querySelector(".content-wrapper");
+
+const minWidth = 243;         // logo width at 150px scroll
+const scrollLimit = 100;      // scroll distance for scaling
+
+// Read CSS variable value (strip 'px')
+const rootStyles = getComputedStyle(document.documentElement);
+const standardMargin = parseFloat(rootStyles.getPropertyValue("--standardMargin"));
+
+let lastScrollY = window.scrollY;
 
   window.addEventListener('resize', function() {
     setVw();
+    updateLogo(window.scrollY);
   });  
 
+  window.addEventListener('scroll', function() {
+ 
+    const scrollY = window.scrollY;
+  
+    if (scrollY !== lastScrollY) {
+      lastScrollY = scrollY;
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateLogo(scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+  });  
+
+  function updateLogo(scrollY) {
+    const wrapperWidth = contentWrapper.offsetWidth; 
+    const progress = Math.min(scrollY, scrollLimit) / scrollLimit;
+  
+    const currentWidth = Math.round(wrapperWidth - (wrapperWidth - minWidth) * progress);
+    logo.style.width = currentWidth + "px";
+    
+  
+    /*const currentPadding = standardMargin - (standardMargin / 2) * progress;
+    upperHeader.style.paddingBlock = currentPadding + "px";*/
+  } 
+
 }
+
+
 
 
 /* GENERAL */
