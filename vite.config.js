@@ -15,6 +15,21 @@ const { resolve } = require('path')
 const fs = require('fs')
 
 
+function getJsEntries() {
+  const jsDir = resolve(__dirname, 'js');
+  const files = fs.readdirSync(jsDir);
+  const entries = {};
+
+  files.forEach(file => {
+    if (file.endsWith('.js')) {
+      const name = file.replace('.js', ''); // key for rollup input
+      entries[name] = resolve(jsDir, file);
+    }
+  });
+
+  return entries;
+}
+
 // https://vitejs.dev/config
 export default {
 
@@ -42,22 +57,7 @@ export default {
 
     // our entry
     rollupOptions: {
-      input: {
-        homepage: resolve( __dirname + '/js/homepage.js'),
-        models: resolve( __dirname + '/js/models.js'),
-        singleModel: resolve( __dirname + '/js/singleModel.js'),
-        request: resolve( __dirname + '/js/request.js'),
-        blog: resolve( __dirname + '/js/blog.js'),
-        singleBlog: resolve( __dirname + '/js/singleBlog.js'),
-        woocommerce: resolve( __dirname + '/js/woocommerce.js'),
-        singleProduct: resolve( __dirname + '/js/singleProduct.js'),
-        builds: resolve( __dirname + '/js/builds.js'),
-        singleBuild: resolve( __dirname + '/js/singleBuild.js'),
-        contact: resolve( __dirname + '/js/contact.js'),
-        trademark: resolve( __dirname + '/js/trademark.js'),
-        register: resolve( __dirname + '/js/register.js'),
-        standard: resolve( __dirname + '/js/standard.js'),
-      },
+      input: getJsEntries(),
       output: {
         entryFileNames: '[name].js',
       }

@@ -1,201 +1,75 @@
 <?php
 /*
  * VITE JIT development
- * Inspired by https://github.com/andrefelipe/vite-php-setup
- *
+ * Fully dynamic JS/CSS enqueue based on Vite manifest
  */
 
-// dist subfolder - defined in vite.config.json
 define('DIST_DEF', 'dist');
-
-// defining some base urls and paths
 define('DIST_URI', get_template_directory_uri() . '/' . DIST_DEF);
 define('DIST_PATH', get_template_directory() . '/' . DIST_DEF);
 
-// js enqueue settings
-define('JS_DEPENDENCY', array()); // array('jquery') as example
-define('JS_LOAD_IN_FOOTER', true); // load scripts in footer?
-
-// deafult server address, port and entry point can be customized in vite.config.json
+define('JS_DEPENDENCY', array());
+define('JS_LOAD_IN_FOOTER', true);
 define('VITE_SERVER', 'http://localhost:3000');
-define('VITE_ENTRY_POINT', array('/js/homepage.js','/js/models.js','/js/singleModel.js','/js/request.js','/js/blog.js','/js/singleBlog.js','/js/woocommerce.js', '/js/singleProduct.js','/js/builds.js','/js/singleBuild.js','/js/contact.js','/js/trademark.js','/js/register.js','/js/standard.js'));
 
-// enqueue hook
-add_action( 'wp_enqueue_scripts', function() {
-    
+add_action('wp_enqueue_scripts', function() {
+
+    $entry_to_load = '';
+
+    // Determine the JS entry based on page/post type/template
+    if (is_page_template()) {
+        $entry_to_load = basename(get_page_template_slug(), '.php') . '.js';
+    } elseif (is_singular()) {
+        $entry_to_load = 'single' . ucfirst(get_post_type()) . '.js';
+    } elseif (is_404()) {
+        $entry_to_load = 'standard.js';
+    } elseif (is_woocommerce() && !is_product()) {
+        $entry_to_load = 'woocommerce.js';
+    } elseif (is_product()) {
+        $entry_to_load = 'singleProduct.js';
+    }
+
+    if (!$entry_to_load) return;
+
+    // Development mode (HMR)
     if (defined('IS_VITE_DEVELOPMENT') && IS_VITE_DEVELOPMENT === true) {
+        add_action('wp_head', function() use ($entry_to_load) {
+            echo '<script type="module" crossorigin src="' . VITE_SERVER . '/js/' . $entry_to_load . '"></script>';
+        });
+        return;
+    }
 
-        // insert hmr into head for live reload
-        function vite_head_module_hook() {
-            if (is_array(VITE_ENTRY_POINT)) {
-                foreach(VITE_ENTRY_POINT as $entry){
-                    $found = false;
+    // Production mode
+    $manifest_file = DIST_PATH . '/.vite/manifest.json';
+    if (!file_exists($manifest_file)) return;
 
-                    if ((is_page_template( 'page-templates/homepage.php' )&&($entry == '/js/homepage.js'))){
-                        $found = true;
-                    }
+    $manifest = json_decode(file_get_contents($manifest_file), true);
+    if (!is_array($manifest)) return;
 
-                    elseif (((is_page_template( 'page-templates/models.php' ) )&&($entry == '/js/models.js'))){
-                        $found = true;
-                    }
+    foreach ($manifest as $entry_name => $entry_info) {
+        $js_file  = $entry_info['file'] ?? '';
+        $css_files = $entry_info['css'] ?? [];
 
-                    elseif (((is_singular( 'model' ))  &&($entry == '/js/singleModel.js'))){
-                        $found = true;
-                    }
+        if (basename($js_file) === $entry_to_load) {
 
-                    elseif (((is_page_template( 'page-templates/request.php' ) )&&($entry == '/js/request.js'))){
-                        $found = true;
-                    }
+            $js_path_full = DIST_PATH . '/' . $js_file;
+            $version_js   = file_exists($js_path_full) ? filemtime($js_path_full) : time();
 
-                    elseif (((is_page_template( 'page-templates/blog.php' ) )&&($entry == '/js/blog.js'))){
-                        $found = true;
-                    }
+            wp_enqueue_script(
+                'main',
+                DIST_URI . '/' . $js_file . '?v=' . $version_js,
+                JS_DEPENDENCY,
+                '',
+                JS_LOAD_IN_FOOTER
+            );
 
-                    elseif (((is_singular( 'post' ))  &&($entry == '/js/singleBlog.js'))){
-                        $found = true;
-                    }
-
-
-                    elseif ((is_woocommerce() && !is_product() )&&($entry == '/js/woocommerce.js')){
-                        $found = true;
-                    }
-
-                    elseif ((is_product() )&&($entry == '/js/singleProduct.js')){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/builds.php' ) )&&($entry == '/js/builds.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_singular( 'build' ))  &&($entry == '/js/singleBuild.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/contact.php' ) )&&($entry == '/js/contact.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/trademark.php' ) )&&($entry == '/js/trademark.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/register.php' ) )&&($entry == '/js/register.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/standard.php' )|| is_404())  &&($entry == '/js/standard.js'))){
-                        $found = true;
-                    }
-
-                    if($found){
-                        echo '<script type="module" crossorigin src="' . VITE_SERVER . $entry . '"></script>';
-                    }
-                }
+            foreach ($css_files as $css_file) {
+                $css_path_full = DIST_PATH . '/' . $css_file;
+                $version_css   = file_exists($css_path_full) ? filemtime($css_path_full) : time();
+                wp_enqueue_style('main-' . basename($css_file, '.css'), DIST_URI . '/' . $css_file . '?v=' . $version_css);
             }
-        } 
-        add_action('wp_head', 'vite_head_module_hook');      
 
-    } else {
-
-        // production version, 'npm run build' must be executed in order to generate assets
-        // ----------
-
-        // read manifest.json to figure out what to enqueue
-        $manifest = json_decode( file_get_contents( DIST_PATH . '/.vite/manifest.json'), true );
-        
-        // is ok
-        if (is_array($manifest)) {
-            
-            foreach($manifest as $entry){
-                $manifest_key = array_keys($entry);
-
-                if(count($manifest_key) > 1){
-
-                    $css_file = '';
-                    $js_file  = '';
-
-                    foreach($manifest_key as $key){
-                        $value = $entry[$key];
-
-                        if(is_array($value)){
-                            $value = $entry[$key][0];
-                        }
-                        
-                        if($key == 'file'){
-                            $js_file = $value;
-                        }
-                        elseif($key == 'css'){
-                            $css_file = $value;
-                        }
-                    }
-
-                    $found = false;
-
-                    if ((is_page_template( 'page-templates/homepage.php' )&&($js_file == 'homepage.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/models.php' ) )&&($js_file == 'models.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_singular( 'model' ))  &&($js_file == 'singleModel.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/request.php' ) )&&($js_file == 'request.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/blog.php' ) )&&($js_file == 'blog.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_singular( 'post' ))  &&($js_file == 'singleBlog.js'))){
-                        $found = true;
-                    }
-
-                    elseif ((is_woocommerce() && !is_product() )&&($js_file == 'woocommerce.js')){
-                        $found = true;
-                    }
-
-                    elseif ((is_product() )&&($js_file == 'singleProduct.js')){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/builds.php' ) )&&($js_file == 'builds.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_singular( 'build' ))  &&($js_file == 'singleBuild.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/contact.php' ) )&&($js_file == 'contact.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/trademark.php' ) )&&($js_file == 'trademark.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/register.php' ) )&&($js_file == 'register.js'))){
-                        $found = true;
-                    }
-
-                    elseif (((is_page_template( 'page-templates/standard.php' )|| is_404())  &&($js_file == 'standard.js'))){
-                        $found = true;
-                    }
-
-                    $version = '1.165';
-
-                    if($found){
-                        wp_enqueue_script( 'main', DIST_URI . '/' . $js_file.'?v='.$version, JS_DEPENDENCY, '', JS_LOAD_IN_FOOTER );
-                        wp_enqueue_style( 'main', DIST_URI . '/' . $css_file.'?v='.$version );
-                    }
-                }
-            }
+            break;
         }
     }
 });

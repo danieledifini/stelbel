@@ -1,7 +1,7 @@
 import Alpine from 'alpinejs';
 
 // get styles
-import './../assets/css/singleBlog.css'
+import './../assets/css/singlePost.css'
 
 // get scripts
 import './../assets/js/scripts.js'

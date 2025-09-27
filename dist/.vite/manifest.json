@@ -11,8 +11,8 @@
     "file": "assets/index-BhdsrUP8.js",
     "name": "index"
   },
-  "_scripts-BcZnegh8.js": {
-    "file": "assets/scripts-BcZnegh8.js",
+  "_scripts-CN0VQGgP.js": {
+    "file": "assets/scripts-CN0VQGgP.js",
     "name": "scripts"
   },
   "_tiny-slider-BhTRplDx.js": {
@@ -25,12 +25,12 @@
     "src": "js/blog.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js",
+      "_scripts-CN0VQGgP.js",
       "_htmx.min-DpIuoioD.js",
       "_index-BhdsrUP8.js"
     ],
     "css": [
-      "assets/blog-D810JNvy.css"
+      "assets/blog-DmVvedVL.css"
     ]
   },
   "js/builds.js": {
@@ -39,12 +39,12 @@
     "src": "js/builds.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js",
+      "_scripts-CN0VQGgP.js",
       "_htmx.min-DpIuoioD.js",
       "_archive-C0ns8xCz.js"
     ],
     "css": [
-      "assets/builds-DUwcNRtZ.css"
+      "assets/builds-CJF-7T_6.css"
     ]
   },
   "js/contact.js": {
@@ -53,10 +53,10 @@
     "src": "js/contact.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js"
+      "_scripts-CN0VQGgP.js"
     ],
     "css": [
-      "assets/request-BcwBw8JX.css"
+      "assets/request-BqNhTYox.css"
     ]
   },
   "js/homepage.js": {
@@ -65,12 +65,12 @@
     "src": "js/homepage.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js",
+      "_scripts-CN0VQGgP.js",
       "_htmx.min-DpIuoioD.js",
       "_tiny-slider-BhTRplDx.js"
     ],
     "css": [
-      "assets/homepage-C1NqfC4U.css"
+      "assets/homepage-Cm4PkOOd.css"
     ]
   },
   "js/models.js": {
@@ -79,12 +79,12 @@
     "src": "js/models.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js",
+      "_scripts-CN0VQGgP.js",
       "_htmx.min-DpIuoioD.js",
       "_archive-C0ns8xCz.js"
     ],
     "css": [
-      "assets/models-DH0b_cnS.css"
+      "assets/models-DEWFTa8U.css"
     ]
   },
   "js/register.js": {
@@ -93,11 +93,11 @@
     "src": "js/register.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js",
+      "_scripts-CN0VQGgP.js",
       "_htmx.min-DpIuoioD.js"
     ],
     "css": [
-      "assets/register-J6F_pihk.css"
+      "assets/register-DxcRIL0P.css"
     ]
   },
   "js/request.js": {
@@ -106,22 +106,10 @@
     "src": "js/request.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js"
+      "_scripts-CN0VQGgP.js"
     ],
     "css": [
-      "assets/request-BcwBw8JX.css"
-    ]
-  },
-  "js/singleBlog.js": {
-    "file": "singleBlog.js",
-    "name": "singleBlog",
-    "src": "js/singleBlog.js",
-    "isEntry": true,
-    "imports": [
-      "_scripts-BcZnegh8.js"
-    ],
-    "css": [
-      "assets/singleBlog-Co6b6ZHg.css"
+      "assets/request-BqNhTYox.css"
     ]
   },
   "js/singleBuild.js": {
@@ -130,11 +118,11 @@
     "src": "js/singleBuild.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js",
+      "_scripts-CN0VQGgP.js",
       "_tiny-slider-BhTRplDx.js"
     ],
     "css": [
-      "assets/singleBuild--Jt11BrZ.css"
+      "assets/singleBuild-_dJAEY9C.css"
     ]
   },
   "js/singleModel.js": {
@@ -143,12 +131,24 @@
     "src": "js/singleModel.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js",
+      "_scripts-CN0VQGgP.js",
       "_htmx.min-DpIuoioD.js",
       "_tiny-slider-BhTRplDx.js"
     ],
     "css": [
-      "assets/singleModel-B0_qKhYH.css"
+      "assets/singleModel-Dc06X57V.css"
+    ]
+  },
+  "js/singlePost.js": {
+    "file": "singlePost.js",
+    "name": "singlePost",
+    "src": "js/singlePost.js",
+    "isEntry": true,
+    "imports": [
+      "_scripts-CN0VQGgP.js"
+    ],
+    "css": [
+      "assets/singlePost-CxpMHiF6.css"
     ]
   },
   "js/singleProduct.js": {
@@ -157,11 +157,11 @@
     "src": "js/singleProduct.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js",
+      "_scripts-CN0VQGgP.js",
       "_tiny-slider-BhTRplDx.js"
     ],
     "css": [
-      "assets/singleProduct-F1Xu2q-x.css"
+      "assets/singleProduct-Dc1WsuR2.css"
     ]
   },
   "js/standard.js": {
@@ -170,10 +170,10 @@
     "src": "js/standard.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js"
+      "_scripts-CN0VQGgP.js"
     ],
     "css": [
-      "assets/request-BcwBw8JX.css"
+      "assets/request-BqNhTYox.css"
     ]
   },
   "js/trademark.js": {
@@ -182,10 +182,10 @@
     "src": "js/trademark.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js"
+      "_scripts-CN0VQGgP.js"
     ],
     "css": [
-      "assets/request-BcwBw8JX.css"
+      "assets/request-BqNhTYox.css"
     ]
   },
   "js/woocommerce.js": {
@@ -194,12 +194,12 @@
     "src": "js/woocommerce.js",
     "isEntry": true,
     "imports": [
-      "_scripts-BcZnegh8.js",
+      "_scripts-CN0VQGgP.js",
       "_index-BhdsrUP8.js",
       "_htmx.min-DpIuoioD.js"
     ],
     "css": [
-      "assets/woocommerce-k0NKmHNc.css"
+      "assets/woocommerce-BF5c9zFx.css"
     ]
   }
 }

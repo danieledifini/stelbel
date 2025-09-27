@@ -120,13 +120,13 @@ main#content{
 /* PADDING */
 
 .p-b-standard{
-    //padding-bottom:var(--standardMargin);
+    /*padding-bottom:var(--standardMargin);*/
 
     padding-bottom:var(--fixedStandardMargin);
 }
 
 .p-t-standard{
-    //padding-bottom:var(--standardMargin);
+    /*padding-bottom:var(--standardMargin);*/
 
     padding-top:var(--fixedStandardMargin);
 }
