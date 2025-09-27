@@ -86,16 +86,12 @@ class StarterSite extends Timber\Site {
 
 		/* AJAX CALLS */
 		
-		add_action( 'init', array( $this, 'prefix_add_endpoints' ));
-		//add_action( 'template_redirect', array( $this,'prefix_do_latest' ));
-
 		add_action( 'rest_api_init', array( $this, 'prefix_do_latest' ));
 		add_action( 'rest_api_init', array( $this,'prefix_do_latest_builds' ));
-
 		add_action( 'rest_api_init', array( $this,'prefix_do_models' ));
-		add_action( 'template_redirect', array( $this,'prefix_do_builds' ));
-		add_action( 'template_redirect', array( $this,'prefix_do_articles' ));
-		add_action( 'template_redirect', array( $this,'prefix_do_register' ));
+		add_action( 'rest_api_init', array( $this,'prefix_do_articles' ));
+		add_action( 'rest_api_init', array( $this,'prefix_do_builds' ));
+		add_action( 'rest_api_init', array( $this,'prefix_do_register' ));
 
 
 		add_action('wp_ajax_load_more_products', array( $this, 'load_more_products' ));
@@ -125,33 +121,6 @@ class StarterSite extends Timber\Site {
 			wp_deregister_script( 'wp-embed' );
 		}
 
-	}
-
-	function prefix_add_endpoints() {
-		/*add_rewrite_tag( '%api_custom_type%', '([0-9A-Za-z-]+)' );
-		add_rewrite_rule( 'api/load_latests/([0-9A-Za-z-]+)/?', 'index.php?api_custom_type=$matches[1]', 'top' );
-		
-		add_rewrite_tag( '%api_build_type%', '([0-9A-Za-z-]+)' );
-		add_rewrite_tag( '%api_models_id%', '([0-9_]+)' );
-		add_rewrite_rule( 'api/load_latests_builds/([0-9A-Za-z-]+)/([0-9_]+)/?', 'index.php?api_build_type=$matches[1]&api_models_id=$matches[2]', 'top' );
-		
-
-
-		add_rewrite_tag( '%api_models_category_id%', '([0-9_]+)' );
-		add_rewrite_rule( 'api/load_models/([0-9_]+)/?', 'index.php?api_models_category_id=$matches[1]', 'top' );
-		*/
-
-		add_rewrite_tag( '%api_builds_models_id%', '([0-9_]+)' );
-		add_rewrite_rule( 'api/load_builds/([0-9_]+)/?', 'index.php?api_builds_models_id=$matches[1]', 'top' );
-
-		add_rewrite_tag( '%api_blog_page%', '([0-9_]+)' );
-		add_rewrite_rule( 'api/load_articles/([0-9_]+)/?', 'index.php?api_blog_page=$matches[1]', 'top' );
-
-		add_rewrite_tag( '%api_register_page%', '([0-9_]+)' );
-		add_rewrite_rule( 'api/load_registers/([0-9_]+)/?', 'index.php?api_register_page=$matches[1]', 'top' );
-		
-
-		//remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 	}
 
 	function prefix_do_latest() {
@@ -364,218 +333,231 @@ class StarterSite extends Timber\Site {
 	}
 
 	function prefix_do_builds(){
-		global $wp_query;
+		register_rest_route('api/v1', '/load_builds/(?P<model_id>\d+)?', array(
+			'methods' => 'GET',
+			'callback' => function ($request) {
+				$api_models_id = $request->get_param('model_id') ?? 0;
+				$msg = '';
 
-		$api_models_id = $wp_query->get( 'api_builds_models_id' );
+				$cur_page = 1;
+				$per_page = 99;
+				$orderby = "date";
+				$order   = 'DESC';
+				$type    = 'build';
 
-		if ( (! empty( $api_models_id ) || ($api_models_id == '0'))  ) {
-			$msg = '';
-
-			$cur_page = 1;
-			$per_page = 99;
-
-			$orderby = "date";
-			$order   = 'DESC';
-			$type 	 = 'build';
-			$args   = [];
-
-
-			if(($api_models_id !='0')){
-				
+				// Build WP_Query args
 				$args = array(
-					'post_type'		 => $type,
-					'orderby'		 => $orderby,
-					'order'			 => $order,
-					'posts_per_page' => $per_page,
-					'paged'          => $cur_page,
-					'meta_query'      => array(
-						 array(
-								 'key' => 'model',
-								'value' => '"' . $api_models_id . '"',
-								'compare' => 'LIKE'
-						 ),
-				    ),
-				);
-				
-			}
-			else{
-
-				$args = array(
-					'post_type'		 => $type,
-					'orderby'		 => $orderby,
-					'order'			 => $order,
+					'post_type'      => $type,
+					'orderby'        => $orderby,
+					'order'          => $order,
 					'posts_per_page' => $per_page,
 					'paged'          => $cur_page,
 				);
-			}
 
-			$custom_query = new WP_Query($args);
-			$total = $custom_query->found_posts;
-			$total_pages = $custom_query->max_num_pages;
+				if ($api_models_id != 0) {
+					$args['meta_query'] = array(
+						array(
+							'key'     => 'model',
+							'value'   => '"' . $api_models_id . '"',
+							'compare' => 'LIKE'
+						),
+					);
+				}
 
-			if ( $custom_query->have_posts() ){
-	
-				$msg .= '';
-	
-				while ( $custom_query->have_posts() ) :
-					$custom_query->the_post();
-					$cur_id = get_the_ID();
-					$article = Timber::get_post($cur_id);
-					$learn_more = get_field("learn_more","options");
+				$custom_query = new WP_Query($args);
+				$total = $custom_query->found_posts;
+				$total_pages = $custom_query->max_num_pages;
 
-					$msg .= Timber::compile( 'partial/'.$type.'.twig', array( 'item' => $article, 'button'=> $learn_more  ) );
-					
-				endwhile;
-			}
-			else{
-				$msg .= '<div class="fs-22 fdc default-text no-results-text">';
-				$msg .= get_field("no_results_text","options");
-				$msg .= '</div>';
-			}
+				if ($custom_query->have_posts()) {
+					while ($custom_query->have_posts()) {
+						$custom_query->the_post();
+						$cur_id = get_the_ID();
+						$article = Timber::get_post($cur_id);
+						$learn_more = get_field("learn_more", "options");
 
+						$msg .= Timber::compile(
+							'partial/' . $type . '.twig',
+							array('item' => $article, 'button' => $learn_more)
+						);
+					}
+				} else {
+					$msg .= '<div class="fs-22 fdc default-text no-results-text">';
+					$msg .= get_field("no_results_text", "options");
+					$msg .= '</div>';
+				}
 
-			echo $msg;
+				wp_reset_postdata();
 
-			exit;
-		}
+				echo $msg;
+				exit;
+			},
+			'args' => array(
+				'model_id' => array(
+					'validate_callback' => function ($value, $request, $param) {
+						return is_numeric($value);
+					},
+					'default' => 0,
+				),
+			),
+			'permission_callback' => '__return_true',
+		));
 
 	}
 
 	function prefix_do_articles(){
-		global $wp_query;
+		register_rest_route( 'api/v1', '/load_articles/(?P<page>\d+)', array(
+			'methods'  => 'GET',
+			'callback' => function($request) {
+				$cur_page = max( 1, intval( $request->get_param( 'page' ) ) );
+				$per_page = 8;
 
-		$api_blog_page = $wp_query->get( 'api_blog_page' );
+				$args = array(
+					'post_type'      => 'post',
+					'orderby'        => 'date',
+					'order'          => 'DESC',
+					'posts_per_page' => $per_page,
+					'paged'          => $cur_page,
+				);
 
-		if ( (! empty( $api_blog_page ) || ($api_blog_page == '0'))  ) {
-			$msg = '';
+				$custom_query = new WP_Query( $args );
+				$msg = '';
 
-			$cur_page = $api_blog_page;
-			$per_page = 8;
+				if ( $custom_query->have_posts() ) {
+					$total       = $custom_query->found_posts;
+					$total_pages = $custom_query->max_num_pages;
+					$current     = 0;
 
-			$orderby = "date";
-			$order   = 'DESC';
-			$type 	 = 'post';
-			$args   = [];
+					$msg .= '<div class="inner-wrapper" data-total="' . esc_attr( $total ) . '">';
 
-			$args = array(
-				'post_type'		 => $type,
-				'orderby'		 => $orderby,
-				'order'			 => $order,
-				'posts_per_page' => $per_page,
-				'paged'          => $cur_page,
-			);
+					while ( $custom_query->have_posts() ) {
+						$custom_query->the_post();
+						$cur_id  = get_the_ID();
+						$article = Timber::get_post( $cur_id );
 
-			$custom_query = new WP_Query($args);
-			$total = $custom_query->found_posts;
-			$total_pages = $custom_query->max_num_pages;
-			$current = 0;
+						$read         = get_field( "read", "options" );
+						$author       = get_field( "author", "options" );
+						$photographer = get_field( "photographer", "options" );
+						$by           = get_field( "by", "options" );
 
-			if ( $custom_query->have_posts() ){
-				
-				$msg .= '<div class="inner-wrapper  "  data-total="'.$total.'">';
-	
-				while ( $custom_query->have_posts() ) :
-					$custom_query->the_post();
-					$cur_id = get_the_ID();
-					$article = Timber::get_post($cur_id);
+						// Decide style
+						$style = 'simple';
+						if ( in_array( $current, array( 0, 7 ) ) ) {
+							$style = 'main';
+						} elseif ( in_array( $current, array( 1, 5 ) ) ) {
+							$style = 'medium';
+						}
 
-					$read         = get_field("read","options");
-					$author       = get_field("author","options");
-					$photographer = get_field("photographer","options");
-					$by           = get_field("by","options");
+						$msg .= Timber::compile(
+							'partial/standard-post-in-blog.twig',
+							array(
+								'item'        => $article,
+								'read'        => $read,
+								'author'      => $author,
+								'photographer'=> $photographer,
+								'by'          => $by,
+								'style'       => $style
+							)
+						);
 
-					$style = 'simple';
-
-					if (($current == 0) || ($current == 7)) {
-						$style = 'main';
+						$current++;
 					}
-					else if (($current == 1) || ($current == 5)) {
-						$style = 'medium';
-					}
-					
-					$msg .= Timber::compile( 'partial/standard-post-in-blog.twig', array( 'item' => $article, 'read'=> $read, 'author' => $author, 'photographer' => $photographer, 'by' => $by,'style' => $style   ) );
-					$current++;
-				endwhile;
 
-				$msg .= '</div><!-- inner-container -->';
-				//$method = "load_articles";
-				//$msg .= getPaginationHTMX($total,$per_page,$cur_page,$total_pages,$method);	
+					$msg .= '</div><!-- inner-container -->';
+					$msg .= getLoadMore( $cur_page, $total_pages );
+				} else {
+					$msg .= '<div class="standard-text default-text no-results-text fdc fs-18">';
+					$msg .= get_field( "no_results_text", "options" );
+					$msg .= '</div>';
+				}
 
-				$msg .= getLoadMore($cur_page, $total_pages);
-			}
-			else{
-				$msg .= '<div class="standard-text default-text no-results-text fdc fs-18">';
-				$msg .= get_field("no_results_text","options");
-				$msg .= '</div>';
-			}
-			
-			echo $msg;
+				wp_reset_postdata();
 
-			exit;
-		}
+				echo $msg;
+				exit;
+			},
+			'args'     => array(
+				'page' => array(
+					'validate_callback' => function( $value, $request, $param ) {
+						return is_numeric( $value );
+					},
+					'default'           => 1,
+				),
+			),
+			'permission_callback' => '__return_true',
+		));
 	}	
+
 	
 	function prefix_do_register(){
-		global $wp_query;
+		register_rest_route('api/v1', '/load_registers/(?P<page>\d+)?', array(
+			'methods' => 'GET',
+			'callback' => function ($request) {
+				$cur_page = max(1, intval($request->get_param('page') ?? 1));
+				$per_page = 99;
+				$orderby  = 'date';
+				$order    = 'DESC';
+				$type     = 'register';
 
-		$api_register_page = $wp_query->get( 'api_register_page' );
+				$args = array(
+					'post_type'      => $type,
+					'orderby'        => $orderby,
+					'order'          => $order,
+					'posts_per_page' => $per_page,
+					'paged'          => $cur_page,
+				);
 
-		if ( (! empty( $api_register_page ) || ($api_register_page == '0'))  ) {
-			$msg = '';
+				$custom_query = new WP_Query($args);
+				$total        = $custom_query->found_posts;
+				$total_pages  = $custom_query->max_num_pages;
+				$msg          = '';
 
-			$cur_page = $api_register_page;
-			$per_page = 99;
+				if ($custom_query->have_posts()) {
+					$msg .= '<div class="inner-wrapper dis-flex flex-col" data-total="' . esc_attr($total) . '">';
 
-			$orderby = "date";
-			$order   = 'DESC';
-			$type 	 = 'register';
-			$args   = [];
+					while ($custom_query->have_posts()) {
+						$custom_query->the_post();
+						$cur_id  = get_the_ID();
+						$article = Timber::get_post($cur_id);
 
-			$args = array(
-				'post_type'		 => $type,
-				'orderby'		 => $orderby,
-				'order'			 => $order,
-				'posts_per_page' => $per_page,
-				'paged'          => $cur_page,
-			);
+						$owner   = get_field('owner', 'options');
+						$country = get_field('country', 'options');
+						$details = get_field('details', 'options');
 
-			$custom_query = new WP_Query($args);
-			$total = $custom_query->found_posts;
-			$total_pages = $custom_query->max_num_pages;
+						$msg .= Timber::compile(
+							'partial/register.twig',
+							array(
+								'item'    => $article,
+								'owner'   => $owner,
+								'country' => $country,
+								'details' => $details,
+							)
+						);
+					}
 
-			if ( $custom_query->have_posts() ){
-				
-				$msg .= '<div class="inner-wrapper dis-flex flex-col"  data-total="'.$total.'">';
-	
-				while ( $custom_query->have_posts() ) :
-					$custom_query->the_post();
-					$cur_id = get_the_ID();
-					$article = Timber::get_post($cur_id);
+					$msg .= '</div><!-- inner-container -->';
+					$method = 'load_registers';
+					$msg .= getPaginationHTMX($total, $per_page, $cur_page, $total_pages, $method);
+				} else {
+					$msg .= '<div class="standard-text default-text no-results-text fdc fs-18">';
+					$msg .= get_field('no_results_text', 'options');
+					$msg .= '</div>';
+				}
 
-					$owner   = get_field("owner","options");	
-					$country = get_field("country","options");	
-					$details = get_field("details","options");	
+				wp_reset_postdata();
 
-					$msg .= Timber::compile( 'partial/register.twig', array( 'item' => $article, 'owner'=> $owner, 'country' => $country, 'details' => $details) );
-					 
-				endwhile;
-
-				$msg .= '</div><!-- inner-container -->';
-				$method = "load_registers";
-				$msg .= getPaginationHTMX($total,$per_page,$cur_page,$total_pages,$method);	
-
-				
-			}
-			else{
-				$msg .= '<div class="standard-text default-text no-results-text fdc fs-18">';
-				$msg .= get_field("no_results_text","options");
-				$msg .= '</div>';
-			}
-			
-			echo $msg;
-
-			exit;
-		}
+				echo $msg;
+				exit;
+			},
+			'args' => array(
+				'page' => array(
+					'validate_callback' => function ($value, $request, $param) {
+						return is_numeric($value);
+					},
+					'default' => 1,
+				),
+			),
+			'permission_callback' => '__return_true',
+		));
 	}
 
 	public function load_more_products($page = 1){

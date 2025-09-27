@@ -40,7 +40,7 @@ let lastScrollY = window.scrollY;
  
     const scrollY = window.scrollY;
   
-    if (scrollY !== lastScrollY) {
+    if (Math.abs(scrollY - lastScrollY) > 2) {
       lastScrollY = scrollY;
 
       if (!ticking) {

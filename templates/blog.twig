@@ -12,7 +12,7 @@
 
 		<div class="items-container " >
 			{% set method = 'load_articles' %}
-			<div class="articles-list with-loading loading"    id="items-wrapper" hx-get="/api/{{method}}" hx-trigger="load">
+			<div class="articles-list with-loading loading"    id="items-wrapper" hx-get="/wp-json/api/v1/{{method}}" hx-trigger="load">
 			</div>
 		</div>
 	</div>
