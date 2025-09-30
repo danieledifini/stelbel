@@ -5,6 +5,8 @@
 @import 'components/_btn.css';
 @import 'components/_single-product-preview.css';
 
+@import 'components/_woomessage.css';
+
 .main-product {
     @media (min-width: 48rem) {
         display:grid;

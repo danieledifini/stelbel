@@ -16,15 +16,15 @@ add_action('wp_enqueue_scripts', function() {
 
     $entry_to_load = '';
 
-    // Determine the JS entry based on page/post type/template
+    
     if (is_page_template()) {
         $entry_to_load = basename(get_page_template_slug(), '.php') . '.js';
-    } elseif (is_singular()) {
-        $entry_to_load = 'single' . ucfirst(get_post_type()) . '.js';
-    } elseif (is_404()) {
+    }  elseif (is_404()) {
         $entry_to_load = 'standard.js';
-    } elseif (is_woocommerce() && !is_product()) {
+    }  elseif ((is_woocommerce() && !is_product()) || is_cart() || is_checkout()) {
         $entry_to_load = 'woocommerce.js';
+    }elseif (is_singular()) {
+        $entry_to_load = 'single' . ucfirst(get_post_type()) . '.js';
     } elseif (is_product()) {
         $entry_to_load = 'singleProduct.js';
     }

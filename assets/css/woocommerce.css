@@ -25,3 +25,37 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
+
+.wp-element-button.wc-block-cart__submit-button,.wc-block-components-checkout-place-order-button{
+    display: initial;
+    padding: 0.3125rem var(--standardMargin) !important;
+    width: 100%;
+    min-height:initial !important;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 700;
+    background-color:transparent;
+    border-radius: 1.25rem;
+    border: 0.0625rem solid var(--black);
+    transition: all 500ms ease-out !important;
+
+    --min-font: 18;
+    --min-fontpx: 1.125rem;
+    font-size: var(--min-fontpx);
+    line-height: 1.167;
+
+    &:hover {
+        background-color: var(--black);
+        color: var(--secondary);
+    }
+}
+
+.wp-block-woocommerce-checkout-order-summary-block,.wp-block-woocommerce-checkout-order-summary-totals-block,.wc-block-components-totals-wrapper{
+    border-color:var(--black) !important;
+}
+
+.wc-block-components-form{
+    input,textarea,select,.wc-blocks-components-select .wc-blocks-components-select__container{
+        background-color:transparent !important;
+    }
+}

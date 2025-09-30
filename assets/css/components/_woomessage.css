@@ -1,0 +1,34 @@
+.woocommerce-error, .woocommerce-info, .woocommerce-message{
+    padding-inline:var(--grid-gutter);
+    background-color: transparent;
+    border: 1px solid var(--black);
+    border-left:0;
+    border-right:0;
+    font-family: 'Focal Web';
+
+    &:before{
+        display:none;
+    }
+
+    a.button{
+        display: initial;
+        padding: 0.3125rem var(--standardMargin);
+        width: auto;
+        text-decoration: none;
+        text-align: center;
+        font-weight: 700;
+        background-color:transparent;
+        border-radius: 1.25rem;
+        border: 0.0625rem solid var(--black);
+
+        --min-font: 18;
+        --min-fontpx: 1.125rem;
+        font-size: var(--min-fontpx);
+        line-height: 1.167;
+
+        &:hover {
+            background-color: var(--black);
+            color: var(--secondary);
+        }
+    }
+}

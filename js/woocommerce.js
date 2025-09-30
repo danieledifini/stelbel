@@ -16,6 +16,7 @@ let callback = () => {
     window.Alpine = Alpine;
     Alpine.start();
 
+    if(document.querySelector('#load-trigger')) {
     const maxPages = document.querySelector('#load-trigger').getAttribute('data-max-pages');
 
     observer = new IntersectionObserver(entries => {
@@ -28,6 +29,9 @@ let callback = () => {
     });
 
     observer.observe(document.querySelector('#load-trigger'));
+    }
+
+    document.body.classList.toggle("loaded");
 }
 
 let loadMoreProducts = (maxPages) => {

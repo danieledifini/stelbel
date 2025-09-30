@@ -709,6 +709,8 @@ class StarterSite extends Timber\Site {
 		$current_language = get_language_shortcode();
 		$context['current_language'] = $current_language;
 
+		$context['cart_url'] = wc_get_cart_url();
+
 
 		$context['model_archive'] = Timber::get_post(get_field('models_archive','options'));
 
