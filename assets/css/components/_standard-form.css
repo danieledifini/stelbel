@@ -162,3 +162,11 @@
         }
     }
 }
+
+.contact-template{
+    .standard-form{
+        border-bottom:none;
+        margin-bottom:0;
+        padding-bottom:0;
+    }
+}

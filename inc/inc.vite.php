@@ -31,7 +31,7 @@ add_action('wp_enqueue_scripts', function() {
 
     if (!$entry_to_load) return;
 
-    // Development mode (HMR)
+    
     if (defined('IS_VITE_DEVELOPMENT') && IS_VITE_DEVELOPMENT === true) {
         add_action('wp_head', function() use ($entry_to_load) {
             echo '<script type="module" crossorigin src="' . VITE_SERVER . '/js/' . $entry_to_load . '"></script>';
@@ -39,7 +39,7 @@ add_action('wp_enqueue_scripts', function() {
         return;
     }
 
-    // Production mode
+    
     $manifest_file = DIST_PATH . '/.vite/manifest.json';
     if (!file_exists($manifest_file)) return;
 

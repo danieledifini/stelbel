@@ -11,12 +11,12 @@
     <a class="hover-secondary" href="{{ site.link }}" rel="home" title="{{ site.title }}">{{site.title|upper}}</a> <span class="arrow">-</span>
 
     {% if is_woo_single %}
-        <a class="hover-secondary" href="{{archive_link}}" title="{{archive_title}}">{{archive_title}}</a> <span class="arrow">-</span>
+        <a class="hover-secondary" href="{{archive_link}}" >{{archive_title}}</a> <span class="arrow">-</span>
 
          {% set item_cats = post.terms('product_cat') %}  
 
          {% for item_cat in item_cats %}
-            <a class="hover-secondary" href="{{item_cat.link}}" title="{{item_cat.name}}">{{item_cat.name}}</a> <span class="arrow">-</span>
+            <a class="hover-secondary" href="{{item_cat.link}}" >{{item_cat.name}}</a> <span class="arrow">-</span>
         {% endfor %} 
     {% endif %}
 

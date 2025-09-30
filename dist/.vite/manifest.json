@@ -11,13 +11,26 @@
     "file": "assets/index-BhdsrUP8.js",
     "name": "index"
   },
-  "_scripts-CN0VQGgP.js": {
-    "file": "assets/scripts-CN0VQGgP.js",
+  "_scripts-BBy8b9DE.js": {
+    "file": "assets/scripts-BBy8b9DE.js",
     "name": "scripts"
   },
   "_tiny-slider-BhTRplDx.js": {
     "file": "assets/tiny-slider-BhTRplDx.js",
     "name": "tiny-slider"
+  },
+  "js/about.js": {
+    "file": "about.js",
+    "name": "about",
+    "src": "js/about.js",
+    "isEntry": true,
+    "imports": [
+      "_scripts-BBy8b9DE.js",
+      "_htmx.min-DpIuoioD.js"
+    ],
+    "css": [
+      "assets/about-BqNhTYox.css"
+    ]
   },
   "js/blog.js": {
     "file": "blog.js",
@@ -25,7 +38,7 @@
     "src": "js/blog.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js",
+      "_scripts-BBy8b9DE.js",
       "_htmx.min-DpIuoioD.js",
       "_index-BhdsrUP8.js"
     ],
@@ -39,7 +52,7 @@
     "src": "js/builds.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js",
+      "_scripts-BBy8b9DE.js",
       "_htmx.min-DpIuoioD.js",
       "_archive-C0ns8xCz.js"
     ],
@@ -53,10 +66,10 @@
     "src": "js/contact.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js"
+      "_scripts-BBy8b9DE.js"
     ],
     "css": [
-      "assets/request-BqNhTYox.css"
+      "assets/about-BqNhTYox.css"
     ]
   },
   "js/homepage.js": {
@@ -65,7 +78,7 @@
     "src": "js/homepage.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js",
+      "_scripts-BBy8b9DE.js",
       "_htmx.min-DpIuoioD.js",
       "_tiny-slider-BhTRplDx.js"
     ],
@@ -79,7 +92,7 @@
     "src": "js/models.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js",
+      "_scripts-BBy8b9DE.js",
       "_htmx.min-DpIuoioD.js",
       "_archive-C0ns8xCz.js"
     ],
@@ -93,7 +106,7 @@
     "src": "js/register.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js",
+      "_scripts-BBy8b9DE.js",
       "_htmx.min-DpIuoioD.js"
     ],
     "css": [
@@ -106,10 +119,10 @@
     "src": "js/request.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js"
+      "_scripts-BBy8b9DE.js"
     ],
     "css": [
-      "assets/request-BqNhTYox.css"
+      "assets/about-BqNhTYox.css"
     ]
   },
   "js/singleBuild.js": {
@@ -118,7 +131,7 @@
     "src": "js/singleBuild.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js",
+      "_scripts-BBy8b9DE.js",
       "_tiny-slider-BhTRplDx.js"
     ],
     "css": [
@@ -131,7 +144,7 @@
     "src": "js/singleModel.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js",
+      "_scripts-BBy8b9DE.js",
       "_htmx.min-DpIuoioD.js",
       "_tiny-slider-BhTRplDx.js"
     ],
@@ -145,7 +158,7 @@
     "src": "js/singlePost.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js"
+      "_scripts-BBy8b9DE.js"
     ],
     "css": [
       "assets/singlePost-CxpMHiF6.css"
@@ -157,7 +170,7 @@
     "src": "js/singleProduct.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js",
+      "_scripts-BBy8b9DE.js",
       "_tiny-slider-BhTRplDx.js"
     ],
     "css": [
@@ -170,10 +183,10 @@
     "src": "js/standard.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js"
+      "_scripts-BBy8b9DE.js"
     ],
     "css": [
-      "assets/request-BqNhTYox.css"
+      "assets/about-BqNhTYox.css"
     ]
   },
   "js/trademark.js": {
@@ -182,10 +195,10 @@
     "src": "js/trademark.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js"
+      "_scripts-BBy8b9DE.js"
     ],
     "css": [
-      "assets/request-BqNhTYox.css"
+      "assets/about-BqNhTYox.css"
     ]
   },
   "js/woocommerce.js": {
@@ -194,7 +207,7 @@
     "src": "js/woocommerce.js",
     "isEntry": true,
     "imports": [
-      "_scripts-CN0VQGgP.js",
+      "_scripts-BBy8b9DE.js",
       "_index-BhdsrUP8.js",
       "_htmx.min-DpIuoioD.js"
     ],

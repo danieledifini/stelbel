@@ -7,6 +7,7 @@ let ticking = false;
 
 export let calling = false;
 export let header;
+let lastLogoWidth = null;
 
 // INIT CALLBACK
 
@@ -19,51 +20,43 @@ let callback = () => {
   } 
 
   const logo = document.querySelector(".navbar-brand");
-const upperHeader = document.querySelector(".upper-header");
-const contentWrapper = document.querySelector(".content-wrapper");
+  const contentWrapper = document.querySelector(".content-wrapper");
 
-const minWidth = 243;         // logo width at 150px scroll
-const scrollLimit = 100;      // scroll distance for scaling
+  const minWidth = 243;
+  const scrollLimit = 100;
 
-// Read CSS variable value (strip 'px')
-const rootStyles = getComputedStyle(document.documentElement);
-const standardMargin = parseFloat(rootStyles.getPropertyValue("--standardMargin"));
-
-let lastScrollY = window.scrollY;
-
-  window.addEventListener('resize', function() {
-    setVw();
-    updateLogo(window.scrollY);
-  });  
-
-  window.addEventListener('scroll', function() {
- 
-    const scrollY = window.scrollY;
+  let wrapperWidth, widthDiff;
+  let lastScrollY = window.scrollY;
   
-    if (Math.abs(scrollY - lastScrollY) > 2) {
-      lastScrollY = scrollY;
+  setTimeout(() => {
+    wrapperWidth = contentWrapper.offsetWidth;
+    widthDiff = wrapperWidth - minWidth;
+  }, 100);
+
+  let ticking = false;
+
+  if (window.innerWidth >= 992) {
+    window.addEventListener('scroll', function () {
+      const scrollY = window.scrollY;
+      const scrollingUp = scrollY < lastScrollY;
 
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          updateLogo(scrollY);
+          if (wrapperWidth && widthDiff) {
+            
+            const scrollY = Math.min(Math.max(window.scrollY, 0), scrollLimit);
+            let progress = Math.min(scrollY, scrollLimit) / scrollLimit;;
+
+            const currentWidth = Math.round(wrapperWidth - widthDiff * progress);
+            logo.style.width = currentWidth + "px";
+          }
           ticking = false;
         });
         ticking = true;
       }
-    }
-  });  
-
-  function updateLogo(scrollY) {
-    const wrapperWidth = contentWrapper.offsetWidth; 
-    const progress = Math.min(scrollY, scrollLimit) / scrollLimit;
-  
-    const currentWidth = Math.round(wrapperWidth - (wrapperWidth - minWidth) * progress);
-    logo.style.width = currentWidth + "px";
-    
-  
-    /*const currentPadding = standardMargin - (standardMargin / 2) * progress;
-    upperHeader.style.paddingBlock = currentPadding + "px";*/
-  } 
+      lastScrollY = scrollY;
+    });
+  }
 
 }
 

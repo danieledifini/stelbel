@@ -2,3 +2,26 @@
 
 
 @import 'components/_btn.css';
+
+@import 'components/_standard-form.css';
+
+.contact-text{
+    display: grid;
+    column-gap: var(--grid-gutter);
+
+    @media (max-width: 47.9375rem ){
+        flex-direction:column;
+        row-gap:var(--standardMargin);
+        
+    }
+
+    @media (min-width: 48rem ){
+        grid-template-columns: 1fr 2fr;
+
+        .section-header{
+            padding:0;
+            margin:0;
+            border:none;
+        }
+    }
+}

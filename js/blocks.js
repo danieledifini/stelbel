@@ -1,7 +1,7 @@
 import Alpine from 'alpinejs';
 
 // get styles
-import './../assets/css/trademark.css'
+import './../assets/css/blocks.css'
 
 // get scripts
 import './../assets/js/scripts.js'

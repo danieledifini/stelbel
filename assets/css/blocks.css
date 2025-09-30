@@ -1,0 +1,18 @@
+@import 'partials/_page.css';
+
+@import 'components/_btn.css';
+
+@import 'blocks/_three_images_two_texts.css';
+@import 'blocks/_big_image_small_image_text.css';
+@import 'blocks/_video_embed.css';
+@import 'blocks/_image_small_text_table.css';
+@import 'blocks/_simple_text.css';
+
+
+.sections-container{
+    row-gap:var(--standardMargin);
+
+    picture,img{
+        min-width:100%;
+    }
+}

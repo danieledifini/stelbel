@@ -7,6 +7,10 @@ header.header{
         background-color:var(--yellow);
 
         &.hide-header{
+            .upper-header{
+                padding-block:calc(var(--standardMargin) / 2);
+            }
+
             /*--logoW: 15.1875rem;
 
             .pre-nav-header{
@@ -41,7 +45,7 @@ header.header{
 
 .upper-header{
     padding-block:var(--standardMargin);
-    transition: padding-block 0.1s linear;
+    transition: padding-block 0.3s linear;
 }
 
 .navbar-brand{

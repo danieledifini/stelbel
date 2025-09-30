@@ -1,14 +1,22 @@
 
-<a class="single-model-preview t-d-none" href="{{item.link}}" target="_self" title="{{item.title}}">
+<a class="single-model-preview t-d-none" href="{{item.link}}" target="_self" >
     <article  >
         {% if item.thumbnail %}
             <div class="image-container    brdr-rds-20">
                 <picture  class="img-cover pos-rel display">
                 {% set image = get_image(item.thumbnail) %}
-                    <source
-                    data-srcset="{{image.src('large')}}"
-                    media="(max-width: 767px)" />
-                    <img data-src="{{image.src('large')}}" src="{{image.src('medium')}}" alt="{{image.alt}}"   class="lazyload" width="{{image.src('large').width}}" height="{{image.src('large').height}}" />
+                {{ fn(
+                    'wp_get_attachment_image',
+                    image.id,
+                    'medium_large',
+                    false,
+                    {
+                      'class': 'lazyload',
+                      'sizes': '(max-width: 767px) 100vw, 700px',
+                      'alt': image.alt,
+                      'loading': 'lazy'
+                    }
+                  ) }}
                 </picture> 
             </div>
         {% endif %}

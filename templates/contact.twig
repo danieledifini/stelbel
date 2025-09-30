@@ -1,22 +1,33 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<article class="project-template" id="post-{{post.ID}}">
+<article class="contact-template" id="post-{{post.ID}}">
 	<div class="content-wrapper">
-		{% include 'partial/breadcrumbs.twig' %}
+		<div class=" contact-text">
+			<div class="section-header  m-b-standard b-b-black p-b-standard">
+				<h1 class="fdc fs-28">
+					{{post.title}}
+				</h1>
+				
+			</div>
 
-		<div class="main-contact-container border-top">
-			<div class="text-container">
+			<div class="article-body sections-container dis-flex flex-col">
+
 				{% if post.content %}
-					<div class="step-0 default-text r-l">{{post.content}}</div>
+					<div class="default-text ft fs-18 lh-30 main-text">
+						{{post.content}}
+					</div>
 				{% endif %}
 			</div>
-			
 		</div>
-	
+
+		{% if post.meta("form_id") %}
+			<div class="form-container standard-form m-t-standard">
+				{{fn('do_shortcode',post.meta("form_id"))}}
+			</div>
 		
-			
-	</div>
+		{% endif %}
+	</div>	
 </article>
 
 {% endblock %}

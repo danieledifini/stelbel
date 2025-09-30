@@ -3,14 +3,14 @@
         <nav id="nav-models-footer" class="nav-footer nav-models-footer fs-12 foc p-b-standard" role="navigation">
                 {% if models and model_archive %}
                     <div class="models-nav">
-                        <a href="{{model_archive.link}}" title="{{model_archive.title}}">
+                        <a href="{{model_archive.link}}">
                             {{model_archive.title}}
                         </a>
 
                         <ul>
                             {% for item in models %}
                                 <li>
-                                    <a href="{{item.link}}" title="{{item.title}}">
+                                    <a href="{{item.link}}" >
                                         {{item.title}}
                                     </a>
                                 </li>
